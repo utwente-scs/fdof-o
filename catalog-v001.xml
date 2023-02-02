@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://purl.org/nemo/gufo#/1.0.0" uri="https://purl.org/nemo/gufo#"/>
+    <uri id="Imports Wizard Entry" name="http://alpinebits.org/destinationdata/ontology/2022-04" uri="alpinebits.ttl"/>
+    <uri id="Imports Wizard Entry" name="http://purl.org/nemo/gufo#/1.0.0" uri="https://purl.org/nemo/gufo"/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base=""/>
+</catalog>
