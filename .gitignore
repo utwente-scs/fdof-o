@@ -1,4 +1,17 @@
-
 OntoUML/.FDOF-O.vpp.lck
 OntoUML/FDOF-O.vpp.bak*
 .DS_Store
+
+# MacOS files
+**/.DS_Store
+
+# VSCode files
+.vscode/
+
+# Visual Pardigm files
+**/*.vpp.lck
+**/*.vpp.bak*
+**/*.vpp.vbak
+
+# General files
+.local/
