@@ -11,7 +11,7 @@ OntoUML/FDOF-O.vpp.bak*
 # Visual Pardigm files
 **/*.vpp.lck
 **/*.vpp.bak*
-**/*.vpp.vbak
+**/*.vpp.vbak*
 
 # General files
 .local/
