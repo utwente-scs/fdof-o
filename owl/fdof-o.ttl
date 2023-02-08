@@ -39,304 +39,140 @@ dct:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  https://w3id.org/fdof/fdof-o#aggregatesGupriValue
-:aggregatesGupriValue rdf:type owl:ObjectProperty ;
-                      rdfs:subPropertyOf :aggregatesIdentifierValue ;
-                      rdfs:domain :GupriSpace ;
-                      rdfs:range :Gupri .
+###  https://w3id.org/fdof/fdof-o#hasMetadata
+:hasMetadata rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isMetadataOf ;
+             rdfs:domain :DigitalObject ;
+             rdfs:range :MetadataRecord .
 
 
-###  https://w3id.org/fdof/fdof-o#aggregatesIdentifierValue
-:aggregatesIdentifierValue rdf:type owl:ObjectProperty ;
-                           rdfs:subPropertyOf :aggregatesPropertyValue ;
-                           rdfs:domain :IdentificationSpace ;
-                           rdfs:range :Identifier .
-
-
-###  https://w3id.org/fdof/fdof-o#aggregatesPropertyValue
-:aggregatesPropertyValue rdf:type owl:ObjectProperty ;
-                         rdfs:domain :PropertyValueSpace ;
-                         rdfs:range :PropertyValue .
-
-
-###  https://w3id.org/fdof/fdof-o#assigns
-:assigns rdf:type owl:ObjectProperty ;
-         rdfs:subPropertyOf :hasValue ;
-         rdfs:domain :Identification ;
-         rdfs:range :Identifier .
-
-
-###  https://w3id.org/fdof/fdof-o#assignsTo
-:assignsTo rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf gufo:mediates ;
-           rdfs:domain :Identification ;
-           rdfs:range :IdentifiedEntity .
-
-
-###  https://w3id.org/fdof/fdof-o#associatedWith
-:associatedWith rdf:type owl:ObjectProperty ;
-                rdfs:domain :FairDigitalObjectCharacterisation ;
-                rdfs:range :Property .
-
-
-###  https://w3id.org/fdof/fdof-o#hasDigitalObjectMetadata
-:hasDigitalObjectMetadata rdf:type owl:ObjectProperty ;
-                          owl:inverseOf :isMetadataOfDigitalObject ;
-                          rdfs:domain :FairDigitalObject ;
-                          rdfs:range :FairMetadataRecord .
-
-
-###  https://w3id.org/fdof/fdof-o#hasEncodingFormat
-:hasEncodingFormat rdf:type owl:ObjectProperty ;
-                   rdfs:subPropertyOf :isCharacterisedBy ;
-                   rdfs:domain :FairMediaObject ;
-                   rdfs:range :EncodingFormat .
-
-
-###  https://w3id.org/fdof/fdof-o#hasGroundObjectMetadata
-:hasGroundObjectMetadata rdf:type owl:ObjectProperty ;
-                         rdfs:subPropertyOf :hasDigitalObjectMetadata ;
-                         owl:inverseOf :isMetadataOfGroundObject ;
-                         rdfs:domain :FairGroundObject ;
-                         rdfs:range :FairMetadataRecord .
-
-
-###  https://w3id.org/fdof/fdof-o#hasInformationObjectType
-:hasInformationObjectType rdf:type owl:ObjectProperty ;
-                          rdfs:subPropertyOf :isCharacterisedBy ;
-                          rdfs:domain :FairInformationObject ;
-                          rdfs:range :FairInformationObjectType .
-
-
-###  https://w3id.org/fdof/fdof-o#hasMetadataAttribution
-:hasMetadataAttribution rdf:type owl:ObjectProperty ;
-                        rdfs:domain :FairMetadataRecord ;
-                        rdfs:range :Attribution .
-
-
-###  https://w3id.org/fdof/fdof-o#hasValue
-:hasValue rdf:type owl:ObjectProperty ;
-          rdfs:domain :Attribution ;
-          rdfs:range :PropertyValue .
-
-
-###  https://w3id.org/fdof/fdof-o#identifiedBy
-:identifiedBy rdf:type owl:ObjectProperty ;
-              rdfs:domain :IdentifiedEntity ;
-              rdfs:range :Identifier .
-
-
-###  https://w3id.org/fdof/fdof-o#identifiedByGupri
-:identifiedByGupri rdf:type owl:ObjectProperty ;
-                   rdfs:subPropertyOf :identifiedBy ;
-                   rdfs:domain :FairDigitalObject ;
-                   rdfs:range :Gupri .
-
-
-###  https://w3id.org/fdof/fdof-o#isCharacterisedBy
-:isCharacterisedBy rdf:type owl:ObjectProperty ;
-                   rdfs:domain :FairDigitalObject ;
-                   rdfs:range :FairDigitalObjectCharacterisation .
+###  https://w3id.org/fdof/fdof-o#isIdentifiedBy
+:isIdentifiedBy rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf gufo:hasReifiedQualityValue ;
+                rdfs:range :Identifier .
 
 
 ###  https://w3id.org/fdof/fdof-o#isMaterializedBy
 :isMaterializedBy rdf:type owl:ObjectProperty ;
-                  rdfs:domain :FairInformationObject ;
-                  rdfs:range :FairMediaObject .
+                  owl:inverseOf :materializes ;
+                  rdfs:domain :InformationObject ;
+                  rdfs:range :MediaObject .
 
 
-###  https://w3id.org/fdof/fdof-o#isMetadataOfDigitalObject
-:isMetadataOfDigitalObject rdf:type owl:ObjectProperty ;
-                           rdfs:domain :FairMetadataRecord ;
-                           rdfs:range :FairDigitalObject .
+###  https://w3id.org/fdof/fdof-o#isMetadataOf
+:isMetadataOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf gufo:historicallyDependsOn ;
+              rdfs:domain :MetadataRecord ;
+              rdfs:range :DigitalObject .
 
 
-###  https://w3id.org/fdof/fdof-o#isMetadataOfGroundObject
-:isMetadataOfGroundObject rdf:type owl:ObjectProperty ;
-                          rdfs:subPropertyOf :isMetadataOfDigitalObject ;
-                          rdfs:domain :FairMetadataRecord ;
-                          rdfs:range :FairGroundObject .
+###  https://w3id.org/fdof/fdof-o#materializes
+:materializes rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf gufo:historicallyDependsOn ;
+              rdfs:domain :MediaObject ;
+              rdfs:range :InformationObject .
 
 
-###  https://w3id.org/fdof/fdof-o#madeBy
-:madeBy rdf:type owl:ObjectProperty ;
-        rdfs:subPropertyOf gufo:mediates ;
-        rdfs:domain :Identification ;
-        rdfs:range :Agent .
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/fdof/fdof-o#gupri
+:gupri rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :identifier ;
+       rdfs:domain :FairDigitalObject .
 
 
-###  https://w3id.org/fdof/fdof-o#takesValueIn
-:takesValueIn rdf:type owl:ObjectProperty ;
-              rdfs:domain :QualityType ;
-              rdfs:range :PropertyValueSpace .
+###  https://w3id.org/fdof/fdof-o#identifier
+:identifier rdf:type owl:DatatypeProperty ;
+            rdfs:domain :IdentifiedDigitalObject .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  https://w3id.org/fdof/fdof-o#Agent
-:Agent rdf:type owl:Class ;
-       rdfs:subClassOf gufo:Object .
+###  https://w3id.org/fdof/fdof-o#Dataset
+:Dataset rdf:type owl:Class ;
+         rdfs:subClassOf :InformationObject .
 
 
-###  https://w3id.org/fdof/fdof-o#Attribution
-:Attribution rdf:type owl:Class ;
-             rdfs:subClassOf gufo:Relator .
-
-
-###  https://w3id.org/fdof/fdof-o#EncodingFormat
-:EncodingFormat rdf:type owl:Class ;
-                rdfs:subClassOf :FairDigitalObjectCharacterisation .
+###  https://w3id.org/fdof/fdof-o#DigitalObject
+:DigitalObject rdf:type owl:Class ;
+               rdfs:subClassOf gufo:Object .
 
 
 ###  https://w3id.org/fdof/fdof-o#FairDigitalObject
 :FairDigitalObject rdf:type owl:Class ;
-                   rdfs:subClassOf :IdentifiedEntity .
+                   rdfs:subClassOf :IdentifiedDigitalObject .
 
 
-###  https://w3id.org/fdof/fdof-o#FairDigitalObjectCharacterisation
-:FairDigitalObjectCharacterisation rdf:type owl:Class ;
-                                   rdfs:subClassOf :Property .
-
-
-###  https://w3id.org/fdof/fdof-o#FairGroundObject
-:FairGroundObject rdf:type owl:Class ;
-                  rdfs:subClassOf :FairDigitalObject .
-
-
-###  https://w3id.org/fdof/fdof-o#FairInformationObject
-:FairInformationObject rdf:type owl:Class ;
-                       rdfs:subClassOf :FairDigitalObject .
-
-
-###  https://w3id.org/fdof/fdof-o#FairInformationObjectType
-:FairInformationObjectType rdf:type owl:Class ;
-                           rdfs:subClassOf :FairDigitalObjectCharacterisation .
-
-
-###  https://w3id.org/fdof/fdof-o#FairMediaObject
-:FairMediaObject rdf:type owl:Class ;
-                 rdfs:subClassOf :FairDigitalObject .
-
-
-###  https://w3id.org/fdof/fdof-o#FairMetadataRecord
-:FairMetadataRecord rdf:type owl:Class ;
-                    rdfs:subClassOf :FairInformationObject .
-
-
-###  https://w3id.org/fdof/fdof-o#Gupri
-:Gupri rdf:type owl:Class ;
+###  https://w3id.org/fdof/fdof-o#Gurpi
+:Gurpi rdf:type owl:Class ;
        rdfs:subClassOf :Identifier .
 
 
-###  https://w3id.org/fdof/fdof-o#GupriSpace
-:GupriSpace rdf:type owl:Class ;
-            rdfs:subClassOf :IdentificationSpace .
-
-
-###  https://w3id.org/fdof/fdof-o#Identification
-:Identification rdf:type owl:Class ;
-                rdfs:subClassOf :Attribution .
-
-
-###  https://w3id.org/fdof/fdof-o#IdentificationSpace
-:IdentificationSpace rdf:type owl:Class ;
-                     rdfs:subClassOf :PropertyValueSpace .
-
-
-###  https://w3id.org/fdof/fdof-o#IdentifiedEntity
-:IdentifiedEntity rdf:type owl:Class ;
-                  rdfs:subClassOf gufo:Object .
+###  https://w3id.org/fdof/fdof-o#IdentifiedDigitalObject
+:IdentifiedDigitalObject rdf:type owl:Class ;
+                         rdfs:subClassOf :DigitalObject .
 
 
 ###  https://w3id.org/fdof/fdof-o#Identifier
 :Identifier rdf:type owl:Class ;
-            rdfs:subClassOf :PropertyValue .
+            rdfs:subClassOf gufo:AbstractIndividual .
 
 
-###  https://w3id.org/fdof/fdof-o#Property
-:Property rdf:type owl:Class ;
-          rdfs:subClassOf gufo:Type .
+###  https://w3id.org/fdof/fdof-o#InformationObject
+:InformationObject rdf:type owl:Class ;
+                   rdfs:subClassOf :DigitalObject ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :isMaterializedBy ;
+                                     owl:someValuesFrom :MediaObject
+                                   ] ;
+                   owl:disjointWith :MediaObject .
 
 
-###  https://w3id.org/fdof/fdof-o#PropertyValue
-:PropertyValue rdf:type owl:Class ;
-               rdfs:subClassOf gufo:AbstractIndividual .
+###  https://w3id.org/fdof/fdof-o#MediaObject
+:MediaObject rdf:type owl:Class ;
+             rdfs:subClassOf :DigitalObject .
 
 
-###  https://w3id.org/fdof/fdof-o#PropertyValueSpace
-:PropertyValueSpace rdf:type owl:Class ;
-                    rdfs:subClassOf gufo:AbstractIndividual .
-
-
-###  https://w3id.org/fdof/fdof-o#QualityType
-:QualityType rdf:type owl:Class ;
-             rdfs:subClassOf :Property .
+###  https://w3id.org/fdof/fdof-o#MetadataRecord
+:MetadataRecord rdf:type owl:Class ;
+                rdfs:subClassOf :Dataset ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :isMetadataOf ;
+                                  owl:someValuesFrom :DigitalObject
+                                ] .
 
 
 #################################################################
 #    Individuals
 #################################################################
 
-###  https://w3id.org/fdof/fdof-o#Agent
-:Agent rdf:type owl:NamedIndividual ,
-                gufo:Category .
+###  https://w3id.org/fdof/fdof-o#Dataset
+:Dataset rdf:type owl:NamedIndividual ,
+                  gufo:SubKind .
 
 
-###  https://w3id.org/fdof/fdof-o#Attribution
-:Attribution rdf:type owl:NamedIndividual ,
-                      gufo:Category .
+###  https://w3id.org/fdof/fdof-o#DigitalObject
+:DigitalObject rdf:type owl:NamedIndividual ,
+                        gufo:Category .
 
 
 ###  https://w3id.org/fdof/fdof-o#FairDigitalObject
 :FairDigitalObject rdf:type owl:NamedIndividual ,
-                            gufo:Category .
+                            gufo:RoleMixin .
 
 
-###  https://w3id.org/fdof/fdof-o#FairGroundObject
-:FairGroundObject rdf:type owl:NamedIndividual ,
-                           gufo:RoleMixin .
-
-
-###  https://w3id.org/fdof/fdof-o#FairInformationObject
-:FairInformationObject rdf:type owl:NamedIndividual ,
-                                gufo:Role .
-
-
-###  https://w3id.org/fdof/fdof-o#FairMediaObject
-:FairMediaObject rdf:type owl:NamedIndividual ,
-                          gufo:Role .
-
-
-###  https://w3id.org/fdof/fdof-o#FairMetadataRecord
-:FairMetadataRecord rdf:type owl:NamedIndividual ,
-                             gufo:Role .
-
-
-###  https://w3id.org/fdof/fdof-o#Gupri
-:Gupri rdf:type owl:NamedIndividual ,
+###  https://w3id.org/fdof/fdof-o#Gurpi
+:Gurpi rdf:type owl:NamedIndividual ,
                 gufo:AbstractIndividualType .
 
 
-###  https://w3id.org/fdof/fdof-o#GupriSpace
-:GupriSpace rdf:type owl:NamedIndividual ,
-                     gufo:AbstractIndividualType .
-
-
-###  https://w3id.org/fdof/fdof-o#Identification
-:Identification rdf:type owl:NamedIndividual ,
-                         gufo:Kind .
-
-
-###  https://w3id.org/fdof/fdof-o#IdentificationSpace
-:IdentificationSpace rdf:type owl:NamedIndividual ,
-                              gufo:AbstractIndividualType .
-
-
-###  https://w3id.org/fdof/fdof-o#IdentifiedEntity
-:IdentifiedEntity rdf:type owl:NamedIndividual ,
-                           gufo:Category .
+###  https://w3id.org/fdof/fdof-o#IdentifiedDigitalObject
+:IdentifiedDigitalObject rdf:type owl:NamedIndividual ,
+                                  gufo:RoleMixin .
 
 
 ###  https://w3id.org/fdof/fdof-o#Identifier
@@ -344,14 +180,19 @@ dct:title rdf:type owl:AnnotationProperty .
                      gufo:AbstractIndividualType .
 
 
-###  https://w3id.org/fdof/fdof-o#PropertyValue
-:PropertyValue rdf:type owl:NamedIndividual ,
-                        gufo:AbstractIndividualType .
+###  https://w3id.org/fdof/fdof-o#InformationObject
+:InformationObject rdf:type owl:NamedIndividual ,
+                            gufo:Kind .
 
 
-###  https://w3id.org/fdof/fdof-o#PropertyValueSpace
-:PropertyValueSpace rdf:type owl:NamedIndividual ,
-                             gufo:AbstractIndividualType .
+###  https://w3id.org/fdof/fdof-o#MediaObject
+:MediaObject rdf:type owl:NamedIndividual ,
+                      gufo:Kind .
+
+
+###  https://w3id.org/fdof/fdof-o#MetadataRecord
+:MetadataRecord rdf:type owl:NamedIndividual ,
+                         gufo:Role .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
