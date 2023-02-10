@@ -87,7 +87,7 @@
             dcat:mediaType <https://www.iana.org/assignments/media-types/text/turtle> ;
             fdof:gupri "https://w3id.org/fdof/ontology/metadata/fdofTtl" ;
             dct:title "Turtle Distribution of the FAIR Digital Object Framework Ontology"@en ;
-            dcat:byteSize "101239"^^xsd:int ;
+            dcat:byteSize "6800"^^xsd:int ;
             dcat:downloadURL <https://raw.githubusercontent.com/utwente-scs/fdof-o/main/owl/fdof-o.ttl> ;
 }
 
@@ -99,6 +99,6 @@
                     dcat:mediaType <https://www.iana.org/assignments/media-types/application/trig> ;
                     fdof:gupri "https://w3id.org/fdof/ontology/metadata/fdofMetadataTrig" ;
                     dct:title "TriG Distribution of the Metadata Records Related to the FAIR Digital Object Framework Ontology"@en ;
-                    dcat:byteSize "5601"^^xsd:int ;
+                    dcat:byteSize "8714"^^xsd:int ;
                     dcat:downloadURL <https://raw.githubusercontent.com/utwente-scs/fdof-o/main/owl/fdof-o-metadata.trig> ;
 }
