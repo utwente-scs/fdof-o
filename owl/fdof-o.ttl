@@ -1,27 +1,48 @@
-@prefix : <https://w3id.org/fdof/fdof-o#> .
+@prefix : <https://w3id.org/fdof/ontology#> .
+@prefix fdof: <https://w3id.org/fdof/ontology#> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mod: <https://w3id.org/mod#> .
+@prefix omv: <http://omv.ontoware.org/2005/05/ontology#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
-@base <https://w3id.org/fdof/fdof-o> .
 
-<https://w3id.org/fdof/fdof-o> rdf:type owl:Ontology ;
-                                owl:versionIRI <https://w3id.org/fdof/fdof-o/2023-02> ;
-                                owl:imports <http://purl.org/nemo/gufo#/1.0.0> ;
-                                dct:created "2023-02-02"^^xsd:date ;
-                                dct:creator <https://orcid.org/0000-0002-1164-1351> ,
-                                            <https://orcid.org/0000-0002-3452-553X> ,
-                                            <https://orcid.org/0000-0002-5385-5761> ;
-                                dct:license <https://creativecommons.org/licenses/by-sa/3.0/> ;
-                                dct:title "FAIR Digital Object Framework Ontology (FDOF-O)"@en ;
-                                vann:preferredNamespacePrefix "fdofo" ;
-                                vann:preferredNamespaceUri "http://purl.org/scs/fdof-o#" ;
-                                owl:versionInfo "2023-02"@en .
+<https://w3id.org/fdof/ontology> rdf:type owl:Ontology, fdof:FAIRInformationObject ;
+                                   fdof:gupri "https://w3id.org/fdof/ontology"^^xsd:anyURI ;
+                                   dct:identifier "https://w3id.org/fdof/ontology"^^xsd:anyURI ;
+                                   fdof:isMaterializedBy :fdofTtl ;
+                                   dcat:distribution :fdofTtl ;
+                                   owl:ontologyIRI <https://w3id/fdof/ontotlogy> ;
+                                   owl:versionIRI <https://w3id/fdof/ontotlogy/1.0.0> ;
+                                   owl:versionInfo "1.0.0"@en ;
+                                   vann:preferredNamespacePrefix "fdof"@en ;
+                                   vann:preferredNamespaceUri "https://w3id/fdof/ontotlogy#"^^xsd:anyURI ;
+                                   mod:acronym "FDOF" ;
+                                   dct:title "FDOF: FAIR Digital Object Framework Ontology"@en ;
+                                   dcat:landingPage <https://github.com/utwente-scs/fdof-o/> ;
+                                   dct:license <https://creativecommons.org/licenses/by-sa/3.0> ;
+                                   dct:creator <https://orcid.org/0000-0002-1164-1351> ,
+                                          <https://orcid.org/0000-0002-3452-553X> ,
+                                          <https://orcid.org/0000-0002-5385-5761> ,
+                                          <https://orcid.org/0000-0003-2528-3118> ;
+                                   dct:publisher <https://www.utwente.nl/eemcs/scs/> ;
+                                   mod:hasRepresentationLanguage omv:OWL ;
+                                   dct:created "2023-02-10"^^xsd:date ;
+                                   mod:vocabularyUsed <http://purl.org/nemo/gufo#> ,
+                                                 <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ,
+                                                 <http://www.w3.org/2000/01/rdf-schema#> ,
+                                                 <http://www.w3.org/2002/07/owl#> ,
+                                                 <http://www.w3.org/2001/XMLSchema#> ,
+                                                 <http://purl.org/dc/terms/> , 
+                                                 <http://www.w3.org/ns/dcat#> ,
+                                                 <http://purl.org/vocab/vann/> ,
+                                                 <https://w3id.org/mod#> ,
+                                                 <http://omv.ontoware.org/2005/05/ontology#> .
 
 #################################################################
 #    Annotation properties
