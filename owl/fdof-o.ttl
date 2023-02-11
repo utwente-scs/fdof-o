@@ -101,7 +101,7 @@ dct:title rdf:type owl:AnnotationProperty .
 ###  https://w3id.org/fdof/fdof-o#gupri
 :gupri rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf :identifier ;
-       rdfs:domain :FairDigitalObject .
+       rdfs:domain :FAIRDigitalObject .
 
 
 ###  https://w3id.org/fdof/fdof-o#identifier
@@ -123,13 +123,25 @@ dct:title rdf:type owl:AnnotationProperty .
                rdfs:subClassOf gufo:Object .
 
 
-###  https://w3id.org/fdof/fdof-o#FairDigitalObject
-:FairDigitalObject rdf:type owl:Class ;
+###  https://w3id.org/fdof/fdof-o#FAIRDigitalObject
+:FAIRDigitalObject rdf:type owl:Class ;
                    rdfs:subClassOf :IdentifiedDigitalObject .
 
+###  https://w3id.org/fdof/fdof-o#FAIRInformationObject
+:FAIRInformationObject rdf:type owl:Class ;
+                   rdfs:subClassOf :InformationObject, :FAIRDigitalObject .
 
-###  https://w3id.org/fdof/fdof-o#Gurpi
-:Gurpi rdf:type owl:Class ;
+###  https://w3id.org/fdof/fdof-o#FAIRMediaObject
+:FAIRMediaObject rdf:type owl:Class ;
+                   rdfs:subClassOf :MediaObject, :FAIRDigitalObject .
+
+###  https://w3id.org/fdof/fdof-o#FAIRMetadataRecord
+:FAIRMetadataRecord rdf:type owl:Class ;
+                   rdfs:subClassOf :FAIRInformationObject, :MetadataRecord .
+
+
+###  https://w3id.org/fdof/fdof-o#GUPRI
+:GUPRI rdf:type owl:Class ;
        rdfs:subClassOf :Identifier .
 
 
@@ -181,13 +193,28 @@ dct:title rdf:type owl:AnnotationProperty .
                         gufo:Category .
 
 
-###  https://w3id.org/fdof/fdof-o#FairDigitalObject
-:FairDigitalObject rdf:type owl:NamedIndividual ,
+###  https://w3id.org/fdof/fdof-o#FAIRDigitalObject
+:FAIRDigitalObject rdf:type owl:NamedIndividual ,
                             gufo:RoleMixin .
 
 
-###  https://w3id.org/fdof/fdof-o#Gurpi
-:Gurpi rdf:type owl:NamedIndividual ,
+###  https://w3id.org/fdof/fdof-o#FAIRInformationObject
+:FAIRInformationObject rdf:type owl:NamedIndividual ,
+                            gufo:Role .
+
+
+###  https://w3id.org/fdof/fdof-o#FAIRMediaObject
+:FAIRMediaObject rdf:type owl:NamedIndividual ,
+                            gufo:Role .
+
+
+###  https://w3id.org/fdof/fdof-o#FAIRMetadataRecord
+:FAIRMetadataRecord rdf:type owl:NamedIndividual ,
+                            gufo:Role .
+
+
+###  https://w3id.org/fdof/fdof-o#GUPRI
+:GUPRI rdf:type owl:NamedIndividual ,
                 gufo:AbstractIndividualType .
 
 
