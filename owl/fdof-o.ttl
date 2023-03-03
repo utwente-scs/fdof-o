@@ -32,7 +32,7 @@
                                           <https://orcid.org/0000-0003-2528-3118> ;
                                    dct:publisher <https://www.utwente.nl/eemcs/scs/> ;
                                    mod:hasRepresentationLanguage omv:OWL ;
-                                   dct:created "2023-02-10"^^xsd:date ;
+                                   dct:issued "2023-02-10"^^xsd:date ;
                                    mod:vocabularyUsed <http://purl.org/nemo/gufo#> ,
                                                  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ,
                                                  <http://www.w3.org/2000/01/rdf-schema#> ,
