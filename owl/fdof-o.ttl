@@ -1,5 +1,6 @@
 @prefix : <https://w3id.org/fdof/ontology#> .
 @prefix fdof: <https://w3id.org/fdof/ontology#> .
+@prefix meta: <https://w3id.org/fdof/ontology/metadata/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -15,15 +16,17 @@
 <https://w3id.org/fdof/ontology> rdf:type owl:Ontology, fdof:FAIRInformationObject ;
                                    fdof:gupri "https://w3id.org/fdof/ontology"^^xsd:anyURI ;
                                    dct:identifier "https://w3id.org/fdof/ontology"^^xsd:anyURI ;
-                                   fdof:isMaterializedBy :fdofTtl ;
-                                   dcat:distribution :fdofTtl ;
+                                   fdof:isMaterializedBy fdof:fdofTtl ;
+                                   dcat:distribution fdof:fdofTtl ;
                                    owl:ontologyIRI <https://w3id/fdof/ontotlogy> ;
                                    owl:versionIRI <https://w3id/fdof/ontotlogy/1.0.0> ;
                                    owl:versionInfo "1.0.0"@en ;
                                    vann:preferredNamespacePrefix "fdof"@en ;
                                    vann:preferredNamespaceUri "https://w3id/fdof/ontotlogy#"^^xsd:anyURI ;
-                                   mod:acronym "FDOF" ;
-                                   dct:title "FDOF: FAIR Digital Object Framework Ontology"@en ;
+                                   mod:acronym "FDOF-O" ;
+                                   dct:title "FDOF-O: FAIR Digital Object Framework Ontology"@en ;
+                                   dct:description "The FAIR Digital Object Framework Ontology (FDOF-O) is an OWL ontology designed to support the semantic annotation of FAIR Information Objects and FAIR Media Objects enabling application-specific requirements."@en ;
+                                   dct:bibliographicCitation "Santos, L. O. B. D. S., Sales, T. P., Fonseca, C. M., & Guizzardi, G. (2023). Towards a conceptual model for the FAIR Digital Object Framework. arXiv preprint arXiv:2302.11894. https://doi.org/10.48550/arXiv.2302.11894"@en ;
                                    dcat:landingPage <https://github.com/utwente-scs/fdof-o/> ;
                                    dct:license <https://creativecommons.org/licenses/by-sa/3.0> ;
                                    dct:creator <https://orcid.org/0000-0002-1164-1351> ,
@@ -61,37 +64,54 @@ dct:title rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  https://w3id.org/fdof/fdof-o#hasMetadata
-:hasMetadata rdf:type owl:ObjectProperty ;
-             owl:inverseOf :isMetadataOf ;
-             rdfs:domain :DigitalObject ;
-             rdfs:range :MetadataRecord .
+fdof:hasMetadata rdf:type owl:ObjectProperty ;
+             rdfs:label "hasMetadata"@en ;
+             dct:description """Identifies a fdof:MetadataRecord named graph that aggregates all triples of a metadata record of the fdof:DigitalObject.
+
+For example, the named graph meta:fdofMetadata is a fdof:FAIRMetadataRecord about <https://w3id.org/fdof/ontology>."""@en ;
+             owl:inverseOf fdof:isMetadataOf ;
+             rdfs:domain fdof:DigitalObject ;
+             rdfs:range fdof:MetadataRecord .
 
 
 ###  https://w3id.org/fdof/fdof-o#isIdentifiedBy
-:isIdentifiedBy rdf:type owl:ObjectProperty ;
+fdof:isIdentifiedBy rdf:type owl:ObjectProperty ;
+                rdfs:label "isIdentifiedBy"@en ;
+                dct:description """Identifies an identifier of an object reified as a fdof:Identifier
+
+For example,  a hypothetical object <https://w3id.org/fdof/ontology#identifier> that represents an identifier of <https://w3id.org/fdof/ontology>."""@en ;
                 rdfs:subPropertyOf gufo:hasReifiedQualityValue ;
-                rdfs:range :Identifier .
+                rdfs:range fdof:Identifier .
 
 
 ###  https://w3id.org/fdof/fdof-o#isMaterializedBy
-:isMaterializedBy rdf:type owl:ObjectProperty ;
-                  owl:inverseOf :materializes ;
-                  rdfs:domain :InformationObject ;
-                  rdfs:range :MediaObject .
+fdof:isMaterializedBy rdf:type owl:ObjectProperty ;
+                  rdfs:label "isMaterializedBy"@en ;
+                  dct:description """Identifies a fdof:MediaObject that is a materialization of the fdof:InformationObject.
+
+For example, the <https://w3id.org/fdof/ontology> is materialized by fdof:fdofTtl, which is a Turtle file. This is an example of a complete materialization, but partial materializations and equivalent materializations are both allowed."""@en ;
+                  owl:inverseOf fdof:materializes ;
+                  rdfs:domain fdof:InformationObject ;
+                  rdfs:range fdof:MediaObject .
 
 
 ###  https://w3id.org/fdof/fdof-o#isMetadataOf
-:isMetadataOf rdf:type owl:ObjectProperty ;
+fdof:isMetadataOf rdf:type owl:ObjectProperty ;
+              rdfs:label "isMetadataOf"@en ;
+              dct:description """Identifies the fdof:DigitalObject the fdof:MetadataRecord is about.
+
+"""@en ;
               rdfs:subPropertyOf gufo:historicallyDependsOn ;
-              rdfs:domain :MetadataRecord ;
-              rdfs:range :DigitalObject .
+              rdfs:domain fdof:MetadataRecord ;
+              rdfs:range fdof:DigitalObject .
 
 
 ###  https://w3id.org/fdof/fdof-o#materializes
-:materializes rdf:type owl:ObjectProperty ;
+fdof:materializes rdf:type owl:ObjectProperty ;
+              rdfs:label "materializes"@en ;
               rdfs:subPropertyOf gufo:historicallyDependsOn ;
-              rdfs:domain :MediaObject ;
-              rdfs:range :InformationObject .
+              rdfs:domain fdof:MediaObject ;
+              rdfs:range fdof:InformationObject .
 
 
 #################################################################
@@ -99,14 +119,16 @@ dct:title rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  https://w3id.org/fdof/fdof-o#gupri
-:gupri rdf:type owl:DatatypeProperty ;
-       rdfs:subPropertyOf :identifier ;
-       rdfs:domain :FAIRDigitalObject .
+fdof:gupri rdf:type owl:DatatypeProperty ;
+       rdfs:label "gupri"@en ;
+       rdfs:subPropertyOf fdof:identifier ;
+       rdfs:domain fdof:FAIRDigitalObject .
 
 
 ###  https://w3id.org/fdof/fdof-o#identifier
-:identifier rdf:type owl:DatatypeProperty ;
-            rdfs:domain :IdentifiedDigitalObject .
+fdof:identifier rdf:type owl:DatatypeProperty ;
+            rdfs:label "identifier"@en ;
+            rdfs:domain fdof:IdentifiedDigitalObject .
 
 
 #################################################################
@@ -114,68 +136,80 @@ dct:title rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  https://w3id.org/fdof/fdof-o#Dataset
-:Dataset rdf:type owl:Class ;
-         rdfs:subClassOf :InformationObject .
+fdof:Dataset rdf:type owl:Class ;
+         rdfs:label "Dataset"@en ;
+         rdfs:subClassOf fdof:InformationObject .
 
 
 ###  https://w3id.org/fdof/fdof-o#DigitalObject
-:DigitalObject rdf:type owl:Class ;
+fdof:DigitalObject rdf:type owl:Class ;
+               rdfs:label "DigitalObject"@en ;
                rdfs:subClassOf gufo:Object .
 
 
 ###  https://w3id.org/fdof/fdof-o#FAIRDigitalObject
-:FAIRDigitalObject rdf:type owl:Class ;
-                   rdfs:subClassOf :IdentifiedDigitalObject .
+fdof:FAIRDigitalObject rdf:type owl:Class ;
+                   rdfs:label "FAIRDigitalObject"@en ;
+                   rdfs:subClassOf fdof:IdentifiedDigitalObject .
 
 ###  https://w3id.org/fdof/fdof-o#FAIRInformationObject
-:FAIRInformationObject rdf:type owl:Class ;
-                   rdfs:subClassOf :InformationObject, :FAIRDigitalObject .
+fdof:FAIRInformationObject rdf:type owl:Class ;
+                   rdfs:label "FAIRInofrmationObject"@en ;
+                   rdfs:subClassOf fdof:InformationObject, fdof:FAIRDigitalObject .
 
 ###  https://w3id.org/fdof/fdof-o#FAIRMediaObject
-:FAIRMediaObject rdf:type owl:Class ;
-                   rdfs:subClassOf :MediaObject, :FAIRDigitalObject .
+fdof:FAIRMediaObject rdf:type owl:Class ;
+                   rdfs:label "FAIRMediaObject"@en ;
+                   rdfs:subClassOf fdof:MediaObject, fdof:FAIRDigitalObject .
 
 ###  https://w3id.org/fdof/fdof-o#FAIRMetadataRecord
-:FAIRMetadataRecord rdf:type owl:Class ;
-                   rdfs:subClassOf :FAIRInformationObject, :MetadataRecord .
+fdof:FAIRMetadataRecord rdf:type owl:Class ;
+                   rdfs:label "FAIRMetadataRecord"@en ;
+                   rdfs:subClassOf fdof:FAIRInformationObject, fdof:MetadataRecord .
 
 
 ###  https://w3id.org/fdof/fdof-o#GUPRI
-:GUPRI rdf:type owl:Class ;
-       rdfs:subClassOf :Identifier .
+fdof:GUPRI rdf:type owl:Class ;
+       rdfs:label "GUPRI"@en ;
+       rdfs:subClassOf fdof:Identifier .
 
 
 ###  https://w3id.org/fdof/fdof-o#IdentifiedDigitalObject
-:IdentifiedDigitalObject rdf:type owl:Class ;
-                         rdfs:subClassOf :DigitalObject .
+fdof:IdentifiedDigitalObject rdf:type owl:Class ;
+                         rdfs:label "IdentifiedDigitalObject"@en ;
+                         rdfs:subClassOf fdof:DigitalObject .
 
 
 ###  https://w3id.org/fdof/fdof-o#Identifier
-:Identifier rdf:type owl:Class ;
+fdof:Identifier rdf:type owl:Class ;
+            rdfs:label "Identifier"@en ;
             rdfs:subClassOf gufo:AbstractIndividual .
 
 
 ###  https://w3id.org/fdof/fdof-o#InformationObject
-:InformationObject rdf:type owl:Class ;
-                   rdfs:subClassOf :DigitalObject ,
+fdof:InformationObject rdf:type owl:Class ;
+                   rdfs:label "InformationObject"@en ;
+                   rdfs:subClassOf fdof:DigitalObject ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty :isMaterializedBy ;
-                                     owl:someValuesFrom :MediaObject
+                                     owl:onProperty fdof:isMaterializedBy ;
+                                     owl:someValuesFrom fdof:MediaObject
                                    ] ;
-                   owl:disjointWith :MediaObject .
+                   owl:disjointWith fdof:MediaObject .
 
 
 ###  https://w3id.org/fdof/fdof-o#MediaObject
-:MediaObject rdf:type owl:Class ;
-             rdfs:subClassOf :DigitalObject .
+fdof:MediaObject rdf:type owl:Class ;
+             rdfs:label "MediaObject"@en ;
+             rdfs:subClassOf fdof:DigitalObject .
 
 
 ###  https://w3id.org/fdof/fdof-o#MetadataRecord
-:MetadataRecord rdf:type owl:Class ;
-                rdfs:subClassOf :Dataset ,
+fdof:MetadataRecord rdf:type owl:Class ;
+                rdfs:label "MetadataRecord"@en ;
+                rdfs:subClassOf fdof:Dataset ,
                                 [ rdf:type owl:Restriction ;
-                                  owl:onProperty :isMetadataOf ;
-                                  owl:someValuesFrom :DigitalObject
+                                  owl:onProperty fdof:isMetadataOf ;
+                                  owl:someValuesFrom fdof:DigitalObject
                                 ] .
 
 
@@ -184,62 +218,62 @@ dct:title rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  https://w3id.org/fdof/fdof-o#Dataset
-:Dataset rdf:type owl:NamedIndividual ,
+fdof:Dataset rdf:type owl:NamedIndividual ,
                   gufo:SubKind .
 
 
 ###  https://w3id.org/fdof/fdof-o#DigitalObject
-:DigitalObject rdf:type owl:NamedIndividual ,
+fdof:DigitalObject rdf:type owl:NamedIndividual ,
                         gufo:Category .
 
 
 ###  https://w3id.org/fdof/fdof-o#FAIRDigitalObject
-:FAIRDigitalObject rdf:type owl:NamedIndividual ,
+fdof:FAIRDigitalObject rdf:type owl:NamedIndividual ,
                             gufo:RoleMixin .
 
 
 ###  https://w3id.org/fdof/fdof-o#FAIRInformationObject
-:FAIRInformationObject rdf:type owl:NamedIndividual ,
+fdof:FAIRInformationObject rdf:type owl:NamedIndividual ,
                             gufo:Role .
 
 
 ###  https://w3id.org/fdof/fdof-o#FAIRMediaObject
-:FAIRMediaObject rdf:type owl:NamedIndividual ,
+fdof:FAIRMediaObject rdf:type owl:NamedIndividual ,
                             gufo:Role .
 
 
 ###  https://w3id.org/fdof/fdof-o#FAIRMetadataRecord
-:FAIRMetadataRecord rdf:type owl:NamedIndividual ,
+fdof:FAIRMetadataRecord rdf:type owl:NamedIndividual ,
                             gufo:Role .
 
 
 ###  https://w3id.org/fdof/fdof-o#GUPRI
-:GUPRI rdf:type owl:NamedIndividual ,
+fdof:GUPRI rdf:type owl:NamedIndividual ,
                 gufo:AbstractIndividualType .
 
 
 ###  https://w3id.org/fdof/fdof-o#IdentifiedDigitalObject
-:IdentifiedDigitalObject rdf:type owl:NamedIndividual ,
+fdof:IdentifiedDigitalObject rdf:type owl:NamedIndividual ,
                                   gufo:RoleMixin .
 
 
 ###  https://w3id.org/fdof/fdof-o#Identifier
-:Identifier rdf:type owl:NamedIndividual ,
+fdof:Identifier rdf:type owl:NamedIndividual ,
                      gufo:AbstractIndividualType .
 
 
 ###  https://w3id.org/fdof/fdof-o#InformationObject
-:InformationObject rdf:type owl:NamedIndividual ,
+fdof:InformationObject rdf:type owl:NamedIndividual ,
                             gufo:Kind .
 
 
 ###  https://w3id.org/fdof/fdof-o#MediaObject
-:MediaObject rdf:type owl:NamedIndividual ,
+fdof:MediaObject rdf:type owl:NamedIndividual ,
                       gufo:Kind .
 
 
 ###  https://w3id.org/fdof/fdof-o#MetadataRecord
-:MetadataRecord rdf:type owl:NamedIndividual ,
+fdof:MetadataRecord rdf:type owl:NamedIndividual ,
                          gufo:Role .
 
 
