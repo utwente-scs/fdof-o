@@ -1,0 +1,106 @@
+@prefix : <https://w3id.org/fdof/ontology/metadata/> .
+@prefix fdof: <https://w3id.org/fdof/ontology#> .
+@prefix fdoft: <https://w3id.org/fdof/fois23-paper/ex-types/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix mod: <https://w3id.org/mod#> .
+@prefix omv: <http://omv.ontoware.org/2005/05/ontology#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+{
+  <https://w3id.org/fdof/ontology> rdf:type fdof:FAIRInformationObject ;
+                                    fdof:hasInformationObjectType fdoft:Ontology ;
+                                    fdof:gupri "https://w3id.org/fdof/ontology"^^xsd:anyURI ;
+                                    fdof:isMaterializedBy :fdofTtl .
+
+  <https://w3id.org/fdof/ontology/metadata> rdf:type fdof:FAIRMetadataRecord ;
+                                            fdof:hasInformationObjectType fdoft:OntologyMetadataRecord ;
+                                            fdof:gupri "https://w3id.org/fdof/ontology/metadata"^^xsd:anyURI ;
+                                            fdof:isMetadataOf <https://w3id.org/fdof/ontology> ;
+                                            fdof:isMaterializedBy :fdofMetadataTrig .
+
+  :fdofTtl rdf:type fdof:FAIRMediaObject ;
+            fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/text/turtle> ;
+            fdof:gupri "https://w3id.org/fdof/ontology/metadata/fdofTtl"^^xsd:anyURI .
+
+  :fdofTtlMetadata rdf:type fdof:FAIRMetadataRecord ;
+                    fdof:hasInformationObjectType fdoft:MediaObjectMetadataRecord ;
+                    fdof:gupri "https://w3id.org/fdof/ontology/metadata/fdofTtlMetadata" ;
+                    fdof:isMetadataOf :fdofTtl ; 
+                    fdof:isMaterializedBy :fdofMetadataTrig .
+
+  :fdofMetadataTrig rdf:type fdof:FAIRMediaObject ;
+                    fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/trig> ;
+                    fdof:gupri "https://w3id.org/fdof/ontology/metadata/fdofMetadataTrig"^^xsd:anyURI .
+
+  :fdofMetadataTrigMetadata rdf:type fdof:FAIRMetadataRecord ;
+                            fdof:hasInformationObjectType fdoft:MediaObjectMetadataRecord ;
+                            fdof:gupri "https://w3id.org/fdof/ontology/metadata/fdofMetadataTrigMetadata" ;
+                            fdof:isMetadataOf :fdofMetadataTrig ; 
+                            fdof:isMaterializedBy :fdofMetadataTrig .
+}
+    
+:fdofMetadata {
+  :fdofMetadata fdof:isMetadataOf <https://w3id.org/fdof/ontology> .
+  
+  <https://w3id.org/fdof/ontology> rdf:type owl:Ontology, fdof:FAIRInformationObject ;
+                                    fdof:gupri "https://w3id.org/fdof/ontology"^^xsd:anyURI ;
+                                    dct:identifier "https://w3id.org/fdof/ontology"^^xsd:anyURI ;
+                                    fdof:isMaterializedBy :fdofTtl ;
+                                    dcat:distribution :fdofTtl ;
+                                    owl:ontologyIRI <https://w3id/fdof/ontotlogy> ;
+                                    owl:versionIRI <https://w3id/fdof/ontotlogy/1.0.0> ;
+                                    owl:versionInfo "1.0.0"@en ;
+                                    vann:preferredNamespacePrefix "fdof"@en ;
+                                    vann:preferredNamespaceUri "https://w3id/fdof/ontotlogy#"^^xsd:anyURI ;
+                                    mod:acronym "FDOF" ;
+                                    dct:title "FDOF-O: FAIR Digital Object Framework Ontology"@en ;
+                                    dct:description "The FAIR Digital Object Framework Ontology (FDOF-O) is an OWL ontology designed to support the semantic annotation of FAIR Information Objects and FAIR Media Objects enabling application-specific requirements."@en ;
+                                    dct:bibliographicCitation "Santos, L. O. B. D. S., Sales, T. P., Fonseca, C. M., & Guizzardi, G. (2023). Towards a conceptual model for the FAIR Digital Object Framework. arXiv preprint arXiv:2302.11894. https://doi.org/10.48550/arXiv.2302.11894"@en ;
+                                    dcat:landingPage <https://github.com/utwente-scs/fdof-o/> ;
+                                    dct:license <https://creativecommons.org/licenses/by-sa/3.0> ;
+                                    dct:creator <https://orcid.org/0000-0002-1164-1351> ,
+                                                <https://orcid.org/0000-0002-3452-553X> ,
+                                                <https://orcid.org/0000-0002-5385-5761> ,
+                                                <https://orcid.org/0000-0003-2528-3118> ;
+                                    dct:publisher <https://www.utwente.nl/eemcs/scs/> ;
+                                    mod:hasRepresentationLanguage omv:OWL ;
+                                    dct:issued "2023-02-10"^^xsd:date ;
+                                    mod:vocabularyUsed <http://purl.org/nemo/gufo#> ,
+                                                        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ,
+                                                        <http://www.w3.org/2000/01/rdf-schema#> ,
+                                                        <http://www.w3.org/2002/07/owl#> ,
+                                                        <http://www.w3.org/2001/XMLSchema#> ,
+                                                        <http://purl.org/dc/terms/> , 
+                                                        <http://www.w3.org/ns/dcat#> ,
+                                                        <http://purl.org/vocab/vann/> ,
+                                                        <https://w3id.org/mod#> ,
+                                                        <http://omv.ontoware.org/2005/05/ontology#> .
+}
+
+:fdofTtlMetadata {
+  :fdofTtlMetadata fdof:isMetadataOf :fdofTtl .
+
+  :fdofTtl rdf:type dcat:Distribution, fdof:FAIRMediaObject ;
+            fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/text/turtle> ;
+            dcat:mediaType <https://www.iana.org/assignments/media-types/text/turtle> ;
+            fdof:gupri "https://w3id.org/fdof/ontology/metadata/fdofTtl" ;
+            dct:title "Turtle Distribution of the FAIR Digital Object Framework Ontology"@en ;
+            dcat:byteSize "6800"^^xsd:int ;
+            dcat:downloadURL <https://raw.githubusercontent.com/utwente-scs/fdof-o/main/owl/fdof-o.ttl> ;
+}
+
+:fdofMetadataTrigMetadata {
+  :fdofMetadataTrigMetadata fdof:isMetadataOf :fdofMetadataTrig .
+
+  :fdofMetadataTrig rdf:type dcat:Distribution, fdof:FAIRMediaObject ;
+                    fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/trig> ;
+                    dcat:mediaType <https://www.iana.org/assignments/media-types/application/trig> ;
+                    fdof:gupri "https://w3id.org/fdof/ontology/metadata/fdofMetadataTrig" ;
+                    dct:title "TriG Distribution of the Metadata Records Related to the FAIR Digital Object Framework Ontology"@en ;
+                    dcat:byteSize "8714"^^xsd:int ;
+                    dcat:downloadURL <https://raw.githubusercontent.com/utwente-scs/fdof-o/main/owl/fdof-o-metadata.trig> ;
+}
