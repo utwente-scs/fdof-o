@@ -10,7 +10,8 @@
 @prefix omv: <http://omv.ontoware.org/2005/05/ontology#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 
-{
+# Name added for compatibility with tools that can't read anonymous declarations
+:default {
   <https://w3id.org/fdof/ontology> rdf:type fdof:FAIRInformationObject ;
                                     fdof:hasInformationObjectType fdoft:Ontology ;
                                     fdof:gupri "https://w3id.org/fdof/ontology"^^xsd:anyURI ;
