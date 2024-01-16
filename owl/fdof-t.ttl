@@ -1,0 +1,71 @@
+@prefix : <https://w3id.org/fdof/examples/types#> .
+@prefix fdof: <https://w3id.org/fdof/ontology#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix mod: <https://w3id.org/mod#> .
+@prefix omv: <http://omv.ontoware.org/2005/05/ontology#> .
+
+<https://w3id.org/fdof/types#> rdf:type owl:Ontology, fdof:FAIRInformationObject ;
+                            fdof:gupri "https://w3id.org/fdof/types"^^xsd:anyURI ;
+                            dct:identifier "https://w3id.org/fdof/types"^^xsd:anyURI ;
+                            #  fdof:isMaterializedBy :fdoftTrig ;
+                            #  dcat:distribution :fdoftTrig ;
+                            owl:ontologyIRI <https://w3id.org/fdof/types> ;
+                            owl:versionIRI <https://w3id.org/fdof/types/1.0.0> ;
+                            owl:versionInfo "1.0.0"@en ;
+                            vann:preferredNamespacePrefix "fdoft"@en ;
+                            vann:preferredNamespaceUri "https://w3id.org/fdof/types#"^^xsd:anyURI ;
+                            dct:title "FDOF-O Type Ontology"@en ;
+                            dct:description "FDOF-T is a catalog of type definitions for both information object types and media object types."@en ;
+                            dcat:landingPage <https://github.com/utwente-scs/fdof-o> ;
+                            dct:license <https://creativecommons.org/licenses/by-sa/3.0> ;
+                            dct:creator <https://orcid.org/0000-0002-1164-1351> ,
+                                   <https://orcid.org/0000-0002-3452-553X> ,
+                                   <https://orcid.org/0000-0002-5385-5761> ,
+                                   <https://orcid.org/0000-0003-2528-3118> ;
+                            # dct:issued "2023-05-09"^^xsd:date ;
+                            mod:hasRepresentationLanguage omv:OWL ;
+                            dct:publisher <https://www.utwente.nl/eemcs/scs/> ;
+                            mod:vocabularyUsed <https://w3id.org/fdof/ontology#> ,
+                                          <http://purl.org/dc/terms/> , 
+                                          <http://www.w3.org/ns/dcat#> ,
+                                          <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ,
+                                          <http://www.w3.org/2001/XMLSchema#> .
+
+:trig rdf:type fdof:FAIRMediaObject ;
+                     fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/trig> ;
+                     fdof:gupri "https://w3id.org/fdof/types/fdoftTrig"^^xsd:anyURI .
+
+# TODO: uppercase
+
+:csv rdf:type fdof:FAIRMediaObject .
+
+:pdf rdf:type fdof:FAIRMediaObject .
+
+:ttl rdf:type fdof:FAIRMediaObject .
+
+:jsonLd rdf:type fdof:FAIRMediaObject .
+
+:ttl rdf:type fdof:FAIRMediaObject .
+
+:article rdf:type fdof:FAIRInformationObjectType .
+
+:metaMetadata rdf:type fdof:FAIRInformationObjectType .
+
+:dataset rdf:type fdof:FAIRInformationObjectType .
+
+:mediaObjectMetadataRecord rdf:type fdof:FAIRInformationObjectType .
+
+:photograph rdf:type fdof:FAIRInformationObjectType .
+
+:ArticleMetadata rdf:type fdof:FAIRInformationObjectType .
+
+:PdfMetadata rdf:type fdof:FAIRInformationObjectType .
+
+:HtmlMetadata rdf:type fdof:FAIRInformationObjectType .
+
+:TtlMetadata rdf:type fdof:FAIRInformationObjectType .
