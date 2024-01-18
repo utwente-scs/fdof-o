@@ -1,81 +1,213 @@
 @prefix : <https://w3id.org/fdof/examples/types#> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix fdof: <https://w3id.org/fdof/ontology#> .
-@prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix meta: <https://w3id.org/fdof/ontology/metadata/> .
 @prefix mod: <https://w3id.org/mod#> .
 @prefix omv: <http://omv.ontoware.org/2005/05/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix fdof: <https://w3id.org/fdof/ontology#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix meta: <https://w3id.org/fdof/ontology/metadata/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@base <https://w3id.org/fdof/types#> .
 
-<https://w3id.org/fdof/types#> rdf:type owl:Ontology, fdof:FAIRInformationObject ;
-                                fdof:gupri "https://w3id.org/fdof/types"^^xsd:anyURI ;
-                                dct:identifier "https://w3id.org/fdof/types"^^xsd:anyURI ;
-                                #  fdof:isMaterializedBy :fdoftTrig ;
-                                #  dcat:distribution :fdoftTrig ;
-                                owl:ontologyIRI <https://w3id.org/fdof/types> ;
+<https://w3id.org/fdof/types#> rdf:type owl:Ontology ;
                                 owl:versionIRI <https://w3id.org/fdof/types/1.0.0> ;
-                                owl:versionInfo "1.0.0"@en ;
-                                vann:preferredNamespacePrefix "fdoft"@en ;
-                                vann:preferredNamespaceUri "https://w3id.org/fdof/types#"^^xsd:anyURI ;
-                                dct:title "FDOF-O Type Ontology"@en ;
-                                dct:description "FDOF-T is a catalog of type definitions for both information object types and media object types."@en ;
-                                dcat:landingPage <https://github.com/utwente-scs/fdof-o> ;
-                                dct:license <https://creativecommons.org/licenses/by-sa/3.0> ;
                                 dct:creator <https://orcid.org/0000-0002-1164-1351> ,
                                             <https://orcid.org/0000-0002-3452-553X> ,
                                             <https://orcid.org/0000-0002-5385-5761> ,
                                             <https://orcid.org/0000-0003-2528-3118> ;
-                                # dct:issued "2023-05-09"^^xsd:date ;
-                                mod:hasRepresentationLanguage omv:OWL ;
+                                dct:description "FDOF-T is a catalog of type definitions for both information object types and media object types."@en ;
+                                dct:identifier "https://w3id.org/fdof/types"^^xsd:anyURI ;
+                                dct:license <https://creativecommons.org/licenses/by-sa/3.0> ;
                                 dct:publisher <https://www.utwente.nl/eemcs/scs/> ;
-                                mod:vocabularyUsed <https://w3id.org/fdof/ontology#> ,
-                                                    <http://purl.org/dc/terms/> , 
-                                                    <http://www.w3.org/ns/dcat#> ,
-                                                    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ,
-                                                    <http://www.w3.org/2001/XMLSchema#> .
+                                dct:title "FDOF-O Type Ontology"@en ;
+                                vann:preferredNamespacePrefix "fdoft"@en ;
+                                vann:preferredNamespaceUri "https://w3id.org/fdof/types#"^^xsd:anyURI ;
+                                owl:versionInfo "1.0.0"@en ;
+                                dcat:landingPage <https://github.com/utwente-scs/fdof-o> ;
+                                fdof:gupri "https://w3id.org/fdof/types"^^xsd:anyURI ;
+                                mod:hasRepresentationLanguage omv:OWL ;
+                                mod:vocabularyUsed dct: ,
+                                                   rdf: ,
+                                                   xsd: ,
+                                                   dcat: ,
+                                                   fdof: .
 
-:Trig rdfs:subClassOf fdof:FAIRMediaObject ;
-                      fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/trig> ;
-                      fdof:gupri "https://w3id.org/fdof/types/fdoftTrig"^^xsd:anyURI .
+#################################################################
+#    Annotation properties
+#################################################################
 
-:Csv rdfs:subClassOf fdof:FAIRMediaObject .
-
-:Pdf rdfs:subClassOf fdof:FAIRMediaObject .
-
-:Ttl rdfs:subClassOf fdof:FAIRMediaObject .
-
-:JsonLd rdfs:subClassOf fdof:FAIRMediaObject .
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty .
 
 
-:Article rdfs:subClassOf fdof:FAIRInformationObjectType .
+###  http://purl.org/dc/terms/description
+dct:description rdf:type owl:AnnotationProperty .
 
-:ArticleMetadata rdfs:subClassOf fdof:FAIRInformationObjectType .
 
-:Dataset rdfs:subClassOf fdof:FAIRInformationObjectType .
+###  http://purl.org/dc/terms/identifier
+dct:identifier rdf:type owl:AnnotationProperty .
 
-:HtmlMetadata rdfs:subClassOf fdof:FAIRInformationObjectType .
 
-:MediaObjectMetadataRecord rdfs:subClassOf fdof:FAIRInformationObjectType .
+###  http://purl.org/dc/terms/license
+dct:license rdf:type owl:AnnotationProperty .
 
-:MetaMetadata rdfs:subClassOf fdof:FAIRInformationObjectType .
 
-:PdfMetadata rdfs:subClassOf fdof:FAIRInformationObjectType .
+###  http://purl.org/dc/terms/publisher
+dct:publisher rdf:type owl:AnnotationProperty .
 
-:Photograph rdfs:subClassOf fdof:FAIRInformationObjectType .
 
-:TtlMetadata rdfs:subClassOf fdof:FAIRInformationObjectType .
+###  http://purl.org/dc/terms/title
+dct:title rdf:type owl:AnnotationProperty .
 
-:Ontology rdfs:subClassOf fdof:FAIRInformationObjectType .
 
-:OntologyMetadataRecord rdfs:subClassOf fdof:FAIRInformationObjectType .
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
 
-:MediaObjectMetadataRecord rdfs:subClassOf fdof:FAIRInformationObjectType .
 
-:MediaObjectMetadataRecord rdfs:subClassOf fdof:FAIRInformationObjectType .
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
 
+
+###  http://www.w3.org/ns/dcat#landingPage
+dcat:landingPage rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/fdof/ontology#gupri
+fdof:gupri rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/fdof/ontology#hasEncodingFormat
+fdof:hasEncodingFormat rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/mod#hasRepresentationLanguage
+mod:hasRepresentationLanguage rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/mod#vocabularyUsed
+mod:vocabularyUsed rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/fdof/examples/types#Article
+:Article rdf:type owl:Class ;
+         rdfs:subClassOf fdof:FAIRInformationObjectType ;
+         dct:description """A scientific article is a publication that is based on empirical evidence. It can support a hypothesis with original research, describe existing research or comment on current trends in a specific field.
+
+Research articles are the most common type of article in the journals publishing world. They contain pieces of original research that contribute directly to their field.  Research articles apply to all disciplines and subject areas. Research articles are written by experts, for experts and must adhere to the highest standards of peer review and scholarly communications."""@en ;
+         rdfs:label "Article"@en ,
+                    "Artigo"@pt .
+
+
+###  https://w3id.org/fdof/examples/types#ArticleMetadata
+:ArticleMetadata rdf:type owl:Class ;
+                 rdfs:subClassOf :Metadata .
+
+
+###  https://w3id.org/fdof/examples/types#Csv
+:Csv rdf:type owl:Class ;
+     rdfs:subClassOf fdof:FAIRMediaObject .
+
+
+###  https://w3id.org/fdof/examples/types#Dataset
+:Dataset rdf:type owl:Class ;
+         rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/examples/types#HtmlMetadata
+:HtmlMetadata rdf:type owl:Class ;
+              rdfs:subClassOf :Metadata .
+
+
+###  https://w3id.org/fdof/examples/types#JsonLd
+:JsonLd rdf:type owl:Class ;
+        rdfs:subClassOf fdof:FAIRMediaObject .
+
+
+###  https://w3id.org/fdof/examples/types#MediaObjectMetadataRecord
+:MediaObjectMetadataRecord rdf:type owl:Class ;
+                           rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/examples/types#MetaMetadata
+:MetaMetadata rdf:type owl:Class ;
+              rdfs:subClassOf :Metadata .
+
+
+###  https://w3id.org/fdof/examples/types#Ontology
+:Ontology rdf:type owl:Class ;
+          rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/examples/types#OntologyMetadataRecord
+:OntologyMetadataRecord rdf:type owl:Class ;
+                        rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/examples/types#Pdf
+:Pdf rdf:type owl:Class ;
+     rdfs:subClassOf fdof:FAIRMediaObject .
+
+
+###  https://w3id.org/fdof/examples/types#PdfMetadata
+:PdfMetadata rdf:type owl:Class ;
+             rdfs:subClassOf :Metadata .
+
+
+###  https://w3id.org/fdof/examples/types#Photograph
+:Photograph rdf:type owl:Class ;
+            rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/examples/types#Trig
+:Trig rdf:type owl:Class ;
+      rdfs:subClassOf fdof:FAIRMediaObject ;
+      fdof:gupri "https://w3id.org/fdof/types/fdoftTrig"^^xsd:anyURI ;
+      fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/trig> .
+
+
+###  https://w3id.org/fdof/examples/types#Ttl
+:Ttl rdf:type owl:Class ;
+     rdfs:subClassOf fdof:FAIRMediaObject .
+
+
+###  https://w3id.org/fdof/examples/types#TtlMetadata
+:TtlMetadata rdf:type owl:Class ;
+             rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/ontology#FAIRInformationObject
+fdof:FAIRInformationObject rdf:type owl:Class .
+
+
+###  https://w3id.org/fdof/ontology#FAIRInformationObjectType
+fdof:FAIRInformationObjectType rdf:type owl:Class .
+
+
+###  https://w3id.org/fdof/ontology#FAIRMediaObject
+fdof:FAIRMediaObject rdf:type owl:Class .
+
+
+###  https://w3id.org/fdof/types#Metadata
+:Metadata rdf:type owl:Class ;
+          rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/fdof/types#
+<https://w3id.org/fdof/types#> rdf:type owl:NamedIndividual ,
+                                        fdof:FAIRInformationObject .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

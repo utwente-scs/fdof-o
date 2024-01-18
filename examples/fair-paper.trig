@@ -1,4 +1,4 @@
-@prefix : <https://w3id.org/fdof/examples/fair-paper#> .
+@prefix fairpaper: <https://w3id.org/fdof/examples/fair-paper#> .
 @prefix fdof: <https://w3id.org/fdof/ontology#> .
 @prefix fdoft: <https://w3id.org/fdof/types#> .
 @prefix dct: <http://purl.org/dc/terms/> .
@@ -7,32 +7,32 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
  {
-  :paper rdf:type fdof:InformationObject ;
+  fairpaper:fairPrinciplesPaper rdf:type fdof:InformationObject ;
           fdof:hasInformationObjectType fdoft:Article ;
           fdof:identifier "https://www.nature.com/articles/sdata201618" ;
           fdof:identifier "https://doi.org/10.1038/sdata.2016.18" ;
-          fdof:isMaterializedBy :paperPdf, :paperHtml ;
-          fdof:hasMetadata :paperNatureMetadata, :paperFdofMetadata .
+          fdof:isMaterializedBy fairpaper:fairPrinciplesPaperPdfMetadata, fairpaper:fairPrinciplesPaperHtmlMetadata ;
+          fdof:hasMetadata fairpaper:fairPrinciplesPaperNatureMetadata, fairpaper:fairPrinciplesPaperFdofMetadata .
 
-  :paperNatureMetadata rdf:type fdof:MetadataRecord ;
+  fairpaper:fairPrinciplesPaperNatureMetadata rdf:type fdof:MetadataRecord ;
               fdof:identifier "https://www.nature.com/articles/sdata201618" ;
               fdof:identifier "https://doi.org/10.1038/sdata.2016.18" ;
               dct:title "FAIR paper metadata available at Springer Nature website"@en ;
               fdof:isMaterializedBy :materializationHtml ;
-              fdof:isMetadataOf :paper .
+              fdof:isMetadataOf fairpaper:fairPrinciplesPaper .
 
-  :paperFdofMetadata rdf:type fdof:FAIRMetadataRecord ;
+  fairpaper:fairPrinciplesPaperFdofMetadata rdf:type fdof:FAIRMetadataRecord ;
               fdof:hasInformationObjectType fdoft:ArticleMetadata ;
               fdof:gupri "https://w3id.org/fdof/examples/fair-paper#paperFdofMetadata" ;
               dct:title "FAIR paper metadata available as an FDOF example"@en ;
               fdof:isMaterializedBy :paperMetadataTrig ;
-              fdof:isMetadataOf :paper .
+              fdof:isMetadataOf fairpaper:fairPrinciplesPaper .
 
-  :paperPdf rdf:type fdof:FAIRMediaObject ;
+  fairpaper:fairPrinciplesPaperPdfMetadata rdf:type fdof:FAIRMediaObject ;
           fdof:gupri "https://www.nature.com/articles/sdata201618.pdf" ;
           fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/pdf> .
 
-  :paperHtml rdf:type fdof:MediaObject ;
+  fairpaper:fairPrinciplesPaperHtmlMetadata rdf:type fdof:MediaObject ;
           fdof:identifier "https://doi.org/10.1038/sdata.2016.18", "https://www.nature.com/articles/sdata201618" ;
           fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/text/html> .
 
@@ -44,13 +44,13 @@
               fdof:hasInformationObjectType fdoft:PdfMetadata ;
               fdof:gupri "https://w3id.org/fdof/examples/fair-paper#pdfMetadata" ;
               fdof:isMaterializedBy :paperMetadataTrig ;
-              fdof:isMetadataOf :paperPdf .
+              fdof:isMetadataOf fairpaper:fairPrinciplesPaperPdfMetadata .
 
   :htmlMetadata rdf:type fdof:FAIRMetadataRecord ;
               fdof:hasInformationObjectType fdoft:HtmlMetadata ;
               fdof:gupri "https://w3id.org/fdof/examples/fair-paper#htmlMetadata" ;
               fdof:isMaterializedBy :paperMetadataTrig ;
-              fdof:isMetadataOf :paperHtml .
+              fdof:isMetadataOf fairpaper:fairPrinciplesPaperHtmlMetadata .
 
   :trigMetadata rdf:type fdof:FAIRMetadataRecord ;
               fdof:hasInformationObjectType fdoft:TrigMetadata ;
@@ -60,10 +60,10 @@
 
 }
 
-:paperFdofMetadata {
-  :paperFdofMetadata fdof:isMetadataOf :paper .
+fairpaper:fairPrinciplesPaperFdofMetadata {
+  fairpaper:fairPrinciplesPaperFdofMetadata fdof:isMetadataOf fairpaper:fairPrinciplesPaper .
 
-  :paper rdf:type fdof:FAIRInformationObject ;
+  fairpaper:fairPrinciplesPaper rdf:type fdof:FAIRInformationObject ;
         fdof:hasInformationObjectType fdoft:Article ;
         fdof:identifier "https://www.nature.com/articles/sdata201618" ;
         fdof:identifier "https://doi.org/10.1038/sdata.2016.18" ;
@@ -71,8 +71,9 @@
         dct:identifier "https://doi.org/10.1038/sdata.2016.18" ;
         dct:title "The FAIR Guiding Principles for scientific data management and stewardship"@en ;
         dct:abstract """There is an urgent need to improve the infrastructure supporting the reuse of scholarly data. A diverse set of stakeholders—representing academia, industry, funding agencies, and scholarly publishers—have come together to design and jointly endorse a concise and measureable set of principles that we refer to as the FAIR Data Principles. The intent is that these may act as a guideline for those wishing to enhance the reusability of their data holdings. Distinct from peer initiatives that focus on the human scholar, the FAIR Principles put specific emphasis on enhancing the ability of machines to automatically find and use the data, in addition to supporting its reuse by individuals. This Comment is the first formal publication of the FAIR Principles, and includes the rationale behind them, and some exemplar implementations in the community."""@en ;
-        fdof:isMaterializedBy :paperPdf, :paperHtml ;
-        dcat:distribution :paperPdf, :paperHtml ;
+        dct:description "The FAIR Guiding Principles for scientific data management and stewardship article reports the results of the discussions initiated at the Lorentz workshop named Jointly designing a data FAIRport, occured between 13 and 16 of January, 2014. In this workshop a number of stakeholders involved in research infrastructure, policy and publishing. After the workshop, and with the participation of more interested parties, the discussions related to the definition of a set of principles to guide the emergence of a data and services ecosystem where their elements are findable, accessible, interoperable and reusable culminated with the publication of the FAIR guuiding principles."
+        fdof:isMaterializedBy fairpaper:fairPrinciplesPaperPdfMetadata, fairpaper:fairPrinciplesPaperHtmlMetadata ;
+        dcat:distribution fairpaper:fairPrinciplesPaperPdfMetadata, fairpaper:fairPrinciplesPaperHtmlMetadata ;
         dct:license <http://creativecommons.org/licenses/by/4.0> ;
         dct:creator "Mark D. Wilkinson", 
                     <https://orcid.org/0000-0001-6960-357X>, 
@@ -84,9 +85,10 @@
                     "Arie Baak", 
                     "Niklas Blomberg", 
                     "Jan-Willem Boiten", 
-                    "Luiz Bonino da Silva Santos", 
+                    "Luiz Olavo Bonino da Silva Santos",
+                    <https://orcid.org/0000-0002-1164-1351>,  
                     "Philip E. Bourne", 
-                    <https://orcid.org/0000-0003-3813-4882>, 
+                    <https://orcid.org/0000-0002-7618-7292>, 
                     "Jildau Bouwman", 
                     "Anthony J. Brookes", 
                     "Tim Clark", 
@@ -139,13 +141,13 @@
         dct:issued "2016-03-15"^^xsd:date ;
         dct:publisher <https://www.nature.com> ;
         dcat:landingPage <https://www.nature.com/articles/sdata201618> ;
-        fdof:hasMetadata :paperNatureMetadata, :paperFdofMetadata .
+        fdof:hasMetadata fairpaper:fairPrinciplesPaperNatureMetadata, fairpaper:fairPrinciplesPaperFdofMetadata .
 }
 
 :pdfMetadata {
-  :pdfMetadata fdof:isMetadataOf :paperPdf .
+  :pdfMetadata fdof:isMetadataOf fairpaper:fairPrinciplesPaperPdfMetadata .
 
-  :paperPdf rdf:type dcat:Distribution, fdof:FAIRMediaObject ;
+  fairpaper:fairPrinciplesPaperPdfMetadata rdf:type dcat:Distribution, fdof:FAIRMediaObject ;
             fdof:gupri "https://www.nature.com/articles/sdata201618.pdf" ;
             dct:identifier "https://www.nature.com/articles/sdata201618.pdf" ;
             fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/pdf> ;
@@ -154,13 +156,13 @@
             dcat:byteSize "254899"^^xsd:int ;
             dcat:downloadURL <https://www.nature.com/articles/sdata201618.pdf> ;
             fdof:hasMetadata :pdfMetadata ;
-            fdof:materializes :paper .
+            fdof:materializes fairpaper:fairPrinciplesPaper .
 }
 
 :htmlMetadata {
-  :htmlMetadata fdof:isMetadataOf :paperHtml .
+  :htmlMetadata fdof:isMetadataOf fairpaper:fairPrinciplesPaperHtmlMetadata .
   
-  :paperHtml rdf:type fdof:MediaObject ;
+  fairpaper:fairPrinciplesPaperHtmlMetadata rdf:type fdof:MediaObject ;
              fdof:identifier "https://doi.org/10.1038/sdata.2016.18",
                              "https://www.nature.com/articles/sdata201618" ;
              dct:identifier "https://doi.org/10.1038/sdata.2016.18",
@@ -171,7 +173,7 @@
              dcat:byteSize "438040"^^xsd:int ;
              dcat:downloadURL <https://www.nature.com/articles/sdata201618> ;
              fdof:hasMetadata :htmlMetadata ;
-             fdof:materializes :paper .
+             fdof:materializes fairpaper:fairPrinciplesPaper .
 }
 
 :trigMetadata {
@@ -183,7 +185,7 @@
                      fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/trig> ;
                      dct:title "FAIR paper metadata example file"@en ;
                      dcat:mediaType <https://www.iana.org/assignments/media-types/application/trig> ;
-                     fdof:materializes :paperFdofMetadata,
+                     fdof:materializes fairpaper:fairPrinciplesPaperFdofMetadata,
                                        :pdfMetadata,
                                        :htmlMetadata,
                                        :trigMetadata .
