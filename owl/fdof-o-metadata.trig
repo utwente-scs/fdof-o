@@ -1,6 +1,6 @@
 @prefix : <https://w3id.org/fdof/ontology/metadata/> .
 @prefix fdof: <https://w3id.org/fdof/ontology#> .
-@prefix fdoft: <https://w3id.org/fdof/fois23-paper/ex-types/> .
+@prefix fdoft: <https://w3id.org/fdof/types#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .

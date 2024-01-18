@@ -1,17 +1,17 @@
-@prefix : <https://w3id.org/fdof/ontology#> .
+# @prefix : <https://w3id.org/fdof/ontology#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix fdof: <https://w3id.org/fdof/ontology#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix meta: <https://w3id.org/fdof/ontology/metadata/> .
 @prefix mod: <https://w3id.org/mod#> .
 @prefix omv: <http://omv.ontoware.org/2005/05/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix fdof: <https://w3id.org/fdof/ontology#> .
-@prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix meta: <https://w3id.org/fdof/ontology/metadata/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @base <https://w3id.org/fdof/ontology> .
 
 <https://w3id.org/fdof/ontology> rdf:type owl:Ontology ;
