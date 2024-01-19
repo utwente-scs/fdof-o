@@ -1,4 +1,3 @@
-@prefix : <https://w3id.org/fdof/examples/types#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix mod: <https://w3id.org/mod#> .
 @prefix omv: <http://omv.ontoware.org/2005/05/ontology#> .
@@ -12,6 +11,7 @@
 @prefix meta: <https://w3id.org/fdof/ontology/metadata/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
+@prefix fdoft: <https://w3id.org/fdof/types#> .
 @base <https://w3id.org/fdof/types#> .
 
 <https://w3id.org/fdof/types#> rdf:type owl:Ontology ;
@@ -97,93 +97,6 @@ mod:vocabularyUsed rdf:type owl:AnnotationProperty .
 #    Classes
 #################################################################
 
-###  https://w3id.org/fdof/examples/types#Article
-:Article rdf:type owl:Class ;
-         rdfs:subClassOf fdof:FAIRInformationObjectType ;
-         dct:description """A scientific article is a publication that is based on empirical evidence. It can support a hypothesis with original research, describe existing research or comment on current trends in a specific field.
-
-Research articles are the most common type of article in the journals publishing world. They contain pieces of original research that contribute directly to their field.  Research articles apply to all disciplines and subject areas. Research articles are written by experts, for experts and must adhere to the highest standards of peer review and scholarly communications."""@en ;
-         rdfs:label "Article"@en ,
-                    "Artigo"@pt .
-
-
-###  https://w3id.org/fdof/examples/types#ArticleMetadata
-:ArticleMetadata rdf:type owl:Class ;
-                 rdfs:subClassOf :Metadata .
-
-
-###  https://w3id.org/fdof/examples/types#Csv
-:Csv rdf:type owl:Class ;
-     rdfs:subClassOf fdof:FAIRMediaObject .
-
-
-###  https://w3id.org/fdof/examples/types#Dataset
-:Dataset rdf:type owl:Class ;
-         rdfs:subClassOf fdof:FAIRInformationObjectType .
-
-
-###  https://w3id.org/fdof/examples/types#HtmlMetadata
-:HtmlMetadata rdf:type owl:Class ;
-              rdfs:subClassOf :Metadata .
-
-
-###  https://w3id.org/fdof/examples/types#JsonLd
-:JsonLd rdf:type owl:Class ;
-        rdfs:subClassOf fdof:FAIRMediaObject .
-
-
-###  https://w3id.org/fdof/examples/types#MediaObjectMetadataRecord
-:MediaObjectMetadataRecord rdf:type owl:Class ;
-                           rdfs:subClassOf fdof:FAIRInformationObjectType .
-
-
-###  https://w3id.org/fdof/examples/types#MetaMetadata
-:MetaMetadata rdf:type owl:Class ;
-              rdfs:subClassOf :Metadata .
-
-
-###  https://w3id.org/fdof/examples/types#Ontology
-:Ontology rdf:type owl:Class ;
-          rdfs:subClassOf fdof:FAIRInformationObjectType .
-
-
-###  https://w3id.org/fdof/examples/types#OntologyMetadataRecord
-:OntologyMetadataRecord rdf:type owl:Class ;
-                        rdfs:subClassOf fdof:FAIRInformationObjectType .
-
-
-###  https://w3id.org/fdof/examples/types#Pdf
-:Pdf rdf:type owl:Class ;
-     rdfs:subClassOf fdof:FAIRMediaObject .
-
-
-###  https://w3id.org/fdof/examples/types#PdfMetadata
-:PdfMetadata rdf:type owl:Class ;
-             rdfs:subClassOf :Metadata .
-
-
-###  https://w3id.org/fdof/examples/types#Photograph
-:Photograph rdf:type owl:Class ;
-            rdfs:subClassOf fdof:FAIRInformationObjectType .
-
-
-###  https://w3id.org/fdof/examples/types#Trig
-:Trig rdf:type owl:Class ;
-      rdfs:subClassOf fdof:FAIRMediaObject ;
-      fdof:gupri "https://w3id.org/fdof/types/fdoftTrig"^^xsd:anyURI ;
-      fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/trig> .
-
-
-###  https://w3id.org/fdof/examples/types#Ttl
-:Ttl rdf:type owl:Class ;
-     rdfs:subClassOf fdof:FAIRMediaObject .
-
-
-###  https://w3id.org/fdof/examples/types#TtlMetadata
-:TtlMetadata rdf:type owl:Class ;
-             rdfs:subClassOf fdof:FAIRInformationObjectType .
-
-
 ###  https://w3id.org/fdof/ontology#FAIRInformationObject
 fdof:FAIRInformationObject rdf:type owl:Class .
 
@@ -196,9 +109,96 @@ fdof:FAIRInformationObjectType rdf:type owl:Class .
 fdof:FAIRMediaObject rdf:type owl:Class .
 
 
+###  https://w3id.org/fdof/types#Article
+fdoft:Article rdf:type owl:Class ;
+              rdfs:subClassOf fdof:FAIRInformationObjectType ;
+              dct:description """A scientific article is a publication that is based on empirical evidence. It can support a hypothesis with original research, describe existing research or comment on current trends in a specific field.
+
+Research articles are the most common type of article in the journals publishing world. They contain pieces of original research that contribute directly to their field.  Research articles apply to all disciplines and subject areas. Research articles are written by experts, for experts and must adhere to the highest standards of peer review and scholarly communications."""@en ;
+              rdfs:label "Article"@en ,
+                         "Artigo"@pt .
+
+
+###  https://w3id.org/fdof/types#ArticleMetadata
+fdoft:ArticleMetadata rdf:type owl:Class ;
+                      rdfs:subClassOf fdoft:Metadata .
+
+
+###  https://w3id.org/fdof/types#Csv
+fdoft:Csv rdf:type owl:Class ;
+          rdfs:subClassOf fdof:FAIRMediaObject .
+
+
+###  https://w3id.org/fdof/types#Dataset
+fdoft:Dataset rdf:type owl:Class ;
+              rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/types#HtmlMetadata
+fdoft:HtmlMetadata rdf:type owl:Class ;
+                   rdfs:subClassOf fdoft:Metadata .
+
+
+###  https://w3id.org/fdof/types#JsonLd
+fdoft:JsonLd rdf:type owl:Class ;
+             rdfs:subClassOf fdof:FAIRMediaObject .
+
+
+###  https://w3id.org/fdof/types#MediaObjectMetadataRecord
+fdoft:MediaObjectMetadataRecord rdf:type owl:Class ;
+                                rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/types#MetaMetadata
+fdoft:MetaMetadata rdf:type owl:Class ;
+                   rdfs:subClassOf fdoft:Metadata .
+
+
 ###  https://w3id.org/fdof/types#Metadata
-:Metadata rdf:type owl:Class ;
-          rdfs:subClassOf fdof:FAIRInformationObjectType .
+fdoft:Metadata rdf:type owl:Class ;
+               rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/types#Ontology
+fdoft:Ontology rdf:type owl:Class ;
+               rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/types#OntologyMetadataRecord
+fdoft:OntologyMetadataRecord rdf:type owl:Class ;
+                             rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/types#Pdf
+fdoft:Pdf rdf:type owl:Class ;
+          rdfs:subClassOf fdof:FAIRMediaObject .
+
+
+###  https://w3id.org/fdof/types#PdfMetadata
+fdoft:PdfMetadata rdf:type owl:Class ;
+                  rdfs:subClassOf fdoft:Metadata .
+
+
+###  https://w3id.org/fdof/types#Photograph
+fdoft:Photograph rdf:type owl:Class ;
+                 rdfs:subClassOf fdof:FAIRInformationObjectType .
+
+
+###  https://w3id.org/fdof/types#Trig
+fdoft:Trig rdf:type owl:Class ;
+           rdfs:subClassOf fdof:FAIRMediaObject ;
+           fdof:gupri "https://w3id.org/fdof/types/fdoftTrig"^^xsd:anyURI ;
+           fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/trig> .
+
+
+###  https://w3id.org/fdof/types#Ttl
+fdoft:Ttl rdf:type owl:Class ;
+          rdfs:subClassOf fdof:FAIRMediaObject .
+
+
+###  https://w3id.org/fdof/types#TtlMetadata
+fdoft:TtlMetadata rdf:type owl:Class ;
+                  rdfs:subClassOf fdof:FAIRInformationObjectType .
 
 
 #################################################################

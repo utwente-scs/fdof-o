@@ -18,14 +18,14 @@
               fdof:identifier "https://www.nature.com/articles/sdata201618" ;
               fdof:identifier "https://doi.org/10.1038/sdata.2016.18" ;
               dct:title "FAIR paper metadata available at Springer Nature website"@en ;
-              fdof:isMaterializedBy :materializationHtml ;
+              fdof:isMaterializedBy fairpaper:materializationHtml ;
               fdof:isMetadataOf fairpaper:fairPrinciplesPaper .
 
   fairpaper:fairPrinciplesPaperFdofMetadata rdf:type fdof:FAIRMetadataRecord ;
               fdof:hasInformationObjectType fdoft:ArticleMetadata ;
               fdof:gupri "https://w3id.org/fdof/examples/fair-paper#paperFdofMetadata" ;
               dct:title "FAIR paper metadata available as an FDOF example"@en ;
-              fdof:isMaterializedBy :paperMetadataTrig ;
+              fdof:isMaterializedBy fairpaper:paperMetadataTrig ;
               fdof:isMetadataOf fairpaper:fairPrinciplesPaper .
 
   fairpaper:fairPrinciplesPaperPdfMetadata rdf:type fdof:FAIRMediaObject ;
@@ -36,27 +36,27 @@
           fdof:identifier "https://doi.org/10.1038/sdata.2016.18", "https://www.nature.com/articles/sdata201618" ;
           fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/text/html> .
 
-  :paperMetadataTrig rdf:type fdof:FAIRMediaObject ;
+  fairpaper:paperMetadataTrig rdf:type fdof:FAIRMediaObject ;
           fdof:identifier "https://w3id.org/fdof/examples/fair-paper#paperMetadataTrig" ;
           fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/trig> .
 
-  :pdfMetadata rdf:type fdof:FAIRMetadataRecord ;
+  fairpaper:pdfMetadata rdf:type fdof:FAIRMetadataRecord ;
               fdof:hasInformationObjectType fdoft:PdfMetadata ;
               fdof:gupri "https://w3id.org/fdof/examples/fair-paper#pdfMetadata" ;
-              fdof:isMaterializedBy :paperMetadataTrig ;
+              fdof:isMaterializedBy fairpaper:paperMetadataTrig ;
               fdof:isMetadataOf fairpaper:fairPrinciplesPaperPdfMetadata .
 
-  :htmlMetadata rdf:type fdof:FAIRMetadataRecord ;
+  fairpaper:htmlMetadata rdf:type fdof:FAIRMetadataRecord ;
               fdof:hasInformationObjectType fdoft:HtmlMetadata ;
               fdof:gupri "https://w3id.org/fdof/examples/fair-paper#htmlMetadata" ;
-              fdof:isMaterializedBy :paperMetadataTrig ;
+              fdof:isMaterializedBy fairpaper:paperMetadataTrig ;
               fdof:isMetadataOf fairpaper:fairPrinciplesPaperHtmlMetadata .
 
-  :trigMetadata rdf:type fdof:FAIRMetadataRecord ;
+  fairpaper:trigMetadata rdf:type fdof:FAIRMetadataRecord ;
               fdof:hasInformationObjectType fdoft:TrigMetadata ;
               fdof:gupri "https://w3id.org/fdof/examples/fair-paper#trigMetadata" ;
-              fdof:isMaterializedBy :paperMetadataTrig ;
-              fdof:isMetadataOf :paperMetadataTrig .
+              fdof:isMaterializedBy fairpaper:paperMetadataTrig ;
+              fdof:isMetadataOf fairpaper:paperMetadataTrig .
 
 }
 
@@ -71,7 +71,7 @@ fairpaper:fairPrinciplesPaperFdofMetadata {
         dct:identifier "https://doi.org/10.1038/sdata.2016.18" ;
         dct:title "The FAIR Guiding Principles for scientific data management and stewardship"@en ;
         dct:abstract """There is an urgent need to improve the infrastructure supporting the reuse of scholarly data. A diverse set of stakeholders—representing academia, industry, funding agencies, and scholarly publishers—have come together to design and jointly endorse a concise and measureable set of principles that we refer to as the FAIR Data Principles. The intent is that these may act as a guideline for those wishing to enhance the reusability of their data holdings. Distinct from peer initiatives that focus on the human scholar, the FAIR Principles put specific emphasis on enhancing the ability of machines to automatically find and use the data, in addition to supporting its reuse by individuals. This Comment is the first formal publication of the FAIR Principles, and includes the rationale behind them, and some exemplar implementations in the community."""@en ;
-        dct:description "The FAIR Guiding Principles for scientific data management and stewardship article reports the results of the discussions initiated at the Lorentz workshop named Jointly designing a data FAIRport, occured between 13 and 16 of January, 2014. In this workshop a number of stakeholders involved in research infrastructure, policy and publishing. After the workshop, and with the participation of more interested parties, the discussions related to the definition of a set of principles to guide the emergence of a data and services ecosystem where their elements are findable, accessible, interoperable and reusable culminated with the publication of the FAIR guuiding principles."
+        dct:description "The FAIR Guiding Principles for scientific data management and stewardship article reports the results of the discussions initiated at the Lorentz workshop named Jointly designing a data FAIRport, occured between 13 and 16 of January, 2014. In this workshop a number of stakeholders involved in research infrastructure, policy and publishing. After the workshop, and with the participation of more interested parties, the discussions related to the definition of a set of principles to guide the emergence of a data and services ecosystem where their elements are findable, accessible, interoperable and reusable culminated with the publication of the FAIR guuiding principles." ;
         fdof:isMaterializedBy fairpaper:fairPrinciplesPaperPdfMetadata, fairpaper:fairPrinciplesPaperHtmlMetadata ;
         dcat:distribution fairpaper:fairPrinciplesPaperPdfMetadata, fairpaper:fairPrinciplesPaperHtmlMetadata ;
         dct:license <http://creativecommons.org/licenses/by/4.0> ;
@@ -144,8 +144,8 @@ fairpaper:fairPrinciplesPaperFdofMetadata {
         fdof:hasMetadata fairpaper:fairPrinciplesPaperNatureMetadata, fairpaper:fairPrinciplesPaperFdofMetadata .
 }
 
-:pdfMetadata {
-  :pdfMetadata fdof:isMetadataOf fairpaper:fairPrinciplesPaperPdfMetadata .
+fairpaper:pdfMetadata {
+  fairpaper:pdfMetadata fdof:isMetadataOf fairpaper:fairPrinciplesPaperPdfMetadata .
 
   fairpaper:fairPrinciplesPaperPdfMetadata rdf:type dcat:Distribution, fdof:FAIRMediaObject ;
             fdof:gupri "https://www.nature.com/articles/sdata201618.pdf" ;
@@ -155,12 +155,12 @@ fairpaper:fairPrinciplesPaperFdofMetadata {
             dct:title "FAIR paper PDF materialization"@en ;
             dcat:byteSize "254899"^^xsd:int ;
             dcat:downloadURL <https://www.nature.com/articles/sdata201618.pdf> ;
-            fdof:hasMetadata :pdfMetadata ;
+            fdof:hasMetadata fairpaper:pdfMetadata ;
             fdof:materializes fairpaper:fairPrinciplesPaper .
 }
 
-:htmlMetadata {
-  :htmlMetadata fdof:isMetadataOf fairpaper:fairPrinciplesPaperHtmlMetadata .
+fairpaper:htmlMetadata {
+  fairpaper:htmlMetadata fdof:isMetadataOf fairpaper:fairPrinciplesPaperHtmlMetadata .
   
   fairpaper:fairPrinciplesPaperHtmlMetadata rdf:type fdof:MediaObject ;
              fdof:identifier "https://doi.org/10.1038/sdata.2016.18",
@@ -172,21 +172,21 @@ fairpaper:fairPrinciplesPaperFdofMetadata {
              dct:title "FAIR paper Springer Nature website materialization"@en ;
              dcat:byteSize "438040"^^xsd:int ;
              dcat:downloadURL <https://www.nature.com/articles/sdata201618> ;
-             fdof:hasMetadata :htmlMetadata ;
+             fdof:hasMetadata fairpaper:htmlMetadata ;
              fdof:materializes fairpaper:fairPrinciplesPaper .
 }
 
-:trigMetadata {
-  :trigMetadata fdof:isMetadataOf :paperMetadataTrig .
+fairpaper:trigMetadata {
+  fairpaper:trigMetadata fdof:isMetadataOf fairpaper:paperMetadataTrig .
 
-  :paperMetadataTrig rdf:type fdof:FAIRMediaObject ;
+  fairpaper:paperMetadataTrig rdf:type fdof:FAIRMediaObject ;
                      fdof:gupri "https://w3id.org/fdof/examples/fair-paper#paperMetadataTrig" ;
                      dct:identifier "https://w3id.org/fdof/examples/fair-paper#paperMetadataTrig" ;
                      fdof:hasEncodingFormat <https://www.iana.org/assignments/media-types/application/trig> ;
                      dct:title "FAIR paper metadata example file"@en ;
                      dcat:mediaType <https://www.iana.org/assignments/media-types/application/trig> ;
                      fdof:materializes fairpaper:fairPrinciplesPaperFdofMetadata,
-                                       :pdfMetadata,
-                                       :htmlMetadata,
-                                       :trigMetadata .
+                                       fairpaper:pdfMetadata,
+                                       fairpaper:htmlMetadata,
+                                       fairpaper:trigMetadata .
 }

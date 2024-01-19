@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://fairdigitalobjectframework.org/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>FAIR Digital Object Framework Documentation</title>
+		<link rel="stylesheet" href="./fdof-framework-documentation_files/W3C-REC.css">
+		<style>
+			.example::before {
+				content: "Example";
+				content: "Example " counter(example);
+			}
+			#example + p + p.example::before {
+				content: "";
+			}
+			.overlarge {
+				margin: 0 !important;
+			}
+		</style>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async="" src="./fdof-framework-documentation_files/js"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-THD7CRFL5W');
+        </script>
+	</head>
+	
+	<body class="h-entry" data-new-gr-c-s-check-loaded="14.1149.0" data-gr-ext-installed="">
+		<div class="head">
+			<p><a class="logo"><img alt="FAIR" height="48" src="./fdof-framework-documentation_files/FAIR_logo.png"></a></p>
+		  <h1 id="title">FAIR Digital Object Framework Documentation</h1>
+			<h2 id="subtitle">Working Draft <!--, <time class="dt-updated" datetime="2020-04-05">05 April 2020</time>--></h2>
+			
+			<div>
+				<dl>
+     <!--dt>This version:
+     <dd><a class="u-url" href="http://fantasai.inkedblade.net/style/design/w3c-restyle/2016/">http://fantasai.inkedblade.net/style/design/w3c-restyle/2016/</a>
+     <dt>Latest version:
+     <dd><a href="https://www.w3.org/StyleSheets/TR/">https://www.w3.org/StyleSheets/TR/</a>
+     <dt>Previous Versions:
+     <dd><a href="http://www.w3.org/TR/2012/WD-css3-text-20121113/" rel="previous">http://www.w3.org/TR/2012/WD-css3-text-20121113/</a>
+     <dt>Feedback:
+     <dd><span><a href="mailto:l.o.bonino@utwente.nl?subject=%5Bfdof-spec%5D%20YOUR%20TOPIC%20HERE">l.o.bonino@utwente.nl</a></span>
+     <dt>Test Suite:
+     <dd><a href="http://fantasai.inkedblade.net/style/design/w3c-restyle/2016/sample">http://fantasai.inkedblade.net/style/design/w3c-restyle/2016/sample</a>
+     <dt>Issue Tracking:
+     <dd><a href="https://github.com/w3c/tr-design/issues/">GitHub</a>
+     <dd><a href="#issues-index">Inline In Spec</a-->
+				  <dt>This version:</dt>
+					<dd>27 October 2022</dd>
+					<dt>Date of the first draft:</dt>
+					<dd>05 April 2020</dd>
+				  <dt class="editor">Editor/Author:</dt>
+					<dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="mailto:l.o.boninodasilvasantos@utwente.nl">Luiz Olavo Bonino da Silva Santos</a> (<span class="p-org org">University of Twente, Leiden University Medical Center</span>)</dd>
+                  <dt class="editor">Contributors:</dt>
+					<dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="mailto:g.guizzardi@utwente.nl">Giancarlo Guizzardi</a> (<span class="p-org org">University of Twente</span>)</dd>
+                    <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="mailto:t.princesales@utwente.nl">Tiago Prince Sales</a> (<span class="p-org org">University of Twente</span>)</dd>
+				</dl>
+			</div>
+			<div></div>
+			<hr title="Separator for header">
+		</div>
+		<h2 id="abstract">Abstract</h2>
+		<div>
+			<p>The FAIR Digital Object Framework (FDOF)<strong> is a framework which defines a model to represent objects in a digital environment and a mechanism to create, maintain and (re)use these objects&nbsp;</strong>. The framework  consists of <strong>a predictable identifier resolution behaviour, a mechanism to retrieve the object's metadata and an object typing system</strong>. The main goal of the FDOF is to define a set of features to provide foundational support for the FAIR principles.</p>
+			
+			<p class="note">Disclaimer: By design the FAIR principles do not prescribe any specific technology, let the choices open. However, in order to realise the expected behaviours of the FAIR principles, we need to make implementation choices. The FDOF as an implementation framework naturally takes a number of implementation choices. The principle behind FDOF is to limit these implementations choices to a minimum, supporting, beyond these given choices, a high degree of freedom to implementation. The implementation choices defined in FDOF have been selected based on the level of interoperability that the framework intends to guarantee to the participants of the ecosystem. In summary , while there may be many definitions and ways of implementing digital objects following the FAIR principles, in the scope of FDOF, FAIR Digital Objects (with capital letters) have a specific definition and follow a defined representation model.</p>
+            
+			<p>In the FDOF, a digital object is a bit sequence located in a digital memory or storage that has, on its own, an informational value, i.e., the bit sequence represents an informational unit such as a document, a dataset, a photo, a service, etc. When this digital object is presented following the FAIR principles we have a FAIR Digital Object. In summary, in the FDOF a <strong>FAIR Digital Object is defined as a sequence of bits that represents an informational unit and is presented according to the FAIR principles.</strong> To be classified as a FAIR Digital Object (FDO), a digital object is identified by a globally-unique, persistent and resolvable identifier with a predictable resolution behaviour, described by related metadata records (FDOs themselves) and classified by the FDOF typing system.</p>
+			<p>This document discusses the motivations for the framework and describes its elements and their interactions.</p>
+	</div>
+		<h2 id="status">Status of this document</h2>
+	<div>
+			<p class="note">This document is a working draft of the FDOF documentation and serves as the basis for the further development and refinement of the framework. This document is currently under development and is, therefore, still incomplete. At this moment it should not be used as a comprehensive explanation and specification of the FDOF.</p>
+			<p></p>
+		</div>
+
+	 <!--
+<nav id="toc">
+  <h2>Table of Contents</h2>
+  <ol class="toc" role="directory">
+    <li><a href="#intro"><span class="secno">1</span>
+      Introduction</a>
+      <ol>
+        <li><a href="#conventions"><span class="secno">1.1</span>
+          Document Conventions</a>
+      </ol>
+    <li><a href="#conventions"><span class="secno">2</span>
+      Features of the New Style Sheet</a>
+      <ol>
+        <li><a href="#indexing"><span class="secno">2.1</span>
+          Indexing</a>
+          <ol>
+            <li><a href="#index-toc"><span class="secno">2.1.1</span>
+              Table of Contents</a>
+            <li><a href="#index-lists"><span class="secno">2.1.2</span>
+              Index Lists</a>
+            <li><a href="#index-tables"><span class="secno">2.1.3</span>
+              Switch Statements</a>
+            <li><a href="#numbering"><span class="secno">2.1.4</span>
+              Section Numbers and Anchoring</a>
+          </ol>
+        <li><a href="#boxes"><span class="secno">2.2</span>
+          Special Boxes</a>
+          <ol>
+            <li><a href="#def"><span class="secno">2.2.1</span>
+              Definition Boxes</a>
+            <li><a href="#note"><span class="secno">2.2.2</span>
+              Note Boxes</a>
+            <li><a href="#example"><span class="secno">2.2.3</span>
+              Example Boxes</a>
+            <li><a href="#issue"><span class="secno">2.2.4</span>
+              Issue Boxes</a>
+            <li><a href="#advisement"><span class="secno">2.2.5</span>
+              Advisement Boxes</a>
+            <li><a href="#obsolete"><span class="secno">2.2.5</span>
+              Annoying Spec Obsoletion Boxes</a>
+          </ol>
+        <li><a href="#structural"><span class="secno">2.3</span>
+          Structural Markup</a>
+          <ol>
+            <li><a href="#figure"><span class="secno">2.3.1</span>
+              Figures and Captions</a>
+            <li><a href="#table"><span class="secno">2.3.2</span>
+              Data Tables</a>
+            <li><a href="#switch"><span class="secno">2.3.3</span>
+              Switch Statements</a>
+            <li><a href="#algorithm"><span class="secno">2.3.4</span>
+              Algorithm Lists</a>
+            <li><a href="#advisement"><span class="secno">2.3.5</span>
+              Advisement Boxes</a>
+            <li><a href="#change"><span class="secno">2.3.6</span>
+              Change Marks</a>
+            <li><a href="#inline"><span class="secno">2.3.7</span>
+              Recommended Inline Markup</a>
+          </ol>
+        <li><a href="#misc"><span class="secno">2.4</span>
+          Miscellaneous</a>
+          <ol>
+            <li><a href="#overlarge"><span class="secno">2.4.1</span>
+              Overlarge Elements</a>
+          </ol>
+      </ol>
+    <li>
+     <a href="#h2"><span class="secno">3</span>
+     Sample Headers Section</a>
+      <ol>
+        <li><a href="#h3"><span class="secno">3.1</span>
+          Header Level 3</a>
+        <li><a href="#h3"><span class="secno">3.2</span>
+          Header Level 3</a>
+          <ol>
+            <li><a href="#h4"><span class="secno">3.2.1</span>
+              Header Level 4</a>
+            <li><a href="#h4"><span class="secno">3.2.2</span>
+              Header Level 4</a>
+              <ol>
+                <li><a href="#h5"><span class="secno">3.2.2.1</span>
+                  Header Level 5</a>
+                <li><a href="#h5"><span class="secno">3.2.2.2</span>
+                  Header Level 5</a>
+                  <ol>
+                    <li><a href="#h6"><span class="secno">3.2.2.2.1</span>
+                      Header Level 6</a>
+                    <li><a href="#h6"><span class="secno">3.2.2.2.2</span>
+                      Header Level 6</a>
+                  </ol>
+                <li><a href="#h5"><span class="secno">3.2.2.3</span>
+                  Header Level 5</a>
+              </ol>
+            <li><a href="#h4"><span class="secno">3.2.3</span>
+              Header Level 4</a>
+          </ol>
+        <li><a href="#h3"><span class="secno">3.3</span>
+          Header Level 3</a>
+      </ol>
+    <li>
+     <a href="#css"><span class="secno">7</span>
+      Sample CSS Section</a>
+      <ol>
+        <li><a href="#text-align-property"><span class="secno">7.1</span>
+          Text Alignment: the <code class="property">text-align</code> shorthand</a>
+        <li><a href="#text-align-all-property"><span class="secno">7.2</span>
+          Default Text Alignment: the <code class="property">text-align-all</code> property</a>
+        <li><a href="#text-align-last-property"><span class="secno">7.3</span>
+          Last Line Alignment: the <code class="property">text-align-last</code> property</a>
+        <li><a href="#text-justify-property"><span class="secno">7.4</span>
+          Justification Method: the <code class="property">text-justify</code> property</a>
+           <ol>
+             <li><a href="#expanding-text"><span class="secno">7.4.1</span>
+               Expanding and Compressing Text</a>
+             <li><a href="#justify-symbols"><span class="secno">7.4.2</span>
+               Handling Symbols and Punctuation</a>
+             <li><a href="#justify-limits"><span class="secno">7.4.3</span>
+               Unexpandable Text</a>
+             <li><a href="#justify-cursive"><span class="secno">7.4.4</span>
+               Cursive Scripts</a>
+             <li><a href="#justify-algos"><span class="secno">7.4.5</span>
+               Possible Algorithms</a>
+           </ol>
+      </ol>
+    <li>
+     <a href="#index"><span class="secno">A</span>
+       Index</a>
+       <ol>
+         <li><a href="#index-defined-here"><span class="secno">A.1</span>
+           Terms defined by this specification</a>
+         <li><a href="#index-defined-elsewhere"><span class="secno">A.2</span>
+           Terms defined by reference</a>
+       </ol>
+    <li>
+     <a href="#references"><span class="secno">B</span>
+       References</a>
+       <ol>
+         <li><a href="#normative"><span class="secno">B.1</span>
+           Normative References</a>
+         <li><a href="#informative"><span class="secno">B.2</span>
+           Informative References</a>
+       </ol>
+    <li><a href="#property-index"><span class="secno">C</span>
+      Property Index</a>
+  </ol>
+</nav>
+
+-->
+
+		<main>
+			<h2 id="intro"><span class="secno">1 </span> Introduction</h2>
+			
+				<p>The <a href="https://www.nature.com/articles/sdata201618">FAIR principles</a> provide a vision of a global ecosystem of dynamically interoperable digital objects such as data, services and computing capacity. This vision entails the requirement to provide machines with  enough actionable information about the encountered objects so that they can automate as much as possible the object's discovery, access,&nbsp; interoperation and reuse. Therefore, to fully realise this vision, we need an infrastructure capable of supporting the manipulation of digital objects according to the requirements defined by the <a href="https://www.nature.com/articles/sdata201618">FAIR principles</a>.</p>
+
+				<p>The evolution of the informatics infrastructure  happens in incremental and complementary steps. Whenever the challenges presented in one step are addressed, a new set of possibilities emerge and, with them, new challenges. After the emergence of modern computers we felt the need to interconnect them in  networks enabling them to exchange information among the other computers in the same network. Once this was settled, a natural next step was to integrate different computer networks, which was achieved on a global scale by the Internet through its Internet Protocol (IP) and TCP/UDP protocols. The Internet allows the transportation of digital packets/datagrams from a source  to a destination host across different networks. A given content to be transmitted is broken down in a number of parts named packets. A header is added to each packet containing information necessary to deliver the packet from the source host to its destination. Once all the packets reach the destination, their content is reassembled. Therefore, the Internet does not deal with the content besides transporting it through different networks.</p>
+
+				<p>Once the problem of transporting digital content across different networks has been solved by the Internet, the next challenge in interoperability became the interlinking of Internet resources. The World Wide Web solves this problem by defining another protocol named the <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HyperText Transfer Protocol</a> (HTTP), which provides a mechanism to interrelate resources through hyperlinks. HTTP provides methods to retrieve, create, add, edit and delete Web resources. Web resources are differentiated, with respect to the WWW infrastructure, only by their serialisation formats (MIME or media types), e.g., an HTML page, an XML file, a JPG/GIF/PNG image, a MP4 video, etc. The actual nature of the resources and their relations, i.e., if they represent a given scientific observation, the results of a match or a person, are not considered by the Web infrastructure.</p>
+
+				<p>In the digital realm, we constantly interact with different types of entities, or objects. Examples of such objects are software, software code, dataset and metadata, among others. These objects have different natures. For instance, we could argue that a dataset is  a collection of data items grouped because they are interrelated somehow while a software code is a set of instructions written in a programming language that are compiled or interpreted by computers that guide their behaviour. Because of their different nature, each one of these types of digital objects require different ways of interaction. In an increasingly complex digital environment automation becomes a necessity and to support it the identification of these different types of digital objects become relevant as well as the qualification of the relations between them. This brings additional requirements to the digital ecosystem, which are not properly covered by the internet and World Wide Web.</p>
+
+				<p>The FAIR principles add yet another set of requirements for the aforementioned digital infrastructures. For instance, the first principle (F1) states that metadata and data should be identified by globally unique and persistent identifiers. Related to this, the FAIR principle A1 requires that metadata and data are retrievable by their identifier using a standardized communications protocol. This means that from a given identifier we should be able to resolve it to something related to the identified entity. Identifiers are, normally, an arbitrary sequence of characters. Regarding identifier resolution, we can split the current identification systems into directly and indirectly resolvable identifiers. In the first group, the identifier is formed following the rules of a given resolution protocol and the identifier can be directly resolved. In this approach, the identifier is tidly bound to the resolution protocol. An example of a directly resolvable identifier is the WWW's <a href="https://tools.ietf.org/html/rfc3986">Uniform Resource Identifier (URI)</a>. The identifier <code>https://fairdigitalobjectframework.org/index.html</code> is an URI and can be directly resolved to this document by using the HTTP protocol. In the second group of identification systems, the identifiers are just an arbitrary sequence of characters without encompassing any resolution protocol in the identifier itself. An example of such identification system is the <a href="https://www.doi.org/" target="_blank">Digital Object Identifier (DOI)</a>. A DOI is composed of a prefix and a suffix separated by a forward slash (/). An example of DOI is 10.1000/123456. Since the DOI is not directly connected to any resolution technology, in order to resolve it we have to transform the DOI into a expression that can be resolved. As the Web is the current prevalent communication platform, a given DOI can be resolved on the Web by appending the URL <code>https://doi.org/</code> and the identifier. In our example, the resolvable Web link for the doi <code>10.1000/123456</code> would be <code>https://doi.org/10.1000/123456</code>.</p>
+
+				<p>With indirectly resolvable identifiers, unless the type of identifier and how to create a resolvable link from the original identifier is previously known, it is not straightforward to resolve them. Moreover, with both types of identification systems, once we manage to get the resolvable link and try to resolve it, the next challenge is what to expect when the identifier is resolved. Currently we lack a commonly agreed and predictable resolution behavior, which is an obstacle for artificial agents since, in some occasions, an identifier resolves to its target object, some other times to its metadata and other times to a human-readable HTML landing page.</p>
+
+				<p>These aforementioned challenges to apply the FAIR principles in the current digital communication infrastructure were the main motivators for the work on the FAIR Digital Object Framework. The framework aims at providing features to allow answering the two following questions in a way that can be interpreted by both machines and humans:</p>
+			
+				<ul>
+					<li>What is the object that is identified by this identifier?</li>
+					<li>How can I get more information (e.g., how to handle it? who can handle it?, what is it allowed to do with it?) about this object?</li>
+					<li>What can be done with the object?</li>
+					<li>What am I allowed to do with this particular object?</li>
+				</ul>
+				
+				<p>The results of this work are reported in this document.</p>
+			
+<h2 id="fdofhistory"><span class="secno">2 </span>A brief history of Digital Objects, FAIR Digital Objects and FAIR Digital Object Framework</h2>
+			
+				<p>The concept of <strong>Digital Object</strong> (DO) (in capital letters to denote a particular definition for representing and manipulating digital entities) was introduced by Robert Kahn in the early 1990s. In his work, Kahn, and later other colleagues, define <em>digital objects</em> as the basic entities of a digital system that are stored, accessed, disseminated and managed. They also defined naming conventions for identifying and locating digital objects as well as described services for using object names to locate and disseminate objects, and provided an access protocol.</p>
+
+				<p>Later on, the work on DOs has been improved by the definition of the Digital Object Achitecture (DOA) to address the need to support information management beyond just moving information in digital form from one location to another as allowed by the internet. DOA aims at improving interoperability across participating information systems. As defined by the <a href="https://www.dona.net/">DONA Foundation</a> in its <a href="https://www.dona.net/digitalobjectarchitecture">Digital Object Architecture</a> is composed of:</p>
+
+				<ul>
+					<li><strong>Digital Object</strong>: "<em>a sequence of bits, or a set of sequences of bits, incorporating a work or portion of a work or other information in which a party has rights or interests, or in which there is value, each of the sequences being structured in a way that is interpretable by one or more of the computational facilities, and having as an essential element an associated unique persistent identifier.</em>"</li>
+
+					<li><strong>Digital Object Interface Protocol (DOIP)</strong>: "<em>a simple, but powerful conceptual protocol for software applications (“clients”) to interact with “services” which could be either the digital objects or the information systems that manage those digital objects.</em>". The latest specification of DOIP can be found <a href="https://www.dona.net/sites/default/files/2018-11/DOIPv2Spec_1.pdf">here</a>.</li>
+
+					<li><strong>Identifier/Resolution Protocol (IRP)</strong>: "<em>a rapid-resolution protocol for creating, updating, deleting, and resolving identifiers that are globally managed and allotted. Each identifier is associated with a record that clients can resolve to using this protocol.</em>". </li>
+
+					<li><strong>Identifier/Resolution System</strong>: the system enables:
+						<ul>
+							<li>"<em>allotment of unique identifiers to information in digital form structured as digital objects regardless of the location of such information or the technology used to serve such information;</em>"</li>
+							<li>"<em>the resolution of the identifiers to current state information about the corresponding digital object, e.g., its location(s), access &amp; usage policies, timestamps, and/or public keys.</em>"</li>
+						</ul>
+					</li>
+
+					<li><strong>Repository System</strong>: "<em>manages digital objects including the provision of access to such objects based on the use of identifiers, and with integrated security. Through the use of identifiers in the access protocol, the repository system abstracts away the details of the storage technologies from the clients enabling a long-lived mechanism for depositing and accessing digital objects. Access to this system is enabled using the DOIP.</em>"</li>
+
+					<li><strong>Registry System</strong>: "<em>The registry system is a specialized repository system intended to store metadata about digital objects rather than the digital information itself, and typically stores metadata of digital objects that are managed by one or more repository systems. Access to this system is enabled using the DOIP as well.</em>"</li>
+				</ul>
+
+				<p>After the publication of the FAIR principles in March 2016, the idea around the Digital Objects evolved to the concept of a FAIR Digital Object in order to better align the features of DOs with the aspects highlighted by the FAIR principles. Since the FAIR principles put significant importance on metadata, one major addition to the original concept of DO was the introduction of metadata as a particular type of digital object that is used to describe other objects.</p>
+
+				<p>The term <strong>FAIR Digital Object</strong> (FDO) was first mentioned in a publication in November 2018 in the report named <a href="https://ec.europa.eu/info/publications/turning-fair-reality_en">Turning FAIR into reality</a>, of the European Commission's 2nd High-Level Expert Group on the European Open Science Cloud (EOSC). In this report the authors state that the FAIR Digital Objects "<em>represent data, software or other research resources</em>" and "<em>must be accompanied by persistent identifiers, metadata and contextual documentation to enable discovery, citation and reuse</em>".</p>
+
+				<p>After the publication of the report, the concept of FDO has been constantly discussed and refined in a number of <a href="https://www.rd-alliance.org/">RDA</a> Interest and Working groups, in particular by the Group of European Data Experts (GEDE).</p>
+
+				<p>With the experience in designing technologies and approaches for realising the FAIR principles since the original meeting in January 2014, we have identified a number of challenges to accomplish this goal given the current technologic landscape. In May 2019, I experimented combining features from the (FAIR) Digital Objects with some approaches and features from the Linked Data community, in particular the Linked Data Platform. From this experiment the FAIR Digital Object Framework emerged, which combined the predictable resolution behavior of the (FAIR) Digital Object approach, its idea of resolving the identifier into a small set of information about the object; and the techniques from ontology-driven conceptual modeling, Linked Data and Semantic Web to provide machine-actionable semantic descriptions and annotations to the elements of the Framework.</p>
+
+				<p>The proposal for the FDOF has been first discussed with Barend Mons and George Strawn. After a few refinement iterations, together with Peter Wittenburg, a series of meetings were organized in Europe, in the USA and online involving a number of stakeholders involved in both (F)DO (Peter Wittenburg, Larry Lannom, Robert Quick and others) and Linked Data (Jean-François Abramatic, Eric Prud-hommeaux and others) efforts. These meetings culminated in a gathering at the Paris Observatory on October 28 and 29, 2019. In this meeting a group of representatives of different research communities, RDA, CODATA, GO FAIR, US NAS and EOSC discussed the proposed approach, considered it a promising candidate for the core technology of the FAIR ecosystem and committed to continue the refinement and evaluation of the framework towards a "<em>running code</em>" phase where a Proof-of-Concept (PoC) is implemented for testing and demonstration. These commitments we formalised in a document called "the Paris Declaration" and signed by the participants of the workshop.</p>
+                
+                <p>In this context, this document aims at laying the basic description of the FDOF to guide the discussions around the framework and the implementation of the PoC.</p>
+            
+			
+			<h2 id="fdomodel"><span class="secno">3 </span>The FAIR Digital Object Framework model</h2>
+			
+				<p>The FAIR Digital Object Framework aims at tackling some fundamental issues in digital objects' interoperability. As depicted in Figure 1, the FDOF has been designed to be the basis of the FAIR ecosystem. This means that it aims at tackling core issues raised by the FAIR principles regarding the optimal reuse of digital objects. On top of it, applications, data, vocabularies and other types of digital objects can better interoperate. Underneath, the FDOF relies on existent communication infrastructures such as the Web. Therefore, the FDOF builds on top of this communication infrastructures, not replacing but complementing them.</p>
+
+				<figure>
+					<p><img src="./fdof-framework-documentation_files/Freedomtooperate.png" alt="Freedom to operate"></p>
+					<figcaption><span class="marker">Figure 1</span> The FAIR ecosystem stack</figcaption>
+				</figure>
+
+				<p>As the Figure 1 indicates, from the base up we increase the freedom to operate. For instance, considering the internet as the communication infrastructure, different types of applications, framework, service and any other type of internet resource can interoperate at the level of the internet-offered capabilities, i.e., the possibility of exchanging packets across different networks. This is only possible when all resources comply with the internet defined standards and guidelines. On top of these basic communication functionality, there is freedom to add new functionality, features and behaviours. In our inverse pyramid, the FDOF adds some of these extra functionality, features and behaviours required by the FAIR principles and, as long as the involved objects comply with its specifications, an increased level of FAIRness and interoperability is achieved. On top of the FDOF, the involved digital objects can add more features to increase even further the interoperability with other objects following the same added specifications. </p>
+
+				<p>The set of features added to the underlying communication infrastructure by the FDOF is concentrated in the following areas:</p>
+
+				<il>
+					<li>Predictable identifier resolution behaviour;</li>
+					<li>Method to access more information about the object given its identifier.</li>
+					<li>Object typing system;</li>
+				</il>
+			
+				<p>Figure 2 depicts a simplified model for FAIR Digital Objects in the FDOF. When a digital object (bit sequence) is identified by a globally unique, persistent and resolvable identifier, characterised by the FDOF typing system and described by metadata records, we can say that we have a FAIR Digital Object.</p>
+			
+				<figure>
+					<p><img src="./fdof-framework-documentation_files/FDO_simplified.png" alt="FDO simplified model"></p>
+					<figcaption><span class="marker">Figure 2</span> Simplified model of FAIR Digital Objects</figcaption>
+				</figure>
+            
+				<h3 id="resbehaviour"><span class="secno">3.1 </span>Predictable identifier resolution behaviour</h3>
+			
+					<p>In the context of machine-actionability, it is expected that identifiers of digital objects behave in a predictable way so that the artificial agents can know what to expect when an identifier is resolved. Currently, that is not always the case. Current identification systems (Handle system, URIs, etc.) rely on the user's discipline and best practices. For instance, on the Web, one could use an URI to identify a particular PDF file but the URI may not resolve to anything or it may resolve to something else than the identified object, for instance an HTML page. Similarly, some DOIs (an implementation of the Handle system) resolve the identifier to the actual identified object, some to its metadata and many to a landing page. For artificial agents, landing pages are particularly challenging because it is not always (if ever) clear which of the potentially many links present in the page corresponds to the object identified by the DOI. The DOI example (<a href="https://doi.org/10.1109/5.771073">DOI:10.1109/5.771073</a>) on its homepage (<a href="https://doi.org/">www.doi.org</a>) is the identifier of an article named <em>Toward unique identifiers</em> published by IEEE. From a browser or from a command line <code>curl</code> request, this identifier resolves to the landing page of the paper. In the HTML code of this landing page we can find over a hundred of URLs, including URLs for advertisements on the page. Only one of these URLs refers to the actual PDF file of the article. An artificial client would have difficulties in identifying which of these many URLs points to the object of interest. To tackle this issue, the FDOF defines a predictable resolution behaviour.</p>
+
+					<p>In the realm of Digital Objects, each identifier is associated with an identifier record containing so-called state information. There, a client can resolve the DO identifier to this identifier record, which is&nbsp;an artefact containing relevant information about the object.</p>
+					
+					<p>In  FDOF, similar to DO, we have an identifier record named FDOF's Identifier Record (FDOF-IR), a specific type of metadata, containing information about:</p>
+
+					<ul>
+						<li>The object's type;</li>
+						<li>The object's metadata record(s); and</li>
+						<li>The object's location(s).</li>
+					</ul>
+
+					<p>The FDOF-IR is, of course, a specific type of metadata, as depicted in Figure 3. In FDOF we opted to differentiate the three pieces of metadata information contained in the IR from other types of metadata information (e.g., provenance, keys, serialization format, size, etc.). The reason behind this differentiation is to separate the minimal information required by the infrastructure to the additional information that can be used by applications, agreed upon by communities, etc. In this way, we can guarantee that any FDOF-enabled application is able to identify the type of the object (through the reference to the object's type), directly operate on the object (through the object's location reference) or get more information about the object (through reference(s) to the object's metadata record(s)). Other information about the object <strong>SHOULD</strong> be placed in the metadata record(s).</p>
+            
+                    <figure>
+						<p><img src="./fdof-framework-documentation_files/FDOF-IR.png" alt="FDOF-IR"></p>
+						<figcaption><span class="marker">Figure 3</span> The FDOF Identifier Record</figcaption>
+					</figure>
+            
+
+                    <p>An identifier is used to identify an object. Therefore, it is natural to expect that the default identifier resolution behaviour resolves to the target object. However, since the Identifier Record provides information about the object that is particularly valuable when the client is not yet familiar with the object, e.g., the client just discovered an object identifier and does not know anything about the object. Because of this, it is relevant for the FDOF to support an additional method to resolve the identifier to its identifier record.</p>
+            
+					<p>As depicted on Figure 4, the FDOF-IR can be resolved from the object's identifier and present its content using specific predicates to relate the object with its type, its metadata record(s) and its location(s). Moreover, the FDOF does not only provide methods to guarantee a predictable resolution behaviour for the identifier resolution but also defines the format to guarantee predicatability of the metadata presentation format. Therefore, the FDOF-IR <strong>MUST</strong> be presented as RDF, minimally using the Turtle and JSON-LD syntaxes. This requirement allows not only a predictability of the identifier resolution behaviour but also of the serialisation format of the FDOF-IR, facilitating the implementation of client applications. These client applications would expect to retrieve a FDOF-IR as result of the identifier resolution and can be coded to parse and interpret RDF documents. The choice for RDF as the presentation format for the Identifier Record (and the other types of metadata records) is due to the support of RDF to explicitly provide semantic annotations together with the data content. In this way, the FDOF supports improvements in semantic interoperability and machine actionability.</p>
+
+					<figure>
+						<p><img src="./fdof-framework-documentation_files/FDOF-IR_resolution.png" alt="FDOF-IR"></p>
+						<figcaption><span class="marker">Figure 4</span> The FDOF identifier resolution behaviour</figcaption>
+					</figure>
+            
+                    <p>Figure 4 depicts that the identifier can be resolved to either the digital object or to its Identifier Record. Naturally, different resolution methods are used for each case as described in <a href="https://fairdigitalobjectframework.org/#fdofresprot">section 3.1.1</a>.</p>
+
+					<p class="example">
+						<!--<span class="marker">EXAMPLE 1</span>-->
+						The following code excerpt is an example of the FDOF-IR in RDF turtle serialisation:<br>
+						<code>
+							&lt;fdofirIdentifier&gt; a fdof-o:fodfIR<br>
+							&nbsp;&nbsp;fdof-o:isMetadataOf &lt;fdoIdentifier&gt;.<br>
+							&lt;fdoIdentifier&gt; fdof-o:hasType &lt;FDOType&gt;<br>
+							&nbsp;fdof-o:hasMetadata &lt;metadataRecordIdentifier&gt;<br>
+							&nbsp;fdof-o:hasObjectLocation &lt;ObjectLocation&gt; .<br>
+							&nbsp;...
+						</code>
+					</p>					
+
+					<p>The FDOF is not intended to replace the current digital communication infrastructure but to complement it providing extra features supporting better machine-actionability to deal with different types of digital objects. Therefore, the FDOF should coexist with these existing infrastructures and, in some cases, leverage  their features. To allow a minimum impact on the current communication infrastructure, the FDOF identifier resolution behaviour, as default, resolves directly to the target object. However, the client has the option to request the identifier to resolve to the FDOF-IR instead. Since the FDOF-IR provides information about the object's type and metadata, the FDOF resolution behaviour can also offer methods to directly request these types of information. These methods are just to avoid the need to retrieve the FDOF-IR, interpret it and then get the information. Instead, the protocol described below can directly return the references to the object's metadata records (GETMETADATA) or the object type (GETYPE).</p>
+                    
+                    <p>For the extra features of the FDOF identifier resolution behaviour we can implement them by creating an additional protocol which, once evoked, presents these extra resolution features or leverages the current HTTP mechanism for content negotiation.</p>
+			
+					<h4 id="fdofresprot"><span class="secno">3.1.1 </span>FDOF resolution protocol</h4>
+			
+						<p>The FDOF protocol (FDOF-P) defines the mechanism to resolve the object's identifier to its FDOF-IR, its metadata or its type. The FDOF-P defines the following methods:</p>
+						
+						<p><strong><u>GET</u></strong></p>
+						<p style="margin-left: 40px">Similar to HTTP, the FDOF-P GET method requests the retrieval of a representation of the specified object.</p>
+			
+						<p><strong><u>GETIR</u></strong></p>
+						<p style="margin-left: 40px">The FDOF-P GET method requests the retrieval of a representation of the FDOF-IR. The default representation of the FDOF-IR <strong>MUST</strong> be RDF.</p>
+			
+						<p><strong><u>GETMETADATA</u></strong></p>
+						<p style="margin-left: 40px">The FDOF-P METADATA method requests the retrieval of a representation of the object's metadata. The default representation of the metadata record <strong>MUST</strong> be RDF. The response to the METADATA method <strong>MUST</strong> be a Linked Data Platform (LDP) container representing the maximal collection of metadata records for the object. This collection contains the references of each of the object's known metadata records. (<em>see the FDOF Ontology section for details</em>)</p>
+			
+						<p><strong><u>GETTYPE</u></strong></p>
+						<p style="margin-left: 40px">The FDOF-P TYPE method requests the retrieval of a representation of the object's type. This representation is a reference to the object's type as defined in the FDOF Ontology or its extension. The default representation of the FDOF-IR <strong>MUST</strong> be RDF.</p>
+			
+						<p class="example">
+							<!--<span class="marker">EXAMPLE 1</span>-->
+							Given the identifier <code>example.com/myImageID</code>, we could use the regular Web infrastructure to resolve the identifier directly into my image: <code>GET https://example.com/myImageID</code>. However, if this object is part of the FDOF, its identifier could also be resolved using the FDOF identifier resolution protocol by using <code>GET fdof://example.com/myImageID</code>. In this case, if the client, instead of the object itself, would like to retrieve the object's IR, it could use <code>GETIR fdof://example.com/myImageID</code>.
+						</p>
+
+					<h4 id="fdofhttpaccept"><span class="secno">3.1.2 </span>FDOF-P using HTTP accept headers</h4>
+			
+						<p>Another possibility to implement the FDOF-P features is to use the HTTP accept header parameters. For this we would need to register the FDOF-IR, the FDOF metadata container and the FDOF type description as the following HTTP media types:</p>
+						
+						<ul>
+							<li><strong>fdof/object</strong> - the media type for the object. This media type is the default for the identifier. Therefore, if no specific accept parameter is informed in request, the server returns the actual target object;</li>
+							<li><strong>fdof/ir</strong> - the media type for the FDOF-IR;</li>
+							<li><strong>fdof/metadata</strong> - the media type for the object's metadata container;</li>
+							<li><strong>fdof/type</strong> - the media type for the object's type.</li>
+						</ul>
+						
+						<p class="example">
+							Given the identifier <code>example.com/myImageID</code>, we could use the following curl commands:<br>
+							<code>curl -H "Accept: fdof/object" -X GET https://example.com/myImageID</code> or, <br>
+							<code>curl -X GET https://example.com/myImageID</code>. Retrieves the target object of the identifier.<br>
+							<code>curl -H "Accept: fdof/ir" -X GET https://example.com/myImageID</code>. Retrieves the FDOF-IR.<br>
+							<code>curl -H "Accept: fdof/metadata" -X GET https://example.com/myImageID</code>. Retrieves the object's metadata container.<br>
+							<code>curl -H "Accept: fdof/type" -X GET https://example.com/myImageID</code>. Retrieves the object's type description.<br>
+						</p>
+			
+						<p>Naturally, this approach of using HTTP media types as the mechanism to resolve to the different elements of the FDOS requires the registration of these media types at the Internet Assigned Numbers Authority (<a href="https://www.iana.org/">IANA</a>). The procedures to register new media types are defined in <a href="https://www.iana.org/go/rfc6838">RFC6838</a>, <a href="https://www.iana.org/go/rfc4289">RFC4289</a> and <a href="https://www.iana.org/go/rfc6657">RFC6657</a>.</p>
+            
+                    <h4 id="fdofsignposting"><span class="secno">3.1.3 </span>FDOF-P using HTTP Signposting</h4>
+                    
+                        <p>Closer to the approach using HTTP accept headers defined in the section <a href="https://fairdigitalobjectframework.org/#fdofhttpaccept">3.1.2</a> and also relying on the HTTP protocol is the use of <a href="https://signposting.org/">Signposting</a>. As described in its webpage, Signposting "<i>uses Typed Links as a means to clarigh patterns that occur repeatedly..."</i>. In short, Signposting uses HTTP Link header for any type of web resource or HTML link elements for HTML resources to facilitate the identification of relevant links by machines. When navigating through web resources, in special web pages, humans have no problem in identifying links other web resources of interest. However, due to the complete freedom on how to convey such links, machines have difficulties in finding their way around.</p>
+            
+                        <p>Examples of information patterns that can be conveyed using Signposting include:</p>
+            
+                        <ul>
+                            <li>Author</li>
+                            <li>Bibliographics metadata</li>
+                            <li>Identifier</li>
+                            <li>Publication boundary</li>
+                            <li>Resource type</li>
+                        </ul>
+            
+                        <p>In the Signposting web page, the authors present an example of authorship information being provided in the HTTP header of the web resource at the URL https://doi.org/10.1045/november2015-vandesompel. In this example, the response to an HTTP HEAD against that URL is:</p>
+            
+                        <p class="data">
+                            <code>HTTP/1.1 302 found<br>
+                            Server: Apache-Coyote/1.1<br>
+                                Vary: Accept<br>
+                                Location: http://www.dlib.org/dlib/november15/vandesompel/11vandesompel.html<br>
+                                <strong>Link:  &lt;http://orcid.org/0000-0002-0715-6126&gt; ; rel="author",</strong><br>
+                                  <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0003-3749-8116&gt; ; rel="author"</strong><br>
+                                Expires: Tue, 31 May 2016 17:18:50 GMT<br>
+                                Content-Type: text/html;charset=utf-8<br>
+                                Content-Length: 217<br>
+                                Date: Tue, 31 May 2016 16:38:15 GMT<br>
+                                Connection: keep-alive<br>
+                            </code>
+                        </p>
+            
+                        <p>Regarding FDOF and Signposting, we could use the approach on the FDO's identifier (URI) providing the links to its metadata record(s) and type information. Similar to HTTP media types, the link types, e.g., <i>author</i> in the previous example, are registered at IANA. These would require that we either reuse existing link types, which may not represent exactly what is intended by the FDOF or registering new link types. The example below present the header of an FDO using the Signposting approach with custom link types.</p>
+            
+                        <p class="example">
+                            <code>HTTP/1.1 200</code><br>
+                            <code>Server: nginx/1.21.6</code><br>
+                            <code>Content-Type: text/turtle</code><br>
+                            <code>Connection: keep-alive</code><br>
+                            <code><strong>Link: &lt;https://fdof.org/object1/fdof-ir&gt; ; rel="fdof-ir",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://fdof.org/object1/metadatarecord1&gt; ; rel="fdof-metadata" ,<br>                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://fdof.org/object1/metadatarecord2&gt; ; rel="fdof-metadata" ,<br>                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://fdof.org/types/dataset&gt; ; rel="fdof-type"<br>
+                                </strong></code>
+                            <code>Accept: text/html, text/turtle, application/ld+json, application/rdf+xml</code><br>
+                            <code>Expires: 0</code><br>
+                            
+                            
+                        </p>
+			
+				<h3 id="metadataaccess"><span class="secno">3.2 </span>Metadata access mechanism</h3>
+				
+					<p>The FAIR principles dedicate special attention to metadata. All FAIR principles directly relate to metadata and even some of the (sub)principles mentioning data (in practice, any type of digital object) require work on metadata. For instance, in FAIR principle F2 we have that <i>data are described with rich metadata</i>. Therefore, for the data to follow this principle, it is required that we have rich metadata to describe them. In another example, the sub-principle R1.1 states that <i>data are released with a clear and accessible data usage license</i>. The attribution of a license to the data is commonly infomed in the data's metadata.</p>
+			
+					<p>With such an important role in the FAIR principles, the FDOF naturally provides support for the digital object's metadata. Part of this support comes from the FDOF's metadata access mechanism. In order to facilitate the access to the metadata for client applications, the FDOF provides a common metadata access mechanism so that applications can request access to the metadata of the digital object given its identifier. The usage scenario that illustrates the intended support is that once an identifier has been found, the client application (or its user) may need to gather more information about the identified digital object before deciding whether to deal with the actual object. A common mechanism for such access is important to facilitate interoperability in the sense that any FDOF-enabled client application knows how to access an object's metadata instead of leaving to every service to define their own access mechanisms.</p>
+			
+					<p>As described in <a href="https://fairdigitalobjectframework.org/#fdofresprot">section 3.1.1</a> and depicted in Figure 4, the client application can directly request the metadata record(s) of the object from its identifier using the <strong>GETMETADATA</strong> method. This method returns a LDP container representation containing the containment structure having as members all known metadata records for that object (Figure 5).</p>
+			
+					<figure>
+						<p><img src="./fdof-framework-documentation_files/directmetadataaccess_sequence.png" alt="direct metadata access"></p>
+						<figcaption><span class="marker">Figure 5</span> Direct metadata access</figcaption>
+					</figure>
+			
+					<p>Another way to obtain access to the object's metadata, as depicted in Figure 6 is through its Identifier Record. Since the IR contains also the LDP container of the object's metadata records, once the application retrieves the IR, it can search in the IR for the references of the metadata records.</p>
+			
+					<figure>
+						<p><img src="./fdof-framework-documentation_files/indirectmetadataaccess_sequence.png" alt="indirect metadata access"></p>
+						<figcaption><span class="marker">Figure 6</span> Indirect metadata access</figcaption>
+					</figure>
+			
+				<h3 id="typingsystem"><span class="secno">3.3 </span>Object typing system</h3>
+			
+                <p> When dealing with objects in general, a common question is "What is this object?". Although seemingly simple, this question may have answers reflecting different aspects of the object. For instance, if we are looking at a photograph, some may say that the object in question is a photo while others may refer to what is the content of the photograph, e.g., a mountain. In the digital world, another relevant aspect to be taken under consideration is the encoding format of the object, e.g., JPG, GIF, PNG, etc.</p>
+                <p>The question of what can be done with a given object refers to the sorts of operations that can be applied to  the object. This involves the type of the object but also the context around an individual objec, including who is intending to perform the operation. For instance, a given object of an specific type my support a set of operations but someone who would like to manipulate that object may not have permission to perform some of the supported operations. Therefore, a typing system that defines operations to objects should have these definitions to both the type and individual levels. The former informs on which operations are applicable to the type of object and the latter deals with permissions of who is allowed to perform these operations.</p>
+
+                <p>In the FDOF, the typing system reflects these concerns and provide information about: </p>
+                <ul>
+                      <li>The encoding format of the digital object, e.g., JSON, XML, RDF, JPG, DOCX, etc.;</li>
+                      <li>The type of the digital object with respect to its informational function, e.g., image, video, dataset, service, etc.;</li>
+                    <li>The entity(ies) that are represented by the digital object, e.g., the mountain in a photo, a given protein in a protein dataset;</li>
+                      <li>The operations that are applicable to a given type of digital object; and</li>
+                    <li>The operations that are allowed to be performed on a specific digital object.</li>
+                </ul>
+            
+                    <p>The FAIR principle F2 states that "<em>data are described with rich metadata</em>". This principle, then, defines that metadata have the function of describing digital objects. In practice we have that metadata records contain a set of property attributions that helps describe a given object. Some of these properties may be common to any digital object and some may be specific to certain types of objects.</p>
+            
+                    <p>Since different types of digital objects may be described with different sets of properties, the FDOF typing system can determine specific metadata schemas for specific FDO types, as depicted in Figure 7. A metadata schema defines which properties must or may be present in a given metadata record. One can argue that we will never be able to define a metadata schema that includes all possible properties that are needed for all applications of the metadata. Therefore, in the FDOF, the metadata schemas associated with FDO types define a minimal set of properties. This minimal set of properties guarantee a level of predictability so that users (humans or machines) can expect these properties to be available as descriptors of a FDO of a given type. Naturally, communities, users, object providers or any other stakeholder can add more properties and/or define additional metadata schemas for the FDOs. The more properties, the richer are the metadata records. Once again, the FDOF's type-specific metadata schemas define just a base set of properties that can, and should, be augmented.</p>
+
+                    <figure>
+                        <p><img src="./fdof-framework-documentation_files/FDO_simplifiedwithmetadataschema.png" alt="FDO simplified model with metadata schema"></p>
+                        <figcaption><span class="marker">Figure 7</span> FDO types and metadata schemas</figcaption>
+                    </figure>
+
+                <p class="note">TODO: COMPLETE THE OBJECT TYPING SYSTEM WITH THE MODEL FOR OPERATIONS</p>
+		<h2 id="fdof-o"><span class="secno">4 </span>FDOF Core Ontology</h2>
+			<p class="note">NOTE: PLACEHOLDER FOR THE LINK TO THE FDOF CORE ONTOLOGY (FDOF-O) (WORK UNDERWAY)</p>
+			
+			
+	
+	<h2 id="acknowledgments">
+		<span class="secno"> </span> Acknowledgments</h2>
+  
+		<p>My work on the FDOF did not start and does not continue to happen in a vacuum. As the name of the framework suggests, it has been based on the efforts of many people related to the FAIR and Digital Objects movements. In the DO arena, it started with Robert Kahn defining the initial ideas of Digital Objects followed by Larry Lannom, Robert Quick, Peter Wittenburg and many groups and members of the RDA community refining, expanding, testing and implementing it.</p>
+	
+		<p>From the FAIR movement side, a growing international community was rapidily formed after the publication of <em>"<a href="https://www.nature.com/articles/sdata201618">The FAIR Guiding Principles for scientific data management and stewardship</a>"</em> paper on March 2016 by a group of 54 co-authors, which I am just one of them. In particular, I would like to acknowledge the enormous support and confidence from George Strawn and Barend Mons, our numerous discussions have been instrumental to the current state of the framework. Their involvement, together with Peter Wittenburg, Jean-François Abramatic and others made possible a series of meetings from August to November 2019 where the FDOF was discussed, culminating in the "<em>Paris agreement</em>", where a group representing organizations heavily involved in data stewardship commit to the further evolution of the framework. The development of the FDOF is also heavily influenced by the work conducted by the Linked Data and Semantic Web communities in the past decades having the W3C as their convergence point.</p>
+<!--
+	<p>The FAIR Digital Object Framework defines a predictable identifier resolution behavior, having the identifier resolved into a small piece of information, named the Identifier Record, containing minimally the object’s type, the reference(s) to the object’s location(s) and the reference(s) to its metadata record(s).</p>
+  
+	<p>The <a href="https://www.nature.com/articles/sdata201618">FAIR principles</a> provide a vision of a global ecosystem of dynamically interoperable digital objects such as data, services and computing capacity. This vision entails the requirement to provide machines with  enough actionable information about each of these types of objects so they can automate as much as possible their integration and interoperation. However, to fully realise this vision, we need an infrastructure capable of supporting the interoperation of digital objects according to the requirements defined by the <a href="https://www.nature.com/articles/sdata201618">FAIR principles</a>.</p>
+-->
+	<!--
+  <dl class="switch">
+    <dt>A bug in the style sheet, which should definitely be fixed
+    <dt>A stylistic preference, on which reasonable people can disagree
+    <dd>Report this to the style sheet maintainer, and help us fix it site-wide.
+    <dt>A styling need which is particular to specifications of your technology
+      (e.g. distinction between certain classes of <code>&lt;code></code> elements).
+    <dd>Fix it in a WG-wide style sheet
+    <dt>A styling need which is local to the current construction (e.g. the particular contents of this table need different alignment)
+    <dd>Fix it in a document-specific style sheet.
+ </dl>
+
+<h3 id="conventions">
+<span class="secno">1.1 </span>Document conventions</h3>
+  <p>Conformance requirements are expressed with a combination of
+    descriptive assertions and RFC 2119 terminology. The key words "MUST",
+    "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
+    "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this
+    document are to be interpreted as described in RFC 2119.
+    However, for readability, these words do not appear in all uppercase
+    letters in this specification. </p>
+  <p>All of the text of this specification is normative except sections
+    explicitly marked as non-normative, examples, and notes. <a href="#biblio-rfc2119">[RFC2119]</a></p>
+
+  <p>Examples in this specification are introduced with the words "for example"
+    or are set apart from the normative text with <code>class="example"</code>,
+    like this: </p>
+  <div class="example" id="example-f839f6c8">
+    
+   <p>This is an example of an informative example.</p>
+  </div>
+
+  <p>Informative notes begin with the word "Note" and are set apart from the
+    normative text with <code>class="note"</code>, like this: </p>
+  <p role="note">Note, this is an informative note.</p>
+
+  <p>Advisements are normative sections styled to evoke special attention and are
+    set apart from other normative text with
+    <code>&lt;p class="advisement"></code> or
+    <code>&lt;strong class="advisement"></code>,
+    like this:
+    <strong class="advisement"> UAs MUST provide an accessible alternative. </strong> </p>
+
+  <p>Data tables are formatted with horizontal and vertical rules and text-alignment
+    based on their markup (using <code>class="data"</code>).
+    This requires appropriate use of <code>&lt;thead&gt;</code> for the table header,
+    <code>&lt;th&gt;</code> for header cells,
+    <code>&lt;tbody&gt;</code> for row groups,
+    <code>&lt;th scope=row&gt;</code> for row header cells,
+    and <code>&lt;colgroup&gt;</code> for column groups.
+
+<h2 id="conventions">
+<span class="secno">2 </span> Features of the New Style Sheet</h2>
+
+<h2 id="indexing"><span class="secno">2.1</span>
+Indexing</h2>
+
+  <p>Since specs commonly have navigation aids like a table of contents and indexes,
+  the stylesheet also provides <code>toc</code> and <code>index</code> classes for these.
+
+<h3 id="index-toc"><span class="secno">2.1.1</span>
+Table of Contents</h3>
+
+  <p>Each document <em>must</em> include a table of contents
+  using <code>&lt;ol class="toc"></code> and wrapped in a <code>&lt;nav id="toc"></code> element.
+  The markup structure looks like this:
+  
+  <pre>
+&lt;nav id="toc">
+  &lt;h2>Table of Contents&lt;/h2>
+  &lt;ol class="toc">
+    &lt;li>&lt;span class="secno">1.&lt;/span> Introduction
+    &lt;li>&hellip;
+  &lt;/ol>
+&lt;/nav></pre>
+
+<h3 id="index-lists"><span class="secno">2.1.2</span>
+Index Lists</h3>
+
+  <p>Special styling is provided for lists (<code>&lt;ul></code>, <code>&lt;ol></code>)
+  through the <code>index</code> class (<code>&lt;ul class="index"></code>).
+
+<h3 id="index-tables"><span class="secno">2.1.3</span>
+Index Tables</h3>
+
+  <p>Special styling is also provided for index tables
+  (such as for properties, elements, attributes, etc)
+  through the <code>index</code> class (<code>&lt;table class="index"></code>).
+
+<h3 id="numbering"><span class="secno">2.1.4</span>
+Section Numbers and Anchoring</h3>
+
+  <p>Section numbers in table headings should be marked up with <code>class="secno"</code>.
+  These are not styled currently, but might be in the future.
+  As aforementioned, however, the <a href="#index-toc">table of contents</a>
+  <em>must</em> have its numbers marked up with <code>class="secno"</code>.
+  
+  <p class="issue">Insert styling info on section anchors (as in Bikeshed-generated specs).
+
+<h3 id="boxes">
+<span class="secno">2.2 </span> Special Boxes</h3>
+
+<h4 id="def">
+<span class="secno">2.2.1 </span> Definition Boxes</h2>
+
+  <p>The <code>.def</code> class is used to distinguish definition boxes,
+  e.g. for WebIDL boxes defining an interface,
+  for CSS property definition tables,
+  for HTML element property <code>&lt;dl></code>s,
+  etc. It can be applied to <code>&lt;table></code>, <code>&lt;pre></code>, or <code>&lt;dl></code>.
+
+ <table class="propdef def">
+    <tbody>
+     <tr>
+      <th>Name:
+      <td><dfn class="css" id="propdef-text-align">text-align</dfn>
+     <tr>
+      <th><a href="#values">Value</a>: 
+      <td>start | end | left | right | center | justify
+     <tr>
+      <th>Initial:
+      <td>start
+     <tr>
+      <th>Applies to:
+      <td>block containers
+     <tr>
+      <th>Inherited:
+      <td>yes
+     <tr>
+      <th>Percentages:
+      <td>N/A
+     <tr>
+      <th>Media:
+      <td>visual
+     <tr>
+      <th>Computed value:
+      <td>specified value, except for <a class="css" href="#valdef-text-align-match-parent">match-parent</a> which computes as defined below
+     <tr>
+      <th>Animatable: 
+      <td>no 
+     <tr>
+      <th>Canonical order: 
+      <td>N/A 
+ </table>
+
+<h4 id="note">
+<span class="secno">2.2.1 </span> Note Boxes</h2>
+
+  <p>The <code>.note</code> class is used to distinguish non-normative notes.
+  
+  <p class="note">
+    <span class="marker">Note:</span>
+    This is a non-normative note.
+    The style sheet allows the document to include a rule for auto-generating the "Note" marker
+    in CSS, but due to bugs in browser implementations,
+    it's recommended to include that text in the document,
+    using <code>class=marker</code>.
+  </p>
+  
+  <p>This class is currently valid on <code>&lt;aside></code>, <code>&lt;details></code>, <code>&lt;div></code>, <code>&lt;p></code>, and <code>&lt;span></code>.
+  <span class="note">Note, here is an example of an inline note.</span>.
+
+<h4 id="example">
+<span class="secno">2.3.2 </span> Example Boxes</h2>
+
+  <p>The <code>.example</code> class is used to distinguish non-normative examples.
+  
+  <p class="example">
+    <span class="marker">Example 2</span>
+    This is a non-normative example.
+    The style sheet allows the document to include a rule for auto-generating the "Example #" marker
+    in CSS, but due to bugs in browser implementations,
+    it's recommended to include that text in the document,
+    using <code>class=marker</code>.
+  </p>
+
+<h4 id="issue">
+<span class="secno">2.2.3 </span> Issue Boxes</h2>
+
+  <p>The <code>.issue</code> class is used to distinguish open issues.
+  
+  <p class="issue">
+    <span class="marker">Issue 3</span>
+    This is an issue.
+    The style sheet allows the document to include a rule for auto-generating the "Issue #" marker
+    in CSS, but due to bugs in browser implementations,
+    it's recommended to include that text in the document,
+    using <code>class=marker</code>.
+  </p>
+
+  <p>This class is currently valid on <code>&lt;div></code>, <code>&lt;p></code>, and <code>&lt;span></code>.
+  <span class="issue"><span class="marker">Issue 4</span> Here is an example of an inline issue.</span>.
+
+
+<h4 id="advisement">
+<span class="secno">2.2.4 </span> Advisement Boxes</h2>
+
+  <p>The <code>.advisement</code> class is used to highlight important normative statements,
+  such as best practices.
+  
+  <p class="advisement">
+    <span class="marker">Best Practice 4:</span>
+    Use semantic markup.
+  </p>
+
+  <p>This class is currently valid on <code>&lt;div></code>, <code>&lt;p></code>, and <code>&lt;strong></code>.
+  <strong class="advisement">This is a <code>&lt;strong class="advisement"></code> normative statement.</strong>
+
+<h4 id="obsolete">
+<span class="secno">2.2.5 </span> Annoying Spec Obsoletion Warning Boxes</h2>
+
+  <p>The <code>.annoying-warning</code> is for spec obsoletion notices.
+  They're a bit scary, and should only occur once per spec.
+
+<h3 id="structural">
+<span class="secno">2.3</span> Structural Markup</h3>
+
+<h4 id="figure">
+<span class="secno">2.3.1</span> Figures and Captions</h3>
+
+  <p>The <code>&lt;figure></code> and <code>&lt;figcaption></code> elements
+  have special styling.
+  
+  <figure>
+    <p><img src="http://drafts.csswg.org/css-writing-modes/diagrams/text-flow-vectors-tb.png">
+    <figcaption><span class="marker">Figure 2.2.1</span> This is a diagram showing off how diagrams render.
+  </figure>
+  
+  <p>The style sheet allows the document to include a rule for auto-generating the "Figure #" marker
+  in CSS, but due to bugs in browser implementations,
+  it's recommended to include that text in the document,
+  using <code>class=marker</code>.
+
+  <p>Spec editors may override styling for <code>&lt;figure&gt;</code>
+  and its image as necessary to fit them into the appropriate layout contexts;
+  however if there are problems with caption styling it is recommended instead
+  to <a href="https://github.com/w3c/tr-design/issues">report them to the style sheet owner</a> for fixing everywhere.
+
+<h4 id="table">
+<span class="secno">2.3.2</span> Data Tables</h3>
+
+  <p>The <code>data</code> class on tables automatically styles data tables
+  with borders, padding, and alignment
+  based on the appropriate use of
+  <ul>
+    <li><code>&lt;caption></code> (table caption)
+    <li><code>&lt;colgroup></code> (column groups)
+    <li><code>&lt;thead></code> (table header group)
+    <li><code>&lt;tbody></code> (table row groups)
+    <li><code>&lt;th></code> (table header cell, vs. table data cell <code>&lt;td></code>)
+    <li><code>scope</code> attribute on <code>&lt;th></code>
+  </ul>
+
+  <p>Example:
+
+  <table class="data">
+    <caption>Summary of <code class="css">white-space</code> property</caption>
+    <colgroup class="header"></colgroup>
+    <colgroup span="3"></colgroup>
+    <thead>
+     <tr>
+      <th>
+      <th>New Lines
+      <th>Spaces and Tabs
+      <th>Text Wrapping
+    <tbody>
+     <tr>
+      <th><a class="css" data-link-type="maybe" href="#valdef-white-space-normal">normal</a>
+      <td>Collapse
+      <td>Collapse
+      <td>Wrap
+     <tr>
+      <th><a class="css" data-link-type="maybe" href="#valdef-white-space-pre">pre</a>
+      <td>Preserve
+      <td>Preserve
+      <td>No wrap
+     <tr>
+      <th><a class="css" data-link-type="maybe" href="#valdef-white-space-nowrap">nowrap</a>
+      <td>Collapse
+      <td>Collapse
+      <td>No wrap
+     <tr>
+      <th><a class="css" data-link-type="maybe" href="#valdef-white-space-pre-wrap">pre-wrap</a>
+      <td>Preserve
+      <td>Preserve
+      <td>Wrap
+     <tr>
+      <th><a class="css" data-link-type="maybe" href="#valdef-white-space-pre-wrap-auto">pre-wrap-auto</a>
+      <td>Preserve
+      <td>Preserve
+      <td>Wrap
+     <tr>
+      <th><a class="css" data-link-type="maybe" href="#valdef-white-space-pre-line">pre-line</a>
+      <td>Preserve
+      <td>Collapse
+      <td>Wrap
+  </table>
+
+  <p>Spec editors are <em>strongly advised</em> to explore the use of strong, accessible table markup
+  before customizing any table styling,
+  however are encouraged to override the default text alignment when appropriate to the contents of the table.
+
+  <p>For tables with particularly complex spanning relationships,
+  the <code>class="complex data"</code> class may be used,
+  which will add additional inter-cell lines.
+
+<h4 id="switch">
+<span class="secno">2.3.3</span> Switch Statements</h3>
+
+  <p>The <code>switch</code> class on <code>&lt;dl></code> elements
+  is used to provide more appropriate styling for <code>&lt;dl></code> lists
+  that are used as switch statements.
+  
+  <p>For example, if you are using a <code>&lt;dl></code> for:
+  
+  <dl class="switch">
+    <dt>A list of definitions
+    <dd>Use <code>&lt;dfn></code> (defining instance)
+      around the term (or entity name) in the <code>&lt;dt></code> element,
+      and put the definition in the <code>&lt;dd></code>.
+      Don't use <code>class=switch</code>
+  
+    <dt>A branched choice in your technology
+    <dd>Use <code>class=switch</code> on this <code>&lt;dl></code> to provide extra styling
+        that highlights this semantic variant of <code>&lt;dl></code>s,
+        if that would help the readability of your document.
+
+    <dt>Otherwise
+    <dd>Don't use the <code>switch</code> class on this <code>&lt;dl></code>,
+      or <code>&lt;dfn></code> on the contents of the <code>&lt;dt></code> elements.
+      Do consider, however, whether the <code>&lt;d></code> elements would be better off
+      as headings.
+  </dl>
+
+<h4 id="algorithm">
+<span class="secno">2.3.4</span> Algorithm Lists</h3>
+
+  <p>The <code>algorithm</code> class on <code>&lt;ol></code> elements
+  is used to provide more appropriate styling for deeply-nested ordered lists
+  that are used in complex algorithm procedures.
+  
+  <p>For example, in order to publish a document using the old publication process, you had to
+  
+  <ol class="algorithm">
+    <li>Make sure it is up-to-date with WG resolutions
+    <li>Request a WG resolution to publish
+    <li>Ensure the spec satisfies pubrules:
+      <ol>
+        <li>Validate the HTML
+        <li>Validate the CSS
+        <li>Check for broken links
+        <li>Run the pubrules checker to ensure the template is correct
+      </ol>
+    <li>Send a message to webreq requesting permission to publish including:
+      <ul>
+        <li>A proposed date to publish (either Tuesday or Thursday)
+        <li>A link to the minuted resolution to publish
+        <li>A zipped copy of the specification
+      </ul>
+    <li>Wait for the publication
+    <li>Announce the publication to your group. In the CSSWG, this meant
+      <ol>
+        <li>Send a message to www-style
+        <li>Write blog post on the CSSWG blog
+        <li>Link the blog post from the CSSWG Twitter account
+      </ol>
+  </ol>
+
+<h4 id="change">
+<span class="secno">2.3.5</span> Change Marks (<code>ins</code>/<code>del</code>)</h3>
+
+  <p>The style sheet also includes styling for <ins>insertions</ins>
+  and <del>deletions</del> using the standard
+  <code>&lt;ins></code> and <code>&lt;del></code> elements.
+
+<h4 id="inline">
+<span class="secno">2.3.6</span> Recommended Inline Markup (<code>dfn</code>/<code>var</code>/<code>samp</code>/<code>code</code>/<code>em</code>/<code>strong</code>)</h3>
+
+  <p>It is strongly recommended to use the HTML semantic classes
+  for their intended purposes, particularly <code>dfn</code>,
+  which should always be accompanied by an <code>id</code>
+  for improved spec cross-linking.
+
+  <p>For those less familiar with HTML's inline semantics, the
+  following elements are commonly used in specifications:
+
+  <dl>
+    <dt><code>dfn</code>
+    <dd>For the definiting instance of a term. Always add an <code>id</code>.
+    <dt><code>var</code>
+    <dd>For variables
+    <dt><code>code</code>
+    <dd>For code
+    <dt><code>samp</code>
+    <dd>For output
+    <dt><code>em</code>
+    <dd>For stress emphasis within a sentence.
+  </dl>
+  
+  <p>It is expected that spec editors may need to subclass these elements
+  to make finer distinctions between, e.g. different types of code snippets.
+  A future revision of the site-wide styles may incorporate some of the more
+  common distinctions.
+
+<h3 id="misc"><span class="secno">2.4</span>
+Miscellaneous</h3>
+
+<h3 id="overlarge"><span class="secno">2.4.1</span>
+Overlarge Elements</h3>
+
+  <p>The style sheet currently imposes for readability a maximum measure of 50em.
+  In the case that something is too wide to fit in that space,
+  the <code>overlarge</code> class can be assigned to give it the full space of the viewport.
+
+  <p>Note that this only gives you more space if there's any to be had:
+  on narrow windows and when printing, it will not gain any extra space.
+  Please design your content to render reasonably on smaller canvases;
+  this class will not magically fix such content except on your widescreen device.
+
+  <div class='example overlarge'>
+    This is an overlarge box. It will try to fill the viewport width.
+    Things can be centered inside it, but left-aligning will be a bit awkward.
+  </div>
+
+<p class="note">The rest of this document is snippets of various specifications,
+to compare styling.
+
+<h2 id="css">
+<span class="secno">7 </span> Sample CSS Section</h2>
+   <p>Alignment and justification controls how inline content is distributed within a line box. </p>
+   <h3 id="text-align-property"><span class="secno">7.1 </span> Text Alignment: the <a class="property" href="#propdef-text-align">text-align</a> shorthand</h3>
+   <table class="propdef def">
+    <tbody>
+     <tr>
+      <th>Name:
+      <td><dfn class="css" id="propdef-text-align">text-align</dfn>
+     <tr>
+      <th><a href="#values">Value</a>: 
+      <td>start | end | left | right | center |
+              justify | match-parent | justify-all 
+     <tr>
+      <th>Initial:
+      <td>start
+     <tr>
+      <th>Applies to:
+      <td>block containers
+     <tr>
+      <th>Inherited:
+      <td>yes
+     <tr>
+      <th>Percentages:
+      <td>N/A
+     <tr>
+      <th>Media:
+      <td>visual
+     <tr>
+      <th>Computed value:
+      <td>specified value, except for <a class="css" href="#valdef-text-align-match-parent">match-parent</a> which computes as defined below
+     <tr>
+      <th>Animatable: 
+      <td>no 
+     <tr>
+      <th>Canonical order: 
+      <td>N/A 
+   </table>
+   <p>This <a href="https://drafts.csswg.org/css-cascade-4/#shorthand-property">shorthand property</a> sets the <a class="property" href="#propdef-text-align-all">text-align-all</a> and <a class="property" href="#propdef-text-align-last">text-align-last</a> properties
+      and describes how the inline-level content of a block
+      is aligned along the inline axis
+      if the content does not completely fill the line box.
+      Values have the following meanings:</p>
+   <dl>
+    <dt><dfn class="css" id="valdef-text-align-start">start</dfn>
+    <dd>Inline-level content is aligned to the <a href="https://drafts.csswg.org/css-writing-modes-3/#start">start</a> edge of the line box. 
+    <dt><dfn class="css" id="valdef-text-align-end">end</dfn>
+    <dd>Inline-level content is aligned to the <a href="https://drafts.csswg.org/css-writing-modes-3/#end">end</a> edge of the line box. 
+    <dt><dfn class="css" id="valdef-text-align-left">left</dfn>
+    <dd>Inline-level content is aligned to the <a href="http://www.w3.org/TR/css3-writing-modes/#line-left">line left</a> edge of the line box.
+        (In vertical writing modes,
+         this will be either the physical top or bottom,
+         depending on <a class="property" href="https://drafts.csswg.org/css-writing-modes-3/#propdef-text-orientation">text-orientation</a>.) <a href="#biblio-css3-writing-modes">[CSS3-WRITING-MODES]</a> 
+    <dt><dfn class="css" id="valdef-text-align-right">right</dfn>
+    <dd>Inline-level content is aligned to the <a href="http://www.w3.org/TR/css3-writing-modes/#line-right">line right</a> edge of the line box.
+        (In vertical writing modes,
+         this will be either the physical top or bottom,
+         depending on <a class="property" href="https://drafts.csswg.org/css-writing-modes-3/#propdef-text-orientation">text-orientation</a>.) <a href="#biblio-css3-writing-modes">[CSS3-WRITING-MODES]</a> 
+    <dt><dfn class="css" id="valdef-text-align-center">center</dfn>
+    <dd>Inline-level content is centered within the line box. 
+    <dt><dfn class="css" id="valdef-text-align-justify">justify</dfn>
+    <dd>Text is justified according to the method specified by the <a class="property" href="#propdef-text-justify">text-justify</a> property,
+        in order to exactly fill the line box.
+        Unless otherwise specified by <a class="property" href="#propdef-text-align-last">text-align-last</a>,
+        the last line before a forced break or the end of the block is <a class="css" href="#valdef-text-align-start">start</a>-aligned. 
+    <dt><dfn class="css" id="valdef-text-align-justify-all">justify-all</dfn>
+    <dd>Same as <a class="css" href="#valdef-text-align-justify">justify</a>, except <a class="property" href="#propdef-text-align-last">text-align-last</a> is also set to <a class="css" href="#valdef-text-align-justify">justify</a>,
+        forcing the last line to justify as well. 
+    <dt><dfn class="css" id="valdef-text-align-match-parent">match-parent</dfn>
+    <dd>This value behaves the same as <a class="css" href="https://drafts.csswg.org/css-cascade-4/#valdef-all-inherit">inherit</a> (computes to its parent’s computed value)
+        except that an inherited <a class="css" href="#valdef-text-align-start">start</a> or <a class="css" href="#valdef-text-align-end">end</a> keyword
+        is interpreted against its parent’s <a class="property" href="https://drafts.csswg.org/css-writing-modes-3/#propdef-direction">direction</a> value
+        and results in a computed value of either <a class="property" href="https://drafts.csswg.org/css-position-3/#propdef-left">left</a> or <a class="property" href="https://drafts.csswg.org/css-position-3/#propdef-right">right</a>. 
+   </dl>
+   <p>All values except <a class="css" href="#valdef-text-align-justify-all">justify-all</a> reset <a class="property" href="#propdef-text-align-last">text-align-last</a> to <a class="css" href="#valdef-text-align-last-auto">auto</a>. </p>
+   <p>A block of text is a stack of <a href="http://www.w3.org/TR/CSS21/visuren.html#line-box">line boxes</a>.
+      This property specifies how the inline-level boxes within each line box
+      align with respect to the start and end sides of the line box.
+      Alignment is not with respect to the <a href="http://www.w3.org/TR/CSS21/visuren.html#viewport">viewport</a> or containing block. </p>
+   <p>In the case of <a class="css" href="#valdef-text-align-justify">justify</a>, the UA may stretch or shrink any inline boxes
+      by <a href="#text-justify-property">adjusting</a> their text. (See <a class="property" href="#propdef-text-justify">text-justify</a>.)
+      If an element’s white space is not <a href="#collapse">collapsible</a>,
+      then the UA is not required to adjust its text for the purpose of justification
+      and may instead treat the text as having no <a href="#justification-opportunity">justification opportunities</a>.
+      If the UA chooses to adjust the text, then it must ensure
+      that <a href="#tab-stop">tab stops</a> continue to line up as required by the <a href="#white-space-rules">white space processing rules</a>. </p>
+   <p>If (after justification, if any) the inline contents of a line box are too long to fit within it,
+      then the contents are <a href="https://drafts.csswg.org/css-writing-modes-3/#start">start</a>-aligned:
+      any content that doesn’t fit overflows the line box’s <a href="https://drafts.csswg.org/css-writing-modes-3/#end">end</a> edge. </p>
+   <p>See <a href="#bidi-linebox">Bidirectionality and line boxes</a> for details on how to determine the <a href="https://drafts.csswg.org/css-writing-modes-3/#start">start</a> and <a href="https://drafts.csswg.org/css-writing-modes-3/#end">end</a> edges of a line box. </p>
+   <h3 id="text-align-all-property"><span class="secno">7.2 </span> Default Text Alignment: the <a class="property" href="#propdef-text-align-all">text-align-all</a> property</h3>
+   <table class="propdef def">
+    <tbody>
+     <tr>
+      <th>Name: 
+      <td><dfn class="css" id="propdef-text-align-all">text-align-all</dfn>
+     <tr>
+      <th><a href="#values">Value</a>: 
+      <td>start | end | left | right | center |
+              justify | match-parent 
+     <tr>
+      <th>Initial: 
+      <td>start 
+     <tr>
+      <th>Applies to: 
+      <td>block containers 
+     <tr>
+      <th>Inherited: 
+      <td>yes 
+     <tr>
+      <th>Percentages: 
+      <td>N/A 
+     <tr>
+      <th>Media: 
+      <td>visual 
+     <tr>
+      <th>Computed value: 
+      <td>specified value 
+     <tr>
+      <th>Animatable: 
+      <td>no 
+     <tr>
+      <th>Canonical order: 
+      <td>N/A 
+   </table>
+   <p>This longhand of the <a class="property" href="#propdef-text-align">text-align</a> <a href="https://drafts.csswg.org/css-cascade-4/#shorthand-property">shorthand property</a> specifies the inline alignment of all lines of inline content in the block container,
+    except for last lines overridden by a non-<a class="css" href="#valdef-text-align-last-auto">auto</a> value of <a class="property" href="#propdef-text-align-last">text-align-last</a>.
+    See <a class="property" href="#propdef-text-align">text-align</a> for a full description of values. </p>
+   <p class="advisement"> Authors should use the <a class="property" href="#propdef-text-align">text-align</a> shorthand instead of this property. </p>
+   <h3 id="text-align-last-property"><span class="secno">7.3 </span> Last Line Alignment: the <a class="property" href="#propdef-text-align-last">text-align-last</a> property</h3>
+   <table class="propdef def">
+    <tbody>
+     <tr>
+      <th>Name:
+      <td><dfn class="css" id="propdef-text-align-last">text-align-last</dfn>
+     <tr>
+      <th><a href="#values">Value</a>: 
+      <td>auto | start | end | left | right | center | justify 
+     <tr>
+      <th>Initial:
+      <td>auto
+     <tr>
+      <th>Applies to:
+      <td>block containers
+     <tr>
+      <th>Inherited:
+      <td>yes
+     <tr>
+      <th>Percentages:
+      <td>N/A
+     <tr>
+      <th>Media:
+      <td>visual
+     <tr>
+      <th>Computed value:
+      <td>specified value
+     <tr>
+      <th>Animatable: 
+      <td>no 
+     <tr>
+      <th>Canonical order: 
+      <td>N/A 
+   </table>
+   <p>This property describes how the last line of a block or a line
+      right before a <a href="#forced-line-break">forced line break</a> is aligned.
+      If a line is also the first line of the block
+      or the first line after a <a href="#forced-line-break">forced line break</a>, <a class="property" href="#propdef-text-align-last">text-align-last</a> takes precedence over <a class="property" href="#propdef-text-align-all">text-align-all</a>. </p>
+   <p>If <dfn class="css" id="valdef-text-align-last-auto">auto</dfn> is specified,
+      content on the affected line is aligned per <a class="property" href="#propdef-text-align">text-align</a> unless <a class="property" href="#propdef-text-align">text-align</a> is set to <a class="css" href="#valdef-text-align-justify">justify</a>,
+      in which case it is start-aligned.
+      All other values have the same meanings as in <a class="property" href="#propdef-text-align">text-align</a>. </p>
+   <h3 id="text-justify-property"><span class="secno">7.4 </span> Justification Method: the <a class="property" href="#propdef-text-justify">text-justify</a> property</h3>
+   <table class="propdef def">
+    <tbody>
+     <tr>
+      <th>Name:
+      <td><dfn class="css" id="propdef-text-justify">text-justify</dfn>
+     <tr>
+      <th><a href="#values">Value</a>: 
+      <td>auto | none | inter-word | inter-character 
+     <tr>
+      <th>Initial:
+      <td>auto
+     <tr>
+      <th>Applies to:
+      <td>block containers and, optionally, inline elements
+     <tr>
+      <th>Inherited:
+      <td>yes
+     <tr>
+      <th>Percentages:
+      <td>N/A
+     <tr>
+      <th>Media:
+      <td>visual
+     <tr>
+      <th>Computed value:
+      <td>specified value
+     <tr>
+      <th>Animatable: 
+      <td>no 
+     <tr>
+      <th>Canonical order: 
+      <td>N/A 
+   </table>
+   <p>This property selects the justification method used when a line’s
+      alignment is set to <a class="css" href="#valdef-text-align-justify">justify</a> (see <a class="property" href="#propdef-text-align">text-align</a>).
+      The property applies to block containers, but the UA may (but
+      is not required to) also support it on inline elements.
+      It takes the following values:</p>
+   <dl>
+    <dt><dfn class="css" id="valdef-text-justify-auto">auto</dfn>
+    <dd>
+     <p>The UA determines the justification algorithm to follow, based
+          on a balance between performance and adequate presentation quality.
+          Since justification rules vary by writing system and language,
+          UAs should, where possible, use a justification algorithm appropriate to the text. 
+     <p class="example" id="example-997b671a"> For example, the UA could use by default a justification method that is a
+          simple universal compromise for all writing systems—such as
+          primarily expanding <a href="#word-separator">word separators</a> and between CJK <a href="#typographic-letter-unit">typographic letter units</a> along with secondarily expanding between Southeast Asian <a href="#typographic-letter-unit">typographic letter units</a>.
+          Then, in cases where the <a href="#content-language">content language</a> of the paragraph is known,
+          it could choose a more language-tailored justification behavior
+          e.g. following <a href="#biblio-jlreq">[JLREQ]</a> for Japanese,
+          using cursive elongation for Arabic,
+          using <a class="css" href="#valdef-text-justify-inter-word">inter-word</a> for German,
+          etc. </p>
+     <div class="figure" id="fig-text-justify-cursive">
+      <p> <img alt="Two lines of calligraphic Arabic end together due to a mix of compressed and swash forms." src="http://drafts.csswg.org/css-text-3/images/text-justify-cursive.png" title="Swash forms elongate the first line while a compressed contextual ligature shortens the second, allowing both to end precisely together."></p>
+      <p class="caption">An example of cursively-justified Arabic text,
+          rendered by <a href="http://www.decotype.com/">Tasmeem</a>.
+          Like English, Arabic can be justified by adjusting the spacing between words,
+          but in most styles it can also be justified by calligraphically elongating or compressing the letterforms themselves.
+          In this example, the upper text is extended to fill the line by the use of elongated (kashida) forms and swash forms,
+          while the bottom line is compressed slightly by using a stacked combination for the characters between ت and م.
+          By employing traditional calligraphic techniques,
+          a typesetter can justify the line while preserving flow and color,
+          providing a very high quality justification effect.
+          However, this is by its nature a very script-specific effect. </p>
+     </div>
+     <div class="figure" id="fig-text-justify-compromise">
+      <p> <img alt="Extra space is partly to spaces and partly among CJK and Thai letters." src="http://drafts.csswg.org/css-text-3/images/text-justify-compromise.png"></p>
+      <p class="caption">Mixed-script text with <a class="css" href="#propdef-text-justify">text-justify: auto</a>:
+            this interpretation uses a universal-compromise justification method,
+            expanding at spaces as well as between CJK and Southeast Asian letters.
+            This effectively uses inter-word + inter-ideograph spacing
+            for lines that have word-separators and/or CJK characters
+            and falls back to inter-cluster behavior for lines that don’t
+            or for which the space stretches too far. </p>
+     </div>
+    <dt><dfn class="css" id="valdef-text-justify-none">none</dfn>
+    <dd>
+     Justification is disabled: there are no <a href="#justification-opportunity">justification opportunities</a> within the text. 
+     <div class="figure" id="fig-text-justify-none">
+      <p> <img alt="No extra space is insesrted." src="http://drafts.csswg.org/css-text-3/images/text-justify-none.png"></p>
+      <p class="caption">Mixed-script text with <a class="css" href="#propdef-text-justify">text-justify: none</a> </p>
+     </div>
+     <p class="note" role="note">This value is intended for use in user stylesheets
+          to improve readability or for accessibility purposes. </p>
+    <dt><dfn class="css" id="valdef-text-justify-inter-word">inter-word</dfn>
+    <dd>
+     Justification adjusts spacing at <a href="#word-separator">word separators</a> only
+          (effectively varying the used <a class="property" href="#propdef-word-spacing">word-spacing</a> on the line).
+          This behavior is typical for languages that separate words using spaces,
+          like English or Korean. 
+     <div class="figure" id="fig-text-justify-interword">
+      <p> <img alt="Extra space is equally distributed mainly to spaces." src="http://drafts.csswg.org/css-text-3/images/text-justify-interword.png"></p>
+      <p class="caption">Mixed-script text with <a class="css" href="#propdef-text-justify">text-justify: inter-word</a> </p>
+     </div>
+    <dt><dfn class="css" id="valdef-text-justify-inter-character">inter-character</dfn>
+    <dd>
+     Justification adjusts spacing between each pair of adjacent <a href="#typographic-character-unit">typographic character units</a> (effectively varying the used <a class="property" href="#propdef-letter-spacing">letter-spacing</a> on the line).
+          This value is sometimes used in East Asian systems such as Japanese. 
+     <div class="figure" id="fig-text-justify-distribute">
+      <p> <img alt="Extra space is equally distributed at points between spaces and letters of all writing systems." src="http://drafts.csswg.org/css-text-3/images/text-justify-distribute.png"></p>
+      <p class="caption">Mixed-script text with <a class="css" href="#propdef-text-justify">text-justify: inter-character</a> </p>
+     </div>
+      For legacy reasons, UAs must also support the alternate keyword <dfn class="css" id="valdef-text-justify-distribute">distribute</dfn> with the exact same meaning and behavior. 
+   </dl>
+   <p class="advisement"> Since optimal justification is language-sensitive,
+      authors should correctly language-tag their content for the best results. </p>
+   <p>The exact justification algorithm is UA-dependent;
+      however, CSS provides some general guidelines below. </p>
+   <h4 id="expanding-text"><span class="secno">7.4.1 </span> Expanding and Compressing Text</h4>
+   <p>When justifying text, the user agent takes the remaining space between
+    the ends of a line’s contents and the edges of its line box, and
+    distributes that space throughout its contents so that the contents
+    exactly fill the line box.
+    The user agent may alternatively distribute negative space,
+    putting more content on the line than would otherwise fit under normal spacing conditions. </p>
+   <p>A <span id="expansion-opportunity"><dfn id="justification-opportunity">justification opportunity</dfn></span> is
+    a point where the justification algorithm may alter spacing within the text.
+    A justification opportunity can be provided by a single <a href="#typographic-character-unit">typographic character unit</a> (such as a <a href="#word-separator">word separator</a>),
+    or by the juxtaposition of two <a href="#typographic-character-unit">typographic character units</a>.
+    Space distributed by justification is <em>in addition to</em> the spacing defined by the <a class="property" href="#propdef-letter-spacing">letter-spacing</a> or <a class="property" href="#propdef-word-spacing">word-spacing</a> properties.
+    However, when space is distributed to a <a href="#word-separator">word separator</a> <a href="#justification-opportunity">justification opportunity</a>,
+    it is applied under the same rules as for <a class="property" href="#propdef-word-spacing">word-spacing</a>.
+    Similarly, when space is distributed to an <a href="#justification-opportunity">justification opportunity</a> between
+    two <a href="#typographic-character-unit">typographic character units</a>,
+    it is applied under the same rules as for <a class="property" href="#propdef-letter-spacing">letter-spacing</a>. </p>
+   <p>A justification algorithm may divide <a href="#justification-opportunity">justification opportunities</a> into different priority levels.
+    All <a href="#justification-opportunity">justification opportunities</a> within a given level
+    are expanded or compressed at the same priority,
+    regardless of which <a href="#typographic-character-unit">typographic character units</a> created that opportunity.
+    For example, if <a href="#justification-opportunity">justification opportunities</a> between two Han characters
+    and between two Latin letters are defined to be at the same level
+    (as they are in the <a class="css" href="#valdef-text-justify-inter-character">inter-character</a> justification style),
+    they are not treated differently because they originate from different <a href="#typographic-character-unit">typographic character units</a>.
+    It is not defined in this level
+    whether or how other factors
+    (such as font size, letter-spacing, glyph shape, position within the line, etc.)
+    may influence the distribution of space to <a href="#justification-opportunity">justification opportunities</a> within the line. </p>
+   <p>The UA may enable or break optional ligatures or use other font features
+  such as alternate glyphs or glyph compression
+  to help justify the text under any method.
+  This behavior is not controlled by this level of CSS.
+  However, UAs <em>must not</em> break required ligatures
+  or otherwise disable features required to correctly shape complex scripts. </p>
+   <h4 id="justify-symbols"><span class="secno">7.4.2 </span> Handling Symbols and Punctuation</h4>
+   <p>When determining <a href="#justification-opportunity">justification opportunities</a>,
+      a <a href="#typographic-character-unit">typographic character unit</a> from the Unicode Symbols (S*) and Punctuation (P*) classes
+      is generally treated the same as a <a href="#typographic-letter-unit">typographic letter unit</a> of the same script
+      (or, if the character’s script property is Common,
+      then as a <a href="#typographic-letter-unit">typographic letter unit</a> of the dominant script). </p>
+   <p>However, by typographic tradition there may be additional rules
+      controlling the justification of symbols and punctuation.
+      Therefore, the UA may reassign specific characters
+      or introduce additional levels of prioritization
+      to handle <a href="#justification-opportunity">justification opportunities</a> involving symbols and punctuation. </p>
+   <p class="example" id="example-d012ef7c"> For example, there are traditionally no <a href="#justification-opportunity">justification opportunities</a> between consecutive
+      U+2014 Em Dash ‘—’,
+      U+2015 Horizontal Bar ‘―’,
+      U+2026 Horizontal Ellipsis ‘…’,
+      or U+2025 Two Dot Leader ‘‥’
+      characters <a href="#biblio-jlreq">[JLREQ]</a>;
+      thus a UA might assign these characters to a “never” prioritization level.
+      As another example, certain fullwidth punctuation characters
+      (such as U+301A Left White Square Bracket ‘〚’)
+      are considered to contain a <a href="#justification-opportunity">justification opportunity</a> in Japanese.
+      The UA might therefore assign these characters to a higher prioritization
+      level than the opportunities between ideographic characters. </p>
+   <h4 id="justify-limits"><span class="secno">7.4.3 </span> Unexpandable Text</h4>
+   <p>If the inline contents of a line cannot be stretched to the full width of the line box,
+      then they must be aligned as specified by the <a class="property" href="#propdef-text-align-last">text-align-last</a> property.
+      (If <a class="property" href="#propdef-text-align-last">text-align-last</a> is <a class="css" href="#valdef-text-align-justify">justify</a>, then
+       they must be aligned as for <a class="css" href="#valdef-text-align-center">center</a> if <a class="property" href="#propdef-text-justify">text-justify</a> is <a class="css" href="#valdef-text-justify-inter-character">inter-character</a>,
+       and as <a class="css" href="#valdef-text-align-start">start</a> otherwise.) </p>
+   <h4 id="justify-cursive"><span class="secno">7.4.4 </span> Cursive Scripts</h4>
+   <p>Justification <em>must not</em> introduce gaps between the joined <a href="#typographic-letter-unit">typographic letter units</a> of <a href="#cursive-script">cursive scripts</a> such as Arabic.
+      If it is able, the UA <em>may</em> translate space distributed to <a href="#justification-opportunity">justification opportunities</a> within a run of such <a href="#typographic-letter-unit">typographic letter units</a> into some form of cursive elongation for that run.
+      It otherwise <em>must</em> assume that no <a href="#justification-opportunity">justification opportunity</a> exists
+      between any pair of <a href="#typographic-letter-unit">typographic letter units</a> in <a href="#cursive-script">cursive script</a> (regardless of whether they join). </p>
+   <div class="example" id="example-de4ec6de">
+     
+    <p>The following are examples of unacceptable justification: </p>
+    <div class="figure">
+     <p><img alt="" src="http://drafts.csswg.org/css-text-3/images/arabic-stretch-spaced.png"> </p>
+     <p class="caption">Adding gaps between every pair of Arabic letters </p>
+    </div>
+    <div class="figure">
+     <p><img alt="" src="http://drafts.csswg.org/css-text-3/images/arabic-stretch-unjoined.png"> </p>
+     <p class="caption">Adding gaps between every pair of unjoined Arabic letters </p>
+    </div>
+   </div>
+   <p>Some font designs allow for the use of the tatweel character for justification.
+    A UA that performs tatweel-based justification must properly handle the rules for its use.
+    Note that correct insertion of tatweel characters depends on context, including
+    the letter-combinations involved, location within the word, and location of the word within the line. </p>
+   <h4 id="justify-algos"><span class="secno">7.4.5 </span> Possible Algorithms</h4>
+   <p>For <a class="css" href="#valdef-text-justify-auto">auto</a> justification, this specification does not define
+  what all of the <a href="#justification-opportunity">justification opportunities</a> are,
+  how they are prioritized, or
+  when and how multiple levels of <a href="#justification-opportunity">justification opportunities</a> interact.
+  However, it does require that </p>
+   <ul>
+    <li> If a <a href="#justification-opportunity">justification opportunity</a> exists within a line,
+      it must be justified. 
+    <li>
+      Unless contraindicated by the typographic traditions of the <a href="#content-language">content language</a> or adjacent symbols/punctuation,
+      each of the following provides a <a href="#justification-opportunity">justification opportunity</a>: 
+     <ul>
+      <li><a href="#word-separator">Word separators</a> 
+      <li>The boundary between a <a href="#typographic-character-unit">typographic character unit</a> of any <a href="#block-scripts">block scripts</a> and any other <a href="#typographic-character-unit">typographic character unit</a> 
+      <li>The boundary between a <a href="#typographic-character-unit">typographic character unit</a> of any <a href="#clustered-scripts">clustered scripts</a> and any other <a href="#typographic-character-unit">typographic character unit</a> 
+     </ul>
+    <li> All <a href="#letter">letters</a> belonging to all <a href="#block-scripts">block scripts</a> are treated the same,
+      and all <a href="#letter">letters</a> belonging to all <a href="#clustered-scripts">clustered scripts</a> are treated the same.
+      For example, no distiction is made between
+      the justification opportunity between a Han letter followed by another Han letter,
+      vs. the justification opportunity between a Han letter followed by a Hangul letter. 
+   </ul>
+   <p>The guidelines in this level of CSS do not describe a complete
+  justification algorithm. They are merely a minimum set of requirements
+  that a complete algorithm should meet. Limiting the set of requirements
+  gives UAs some latitude in choosing a justification algorithm that
+  meets their needs and desired balance of quality, speed, and complexity. </p>
+   <div class="example" id="example-7dd69c0d">
+     
+    <p>For instance, a basic but fast justification algorithm
+    might use a simple greedy method for determining line breaks,
+    then distribute leftover space.
+    This algorithm could follow the guidelines by expanding word spaces first,
+    expanding between letters only if the spaces between words hit a limit defined by the UA. </p>
+    <p>A more sophisticated but harder-to-implement justification algorithm
+    might use a Knuth/Plass method
+    where <a href="#justification-opportunity">justification opportunities</a> and limits were assigned weights
+    and assessed with other line breaking considerations.
+    This algorithm could follow the guidelines by giving more weight
+    to <a href="#word-separator">word separators</a> than letter spacing. </p>
+   </div>
+   <div class="example" id="example-831c9463">
+     
+    <p>A UA can also tailor its justification rules by language,
+    to produce results more closely aligned to the typography of that language.
+    For example, it’s not defined whether expansion or compression is preferred,
+    so a UA may, for example, bias towards compression for CJK languages
+    but towards expansion for Western alphabetic languages. </p>
+    <p>As another example,
+    3.8 Line Adjustment in <a href="#biblio-jlreq">[JLREQ]</a> gives an example of a set of rules for
+    how a text formatter can justify Japanese text.
+    A UA could use this algorithm when the <a class="property" href="#propdef-text-justify">text-justify</a> property is <span class="css">text-justify:auto</span>.
+    However, since the rules described in the document specifically target Japanese,
+    they may produce non-optimal results
+    when used to justify other languages such as English.
+    The UA could adapt the rules to accommodate other scripts by, for instance,
+    omitting the rule to compress half-width spaces (rule a. of 3.8.3).
+    Or it could keep the rule, but only enable it when the content language is known to be Japanese. </p>
+   </div>
+
+  <h2 class="no-num heading settled" id="index">Index</h2>
+  <h3 class="no-num heading settled" id="index-defined-here">Terms defined by this specification</h3>
+  <ul class="index">
+   <li><a href="#valdef-hanging-punctuation-allow-end">allow-end</a><span>, in §9.2</span>
+   <li>
+    auto
+    <ul>
+     <li><a href="#valdef-line-break-auto">value for line-break</a><span>, in §5.3</span>
+     <li><a href="#valdef-hyphens-auto">value for hyphens</a><span>, in §6.1</span>
+     <li><a href="#valdef-text-align-last-auto">value for text-align-last</a><span>, in §7.3</span>
+     <li><a href="#valdef-text-justify-auto">value for text-justify</a><span>, in §7.4</span>
+    </ul>
+   <li><a href="#block-scripts">block scripts</a><span>, in §A</span>
+   <li><a href="#valdef-word-break-break-all">break-all</a><span>, in §5.2</span>
+   <li><a href="#valdef-overflow-wrap-break-word">break-word</a><span>, in §6.2</span>
+   <li><a href="#valdef-text-transform-capitalize">capitalize</a><span>, in §2.1</span>
+   <li><a href="#valdef-text-align-center">center</a><span>, in §7.1</span>
+   <li><a href="#character">character</a><span>, in §1.3.1</span>
+   <li><a href="#clustered-scripts">clustered scripts</a><span>, in §A</span>
+   <li><a href="#collapsible-white-space">collapsible</a><span>, in §4.1.1</span>
+   <li><a href="#collapsible-white-space">collapsible white space</a><span>, in §4.1.1</span>
+   <li><a href="#content-language">content language</a><span>, in §1.3.2</span>
+   <li><a href="#cursive-script">cursive script</a><span>, in §A</span>
+   <li><a href="#valdef-text-justify-distribute">distribute</a><span>, in §7.4</span>
+   <li><a href="#white-space">document white space</a><span>, in §4.1</span>
+   <li><a href="#white-space">document white space characters</a><span>, in §4.1</span>
+   <li><a href="#valdef-text-indent-each-line">each-line</a><span>, in §9.1</span>
+   <li><a href="#unicode-east-asian-width">East Asian Width property</a><span>, in §A</span>
+   <li><a href="#valdef-text-align-end">end</a><span>, in §7.1</span>
+   <li><a href="#valdef-hanging-punctuation-first">first</a><span>, in §9.2</span>
+   <li><a href="#forced-line-break">forced line break</a><span>, in §5</span>
+   <li><a href="#valdef-hanging-punctuation-force-end">force-end</a><span>, in §9.2</span>
+   <li><a href="#valdef-text-transform-full-width">full-width</a><span>, in §2.1</span>
+   <li><a href="#unicode-general-category">General Category</a><span>, in §A</span>
+   <li><a href="#grapheme-cluster">grapheme cluster</a><span>, in §1.3.1</span>
+   <li><a href="#hang">hang</a><span>, in §9.2</span>
+   <li><a href="#valdef-text-indent-hanging">hanging</a><span>, in §9.1</span>
+   <li><a href="#propdef-hanging-punctuation">hanging-punctuation</a><span>, in §9.2</span>
+   <li><a href="#hyphenate">hyphenate</a><span>, in §6</span>
+   <li><a href="#hyphenate">hyphenation</a><span>, in §6</span>
+   <li><a href="#hyphenation-opportunity">hyphenation opportunity</a><span>, in §6</span>
+   <li><a href="#propdef-hyphens">hyphens</a><span>, in §6.1</span>
+   <li><a href="#valdef-text-justify-inter-character">inter-character</a><span>, in §7.4</span>
+   <li><a href="#valdef-text-justify-inter-word">inter-word</a><span>, in §7.4</span>
+   <li><a href="#justification-opportunity">justification opportunity</a><span>, in §7.4.1</span>
+   <li><a href="#valdef-text-align-justify">justify</a><span>, in §7.1</span>
+   <li><a href="#valdef-text-align-justify-all">justify-all</a><span>, in §7.1</span>
+   <li><a href="#valdef-word-break-keep-all">keep-all</a><span>, in §5.2</span>
+   <li><a href="#valdef-hanging-punctuation-last">last</a><span>, in §9.2</span>
+   <li><a href="#valdef-text-align-left">left</a><span>, in §7.1</span>
+   <li>
+    &lt;length>
+    <ul>
+     <li><a href="#valdef-word-spacing-length">value for word-spacing</a><span>, in §8.1</span>
+     <li><a href="#valdef-letter-spacing-length">value for letter-spacing</a><span>, in §8.2</span>
+     <li><a href="#valdef-text-indent-length">value for text-indent</a><span>, in §9.1</span>
+    </ul>
+   <li><a href="#letter">letter</a><span>, in §1.3.1</span>
+   <li><a href="#propdef-letter-spacing">letter-spacing</a><span>, in §8.2</span>
+   <li><a href="#propdef-line-break">line-break</a><span>, in §5.3</span>
+   <li><a href="#line-break">line break</a><span>, in §5</span>
+   <li><a href="#line-breaking-process">line-breaking-process</a><span>, in §5</span>
+   <li><a href="#valdef-line-break-loose">loose</a><span>, in §5.3</span>
+   <li><a href="#valdef-text-transform-lowercase">lowercase</a><span>, in §2.1</span>
+   <li><a href="#valdef-hyphens-manual">manual</a><span>, in §6.1</span>
+   <li><a href="#valdef-text-align-match-parent">match-parent</a><span>, in §7.1</span>
+   <li>
+    none
+    <ul>
+     <li><a href="#valdef-text-transform-none">value for text-transform</a><span>, in §2.1</span>
+     <li><a href="#valdef-hyphens-none">value for hyphens</a><span>, in §6.1</span>
+     <li><a href="#valdef-text-justify-none">value for text-justify</a><span>, in §7.4</span>
+     <li><a href="#valdef-hanging-punctuation-none">value for hanging-punctuation</a><span>, in §9.2</span>
+    </ul>
+   <li>
+    normal
+    <ul>
+     <li><a href="#valdef-white-space-normal">value for white-space</a><span>, in §3</span>
+     <li><a href="#valdef-word-break-normal">value for word-break</a><span>, in §5.2</span>
+     <li><a href="#valdef-line-break-normal">value for line-break</a><span>, in §5.3</span>
+     <li><a href="#valdef-overflow-wrap-normal">value for overflow-wrap</a><span>, in §6.2</span>
+     <li><a href="#valdef-word-spacing-normal">value for word-spacing</a><span>, in §8.1</span>
+     <li><a href="#valdef-letter-spacing-normal">value for letter-spacing</a><span>, in §8.2</span>
+    </ul>
+   <li><a href="#valdef-white-space-nowrap">nowrap</a><span>, in §3</span>
+   <li><a href="#propdef-overflow-wrap">overflow-wrap</a><span>, in §6.2</span>
+   <li>
+    &lt;percentage>
+    <ul>
+     <li><a href="#valdef-word-spacing-percentage">value for word-spacing</a><span>, in §8.1</span>
+     <li><a href="#valdef-text-indent-percentage">value for text-indent</a><span>, in §9.1</span>
+    </ul>
+   <li><a href="#valdef-white-space-pre">pre</a><span>, in §3</span>
+   <li><a href="#valdef-white-space-pre-line">pre-line</a><span>, in §3</span>
+   <li><a href="#preserved">preserved</a><span>, in §4.1.3</span>
+   <li><a href="#valdef-white-space-pre-wrap">pre-wrap</a><span>, in §3</span>
+   <li><a href="#valdef-white-space-pre-wrap-auto">pre-wrap-auto</a><span>, in §3</span>
+   <li><a href="#valdef-text-align-right">right</a><span>, in §7.1</span>
+   <li><a href="#unicode-script">Script property</a><span>, in §A</span>
+   <li><a href="#segment-break">segment break</a><span>, in §4</span>
+   <li><a href="#soft-wrap-break">soft wrap break</a><span>, in §5</span>
+   <li><a href="#soft-wrap-opportunity">soft wrap opportunity</a><span>, in §5</span>
+   <li><a href="#valdef-text-align-start">start</a><span>, in §7.1</span>
+   <li><a href="#stop-or-comma">stop or comma</a><span>, in §9.2</span>
+   <li><a href="#valdef-line-break-strict">strict</a><span>, in §5.3</span>
+   <li><a href="#propdef-tab-size">tab-size</a><span>, in §4.2</span>
+   <li><a href="#tab-stop">tab stop</a><span>, in §4.1.3</span>
+   <li><a href="#propdef-text-align">text-align</a><span>, in §7.1</span>
+   <li><a href="#propdef-text-align-all">text-align-all</a><span>, in §7.2</span>
+   <li><a href="#propdef-text-align-last">text-align-last</a><span>, in §7.3</span>
+   <li><a href="#propdef-text-indent">text-indent</a><span>, in §9.1</span>
+   <li><a href="#propdef-text-justify">text-justify</a><span>, in §7.4</span>
+   <li><a href="#propdef-text-transform">text-transform</a><span>, in §2.1</span>
+   <li><a href="#tracking">tracking</a><span>, in §8.2</span>
+   <li><a href="#typographic-character-unit">typographic character</a><span>, in §1.3.1</span>
+   <li><a href="#typographic-character-unit">typographic character unit</a><span>, in §1.3.1</span>
+   <li><a href="#typographic-letter-unit">typographic letter unit</a><span>, in §1.3.1</span>
+   <li><a href="#unicode-general-category">Unicode category</a><span>, in §A</span>
+   <li><a href="#unicode-east-asian-width">Unicode East Asian Width</a><span>, in §A</span>
+   <li><a href="#unicode-general-category">Unicode General Category</a><span>, in §A</span>
+   <li><a href="#unicode-script">Unicode Script</a><span>, in §A</span>
+   <li><a href="#valdef-text-transform-uppercase">uppercase</a><span>, in §2.1</span>
+   <li><a href="#propdef-white-space">white-space</a><span>, in §3</span>
+   <li><a href="#white-space">white space</a><span>, in §4.1</span>
+   <li><a href="#white-space">white space characters</a><span>, in §4.1</span>
+   <li><a href="#propdef-word-break">word-break</a><span>, in §5.2</span>
+   <li><a href="#word-separator">word separator</a><span>, in §8.1</span>
+   <li><a href="#word-separator">word-separator character</a><span>, in §8.1</span>
+   <li><a href="#propdef-word-spacing">word-spacing</a><span>, in §8.1</span>
+   <li><a href="#propdef-word-wrap">word-wrap</a><span>, in §6.2</span>
+   <li><a href="#wrapping">wrap</a><span>, in §5</span>
+   <li><a href="#wrapping">wrapping</a><span>, in §5</span>
+  </ul>
+  <h3 class="no-num heading settled" id="index-defined-elsewhere">Terms defined by reference</h3>
+  <ul class="index">
+   <li>
+    <a href="#biblio-css-cascade-4">[css-cascade-4]</a> defines the following terms:
+    <ul>
+     <li><a href="https://drafts.csswg.org/css-cascade-4/#valdef-all-inherit">inherit</a>
+     <li><a href="https://drafts.csswg.org/css-cascade-4/#shorthand-property">shorthand</a>
+     <li><a href="https://drafts.csswg.org/css-cascade-4/#shorthand-property">shorthand property</a>
+    </ul>
+   <li>
+    <a href="#biblio-css-counter-styles-3">[css-counter-styles-3]</a> defines the following terms:
+    <ul>
+     <li><a href="https://drafts.csswg.org/css-counter-styles-3/#at-ruledef-counter-style">@counter-style</a>
+    </ul>
+   <li>
+    <a href="#biblio-css-position-3">[css-position-3]</a> defines the following terms:
+    <ul>
+     <li><a href="https://drafts.csswg.org/css-position-3/#propdef-left">left</a>
+     <li><a href="https://drafts.csswg.org/css-position-3/#propdef-right">right</a>
+    </ul>
+   <li>
+    <a href="#biblio-css-sizing-3">[css-sizing-3]</a> defines the following terms:
+    <ul>
+     <li><a href="https://drafts.csswg.org/css-sizing-3/#min-content-size">min-content size</a>
+    </ul>
+   <li>
+    <a href="#biblio-css-values-3">[css-values]</a> defines the following terms:
+    <ul>
+     <li><a href="https://drafts.csswg.org/css-values-3/#comb-one">|</a>
+    </ul>
+   <li>
+    <a href="#biblio-css-writing-modes-3">[css-writing-modes-3]</a> defines the following terms:
+    <ul>
+     <li><a href="https://drafts.csswg.org/css-writing-modes-3/#bidi-paragraph">bidi paragraph</a>
+     <li><a href="https://drafts.csswg.org/css-writing-modes-3/#propdef-direction">direction</a>
+     <li><a href="https://drafts.csswg.org/css-writing-modes-3/#end">end</a>
+     <li><a href="https://drafts.csswg.org/css-writing-modes-3/#inline-base-direction">inline base direction</a>
+     <li><a href="https://drafts.csswg.org/css-writing-modes-3/#start">start</a>
+     <li><a href="https://drafts.csswg.org/css-writing-modes-3/#propdef-text-orientation">text-orientation</a>
+     <li><a href="https://drafts.csswg.org/css-writing-modes-3/#propdef-unicode-bidi">unicode-bidi</a>
+     <li><a href="https://drafts.csswg.org/css-writing-modes-3/#valdef-text-orientation-upright">upright</a>
+    </ul>
+   <li>
+    <a href="#biblio-css21">[CSS21]</a> defines the following terms:
+    <ul>
+     <li><a href="https://drafts.csswg.org/css2/visuren.html#propdef-display">display</a>
+    </ul>
+  </ul>
+  <h2 class="no-num heading settled" id="references">References</h2>
+  <h3 class="no-num heading settled" id="normative">Normative References</h3>
+  <dl>
+   <dt id="biblio-css21">[CSS21]
+   <dd>Bert Bos; et al. <a href="http://www.w3.org/TR/CSS2">Cascading Style Sheets Level 2 Revision 1 (CSS 2.1) Specification</a>. 7 June 2011. REC. URL: <a href="http://www.w3.org/TR/CSS2">http://www.w3.org/TR/CSS2</a>
+   <dt id="biblio-css3ruby">[CSS3RUBY]
+   <dd>Elika Etemad; Koji Ishii. <a href="http://www.w3.org/TR/css-ruby-1/">CSS Ruby Layout Module Level 1</a>. 5 August 2014. WD. URL: <a href="http://www.w3.org/TR/css-ruby-1/">http://www.w3.org/TR/css-ruby-1/</a>
+   <dt id="biblio-uax11">[UAX11]
+   <dd>Asmus Freytag. <a href="http://www.unicode.org/unicode/reports/tr11/tr11-8.html">East Asian Width</a>. 23 March 2001. Unicode Standard Annex #11. URL: <a href="http://www.unicode.org/unicode/reports/tr11/tr11-8.html">http://www.unicode.org/unicode/reports/tr11/tr11-8.html</a>
+   <dt id="biblio-uax14">[UAX14]
+   <dd>Asmus Freytag. <a href="http://www.unicode.org/unicode/reports/tr14/tr14-17.html">Line Breaking Properties</a>. 29 March 2005. Unicode Standard Annex #14. URL: <a href="http://www.unicode.org/unicode/reports/tr14/tr14-17.html">http://www.unicode.org/unicode/reports/tr14/tr14-17.html</a>
+   <dt id="biblio-uax24">[UAX24]
+   <dd>Mark Davis. <a href="http://www.unicode.org/unicode/reports/tr24/tr24-7.html">Script Names</a>. 28 March 2005. Unicode Standard Annex #24. URL: <a href="http://www.unicode.org/unicode/reports/tr24/tr24-7.html">http://www.unicode.org/unicode/reports/tr24/tr24-7.html</a>
+   <dt id="biblio-uax29">[UAX29]
+   <dd>Mark Davis. <a href="http://www.unicode.org/unicode/reports/tr29/tr29-9.html">Text Boundaries</a>. 25 March 2005. Unicode Standard Annex #29. URL: <a href="http://www.unicode.org/unicode/reports/tr29/tr29-9.html">http://www.unicode.org/unicode/reports/tr29/tr29-9.html</a>
+   <dt id="biblio-uax44">[UAX44]
+   <dd>Mark Davis; Ken Whistler. <a href="http://www.unicode.org/reports/tr44/">Unicode Character Database</a>. 25 September 2013. URL: <a href="http://www.unicode.org/reports/tr44/">http://www.unicode.org/reports/tr44/</a>
+   <dt id="biblio-unicode">[UNICODE]
+   <dd><a href="http://www.unicode.org/versions/latest/">The Unicode Standard</a>. URL: <a href="http://www.unicode.org/versions/latest/">http://www.unicode.org/versions/latest/</a>
+   <dt id="biblio-utr50">[UTR50]
+   <dd>Koji Ishii. <a href="http://www.unicode.org/reports/tr50/">Unicode Properties for Vertical Text Layout</a>. 31 August 2013. URL: <a href="http://www.unicode.org/reports/tr50/">http://www.unicode.org/reports/tr50/</a>
+   <dt id="biblio-css-cascade-4">[CSS-CASCADE-4]
+   <dd>Elika Etemad; Tab Atkins Jr.. <a href="http://www.w3.org/TR/css-cascade-4/">CSS Cascading and Inheritance Level 4</a>. 8 September 2015. WD. URL: <a href="http://www.w3.org/TR/css-cascade-4/">http://www.w3.org/TR/css-cascade-4/</a>
+   <dt id="biblio-css-counter-styles-3">[CSS-COUNTER-STYLES-3]
+   <dd>Tab Atkins Jr.. <a href="http://www.w3.org/TR/css-counter-styles-3/">CSS Counter Styles Level 3</a>. 11 June 2015. CR. URL: <a href="http://www.w3.org/TR/css-counter-styles-3/">http://www.w3.org/TR/css-counter-styles-3/</a>
+   <dt id="biblio-css-position-3">[CSS-POSITION-3]
+   <dd>CSS Positioned Layout Module Level 3 URL: <a href="http://www.w3.org/TR/css3-positioning/">http://www.w3.org/TR/css3-positioning/</a>
+   <dt id="biblio-css-sizing-3">[CSS-SIZING-3]
+   <dd>CSS Intrinsic &amp; Extrinsic Sizing Module Level 3 URL: <a href="http://www.w3.org/TR/css3-sizing/">http://www.w3.org/TR/css3-sizing/</a>
+   <dt id="biblio-css-values">[CSS-VALUES]
+   <dd>Tab Atkins Jr.; Elika Etemad. <a href="http://www.w3.org/TR/css-values/">CSS Values and Units Module Level 3</a>. 11 June 2015. CR. URL: <a href="http://www.w3.org/TR/css-values/">http://www.w3.org/TR/css-values/</a>
+   <dt id="biblio-css-writing-modes-3">[CSS-WRITING-MODES-3]
+   <dd>Elika Etemad; Koji Ishii. <a href="http://www.w3.org/TR/css-writing-modes-3/">CSS Writing Modes Level 3</a>. 20 March 2014. CR. URL: <a href="http://www.w3.org/TR/css-writing-modes-3/">http://www.w3.org/TR/css-writing-modes-3/</a>
+   <dt id="biblio-css3-fonts">[CSS3-FONTS]
+   <dd>John Daggett. <a href="http://www.w3.org/TR/css-fonts-3/">CSS Fonts Module Level 3</a>. 3 October 2013. CR. URL: <a href="http://www.w3.org/TR/css-fonts-3/">http://www.w3.org/TR/css-fonts-3/</a>
+   <dt id="biblio-css3-writing-modes">[CSS3-WRITING-MODES]
+   <dd>Elika Etemad; Koji Ishii. <a href="http://www.w3.org/TR/css-writing-modes-3/">CSS Writing Modes Level 3</a>. 20 March 2014. CR. URL: <a href="http://www.w3.org/TR/css-writing-modes-3/">http://www.w3.org/TR/css-writing-modes-3/</a>
+   <dt id="biblio-rfc2119">[RFC2119]
+   <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+  </dl>
+  <h3 class="no-num heading settled" id="informative">Informative References</h3>
+  <dl>
+   <dt id="biblio-css3-text-decor">[CSS3-TEXT-DECOR]
+   <dd>Elika Etemad; Koji Ishii. <a href="http://www.w3.org/TR/css-text-decor-3/">CSS Text Decoration Module Level 3</a>. 1 August 2013. CR. URL: <a href="http://www.w3.org/TR/css-text-decor-3/">http://www.w3.org/TR/css-text-decor-3/</a>
+   <dt id="biblio-css3val">[CSS3VAL]
+   <dd>Tab Atkins Jr.; Elika Etemad. <a href="http://www.w3.org/TR/css-values/">CSS Values and Units Module Level 3</a>. 11 June 2015. CR. URL: <a href="http://www.w3.org/TR/css-values/">http://www.w3.org/TR/css-values/</a>
+   <dt id="biblio-jis4051">[JIS4051]
+   <dd>Formatting rules for Japanese documents (『日本語文書の組版方法』). 2004. In Japanese 
+   <dt id="biblio-xml10">[XML10]
+   <dd>Tim Bray; et al. <a href="http://www.w3.org/TR/xml">Extensible Markup Language (XML) 1.0 (Fifth Edition)</a>. 26 November 2008. REC. URL: <a href="http://www.w3.org/TR/xml">http://www.w3.org/TR/xml</a>
+   <dt id="biblio-zhmark">[ZHMARK]
+   <dd>标点符号用法 (Punctuation Mark Usage). 1995. 中华人民共和国国家标准 
+   <dt id="biblio-html5">[HTML5]
+   <dd>Ian Hickson; et al. <a href="http://www.w3.org/TR/html5/">HTML5</a>. 28 October 2014. REC. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
+   <dt id="biblio-jlreq">[JLREQ]
+   <dd>Yasuhiro Anan; et al. <a href="http://www.w3.org/TR/jlreq/">Requirements for Japanese Text Layout</a>. 3 April 2012. NOTE. URL: <a href="http://www.w3.org/TR/jlreq/">http://www.w3.org/TR/jlreq/</a>
+  </dl>
+  <h2 class="no-num heading settled" id="property-index">Property Index</h2>
+  <table class="index">
+   <thead>
+    <tr>
+     <th scope="col">Name
+     <th scope="col">Value
+     <th scope="col">Initial
+     <th scope="col">Applies to
+     <th scope="col">Inh.
+     <th scope="col">%ages
+     <th scope="col">Media
+     <th scope="col">Animatable
+     <th scope="col">Canonical order
+     <th scope="col">Computed value
+     <th scope="col">Computed value
+   <tbody>
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-text-transform">text-transform</a>
+     <td>none | capitalize | uppercase | lowercase | full-width
+     <td>none
+     <td>all elements
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>
+     <td>as specified
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-white-space">white-space</a>
+     <td>normal | pre | nowrap | pre-wrap | pre-wrap-auto | pre-line
+     <td>normal
+     <td>all elements
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>
+     <td>as specified
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-tab-size">tab-size</a>
+     <td>&lt;integer> | &lt;length>
+     <td>8
+     <td>block containers
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>as length
+     <td>N/A
+     <td>
+     <td>the specified integer or length made absolute
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-word-break">word-break</a>
+     <td>normal | keep-all | break-all
+     <td>normal
+     <td>all elements
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>
+     <td>specified value
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-line-break">line-break</a>
+     <td>auto | loose | normal | strict
+     <td>auto
+     <td>all elements
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>
+     <td>specified value
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-hyphens">hyphens</a>
+     <td>none | manual | auto
+     <td>manual
+     <td>all elements
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>
+     <td>specified value
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-overflow-wrap">overflow-wrap</a>
+     <td>normal | break-word
+     <td>normal
+     <td>all elements
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>specified value
+     <td>
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-word-wrap">word-wrap</a>
+     <td>normal | break-word
+     <td>normal
+     <td>all elements
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>specified value
+     <td>
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-text-align">text-align</a>
+     <td>start | end | left | right | center |
+              justify | match-parent | justify-all
+     <td>start
+     <td>block containers
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>
+     <td>specified value, except for match-parent which computes as defined below
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-text-align-all">text-align-all</a>
+     <td>start | end | left | right | center |
+              justify | match-parent
+     <td>start
+     <td>block containers
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>
+     <td>specified value
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-text-align-last">text-align-last</a>
+     <td>auto | start | end | left | right | center | justify
+     <td>auto
+     <td>block containers
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>
+     <td>specified value
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-text-justify">text-justify</a>
+     <td>auto | none | inter-word | inter-character
+     <td>auto
+     <td>block containers and, optionally, inline elements
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>N/A
+     <td>
+     <td>specified value
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-word-spacing">word-spacing</a>
+     <td>[ normal | &lt;length> | &lt;percentage>]
+     <td>normal
+     <td>all elements
+     <td>yes
+     <td>refers to width of the affected glyph
+     <td>visual
+     <td>as length, percentage, or calc
+     <td>N/A
+     <td>
+     <td>an absolute length
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-letter-spacing">letter-spacing</a>
+     <td>normal | &lt;length>
+     <td>normal
+     <td>all elements
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>as length
+     <td>N/A
+     <td>
+     <td>an absolute length
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-text-indent">text-indent</a>
+     <td>[ &lt;length>
+              | &lt;percentage>
+              ] &amp;&amp; hanging? &amp;&amp; each-line?
+     <td>0
+     <td>block containers
+     <td>yes
+     <td>refers to width of containing block
+     <td>visual
+     <td>as length, percentage, or calc, but only if keywords match
+     <td>per grammar
+     <td>
+     <td>the percentage as specified or the absolute length,
+            plus any keywords as specified
+    <tr>
+     <th scope="row"><a class="css" href="#propdef-hanging-punctuation">hanging-punctuation</a>
+     <td>none | [ first || [ force-end | allow-end ] || last ]
+     <td>none
+     <td>inline elements
+     <td>yes
+     <td>N/A
+     <td>visual
+     <td>no
+     <td>per grammar
+     <td>
+     <td>as specified
+  </table>
+-->
+
+		<script src="./fdof-framework-documentation_files/fixup.js"></script>
+		</main>
+	
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
