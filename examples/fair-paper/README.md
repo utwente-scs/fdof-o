@@ -1,17 +1,19 @@
 # FAIR Paper GPT Example
 
-This folder contains a FDOF example where the seminal FAIR paper is described as a FAIR Digital Object. The files in this folder have been fed to GPT 4 in order to produce descriptions of the digital objects of this example in terms of FDOF, in addition to the FDOF-O and FDOF-T ontologies.
+This folder contains a FDOF example where the seminal paper [The FAIR Guiding Principles for scientific data management and stewardship](https://www.nature.com/articles/sdata201618), by Wilkinson et al., is described as a FAIR Digital Object. The files in this folder have been fed to GPT-4 which was then used to produce descriptions of the digital objects of this example in terms of FDOF. The following list of files has been used in this process:
 
 - `fair-paper.trig`: TriG file containing examples of FAIR digital objects related to the seminal FAIR paper.
+- `fdof-o.ttl`: Turtle file of the [FDOF-O](../../owl/fdof-o.ttl) ontology.
+- `fdof-t.ttl`: Turtle file containing the digital object types defined alongside FDOF-O, the [FDOF-T](../../owl/fdof-t.ttl) ontology.
 - `fdof-paper.pdf`: [arVix preview](https://doi.org/10.48550/arXiv.2302.11894) of the [FDOF paper](https://doi.org/10.3233/FAIA231131) presented at FOIS 2023.
 - `fdof-framework-documentation.html`: HTML documentation of the [FAIR Digital Object Framework](https://fairdigitalobjectframework.org/).
-- `gufo.ttl`: Turtle file of the [gUFO](http://purl.org/nemo/gufo#) ontology.
-- `gufo.html`: HTML documentation of the [gUFO()] ontology.
-- `dcat2.ttl`: Turtle file of the [DCAT 2]() vocabulary.
-- `dcat2.html`: HTML documentation of the [DCAT 2]() vocabulary.
+- `dcat2.ttl`: Turtle file of the [DCAT 2](https://www.w3.org/ns/dcat2.ttl) vocabulary.
+- `dcat2.html`: HTML documentation of the [DCAT 2](https://www.w3.org/TR/vocab-dcat-2/) vocabulary.
 
 
 ## Prompts and answers from GPT-4 enriched with FDOF relevant files
+
+The entire with GPT-4 can be found [here](https://chat.openai.com/share/971ff585-0d90-42d2-8c72-e0b8a4452305) and in the [`gpt-4-prompts.pdf`](./gpt-4-prompts.pdf) file.
 
 ### 1. Process these files. Consider the presence of named graphs in the .trig file. At the end, give me a description of FDOF.
 

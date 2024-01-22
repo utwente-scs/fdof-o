@@ -1,6 +1,12 @@
 # FAIR Digital Object Framework Ontology (FDOF-O)
 
-An OWL ontology to support the FAIR Digital Object Framework (FDOF).
+This repository contains all files relevant to the definition of the FAIR Digital Object Framework Ontology (FDOF-O) in OWL.
+
+This repository is structured as follow:
+
+- `./owl`: folder containing the definition files of FDOF-O.
+- `./examples`: folder containing examples of the application of FDOF-O.
+- `./OntoUML`: folder containing OntoUML diagrams describing the domain behind FDOF-O.
 
 ## Authors
 
