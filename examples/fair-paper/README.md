@@ -10,6 +10,12 @@ This folder contains a FDOF example where the seminal paper [The FAIR Guiding Pr
 - `dcat2.ttl`: Turtle file of the [DCAT 2](https://www.w3.org/ns/dcat2.ttl) vocabulary.
 - `dcat2.html`: HTML documentation of the [DCAT 2](https://www.w3.org/TR/vocab-dcat-2/) vocabulary.
 
+## Contributors
+- Luiz Olavo Bonino da Silva Santos
+- Claudenir Moraes Fonseca
+- Tiago Prince Sales
+- Giancarlo Guizzardi
+- Barend Mons
 
 ## Prompts and answers from GPT-4 enriched with FDOF relevant files
 
